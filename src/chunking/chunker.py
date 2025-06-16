@@ -1,6 +1,8 @@
 import re
 from typing import List, Optional
-from chunking.chunking_strategy import get_chunking_pattern
+from src.chunking.chunking_strategy import get_chunking_pattern
+from bs4 import BeautifulSoup
+import json
 
 class CodeChunker:
     """
@@ -55,3 +57,49 @@ class CodeChunker:
                 if buffer:
                     final_chunks.append("\n".join(buffer))
         return [c for c in final_chunks if c.strip()]
+
+    def chunk(self, text):
+        """
+        Splits the input text into chunks of up to max_chunk_size characters.
+        Returns a list of chunk strings.
+        """
+        if not text:
+            return []
+        return [text[i:i+self.max_chunk_size] for i in range(0, len(text), self.max_chunk_size)]
+
+def extract_text_from_html(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    # Get all visible text (customize as needed)
+    text = soup.get_text(separator="\n")
+    return text
+
+def chunk_text(text, max_length=300):
+    # Split by paragraphs, then by length
+    paragraphs = [p.strip() for p in text.split('\n') if p.strip()]
+    chunks = []
+    for para in paragraphs:
+        while len(para) > max_length:
+            split_point = para.rfind(' ', 0, max_length)
+            if split_point == -1:
+                split_point = max_length
+            chunks.append(para[:split_point])
+            para = para[split_point:].strip()
+        if para:
+            chunks.append(para)
+    return chunks
+
+def process_html_file(input_path, output_path):
+    with open(input_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+    text = extract_text_from_html(html_content)
+    chunks = chunk_text(text)
+    docs = [{"content": chunk} for chunk in chunks if chunk]
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(docs, f, indent=2)
+    print(f"Saved {len(docs)} chunks to {output_path}")
+
+if __name__ == "__main__":
+    # Example usage:
+    input_html = "data/raw/python_doc.html"  # Path to your HTML file
+    output_json = "data/clean/docs.json"
+    process_html_file(input_html, output_json)

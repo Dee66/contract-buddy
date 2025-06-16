@@ -40,5 +40,22 @@ graph TD
 
 ---
 
+## Benchmarking & Optimization Results
+
+| r  | alpha | dropout | top-1 | MRR  | runtime | mem(MB) |
+|----|-------|---------|-------|------|---------|---------|
+| 4  | 16    | 0.0     | 0.00  | 0.02 | 1.61    | 139.46  |
+| 4  | 16    | 0.1     | 0.00  | 0.03 | 4.95    | 142.46  |
+| ...| ...   | ...     | ...   | ...  | ...     | ...     |
+
+**Interpretation:**  
+With the current dataset size, all hyperparameter configurations yield similar (low) retrieval metrics. No clear trade-off between accuracy and resource usage is observed. To see meaningful optimization, we recommend expanding the dataset to 1000+ chunks.
+
+**Next Steps:**  
+- Expand dataset for more robust benchmarking.
+- Re-run hyperparameter sweep and update this analysis.
+
+---
+
 > **Professional Insight:**  
 > Optimization is not just about speed—it's about delivering value efficiently for every AI solution.

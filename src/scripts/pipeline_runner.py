@@ -1,4 +1,6 @@
 import os
+import subprocess
+import sys
 from utils.utils import read_yaml
 from ingestion.data_ingestion import DataIngestion
 from cleaning.data_cleaning import DataCleaning
@@ -27,12 +29,36 @@ def infer_language_and_framework(filename: str, config) -> (str, str):
         ".php": ("php", None),
         ".html": ("html", None),
         ".json": ("json", None),
-        # Add more as needed
     }
     # Use config or metadata if available
     if "language_overrides" in config and filename in config["language_overrides"]:
         return config["language_overrides"][filename]
     return ext_map.get(ext, ("text", None))
+
+def run_step(description, command):
+    print(f"\n=== {description} ===")
+    result = subprocess.run(command, shell=True)
+    if result.returncode != 0:
+        print(f"[ERROR] Step failed: {description}")
+        sys.exit(result.returncode)
+
+def check_data_files():
+    # Ensure source data files exist and are not empty
+    data_files = [
+        "data/clean/github_repos.json",
+        "data/clean/docs.json"
+    ]
+    for file in data_files:
+        if not os.path.exists(file):
+            print(f"[ERROR] Required data file missing: {file}")
+            sys.exit(1)
+        with open(file, "r", encoding="utf-8") as f:
+            import json
+            data = json.load(f)
+            if not data:
+                print(f"[ERROR] Required data file is empty: {file}")
+                sys.exit(1)
+    print("Source data files are present and non-empty.")
 
 def main(config_path="config.yaml"):
     config = read_yaml(config_path)

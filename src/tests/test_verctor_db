@@ -1,0 +1,13 @@
+import unittest
+from storage.vectordb import VectorDB
+
+class TestVectorDB(unittest.TestCase):
+    def test_store_and_query(self):
+        db = VectorDB()
+        db.add("id1", [0.1, 0.2, 0.3])
+        results = db.query([0.1, 0.2, 0.3], top_k=1)
+        self.assertTrue(results)
+        self.assertEqual(results[0]['id'], "id1")
+
+if __name__ == "__main__":
+    unittest.main()

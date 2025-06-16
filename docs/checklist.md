@@ -23,8 +23,8 @@
 - 🟩 **[Dev environment](core/Dev_Environment_Data.md):** Reproducible, containerized environment with version control and CI/CD hooks.
 - 🟩 **[Data sourcing & governance](core/Dev_Environment_Data.md):** Data ingestion, cleaning, normalization, privacy, and versioning implemented.
 - 🟩 **[Ongoing privacy & compliance](core/Dev_Environment_Data.md):** Continuous review of data handling and privacy impact.
-- 🟥 **[Data pipeline](core/Data_Pipeline_Processing.md):** Modular, testable data flows, chunking, embedding, and vector DB integration (if needed).
-- 🟥 **[Model implementation](core/Model_Implementation_Experimentation.md):** Base model loading, fine-tuning/PEFT, and inference logic built.
+- 🟩 **[Data pipeline](core/Data_Pipeline_Processing.md):** Modular, testable data flows, chunking, embedding, and vector DB integration.
+- 🟩 **[Model implementation](core/Model_Implementation_Experimentation.md):** Base model loading, fine-tuning/PEFT, and inference logic built.
 - 🟥 **[Experimentation](core/Model_Implementation_Experimentation.md):** Controlled experiments run, results and resource usage logged.
 - 🟥 **[Model versioning & rollback](core/Model_Implementation_Experimentation.md):** Registry, rollback, and deprecation procedures in place.
 - 🟥 **[Benchmarking & optimization](core/Benchmarking_Optimization.md):** Baseline metrics, trade-off analysis, and optimization documented.
