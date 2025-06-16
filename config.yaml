@@ -1,0 +1,21 @@
+# Example YAML configuration for data pipeline
+sources:
+  github:
+    enabled: true
+    repo_list:
+      - "openai/gym"
+      - "pallets/flask"
+  docs:
+    enabled: true
+    doc_urls:
+      - "https://docs.python.org/3/"
+  stackoverflow:
+    enabled: false
+    api_key: "YOUR_KEY"
+paths:
+  raw_data: "data/raw"
+  clean_data: "data/clean"
+  logs: "logs"
+logging:
+  level: "DEBUG"  # or "INFO" for production
+  log_file: "pipeline.log"
