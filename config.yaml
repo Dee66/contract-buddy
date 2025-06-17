@@ -1,1 +1,1 @@
-{"embedding": {"model_name": "sentence-transformers/all-MiniLM-L6-v2"}, "peft": {"r": 4, "alpha": 32, "dropout": 0.0, "num_train_epochs": 1, "batch_size": 16, "output_dir": "peft_adapter_r4_a32_d0.0_e1_b16"}}
+{"embedding": {"model_name": "sentence-transformers/all-MiniLM-L6-v2"}, "peft": {"r": 4, "alpha": 16, "dropout": 0.0, "num_train_epochs": 1, "batch_size": 16, "output_dir": "adapters/peft_adapter_r4_a16_d0.0_e1_b16"}}

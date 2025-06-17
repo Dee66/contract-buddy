@@ -26,7 +26,7 @@ for r in lora_rs:
                             "dropout": dropout,
                             "num_train_epochs": epoch,
                             "batch_size": batch_size,
-                            "output_dir": f"peft_adapter_r{r}_a{alpha}_d{dropout}_e{epoch}_b{batch_size}"
+                            "output_dir": f"adapters/peft_adapter_r{r}_a{alpha}_d{dropout}_e{epoch}_b{batch_size}"
                         }
                     }
                     # Save config for this run
