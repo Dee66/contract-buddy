@@ -1,5 +1,5 @@
 import unittest
-from embedding.embedder import CodeEmbedder
+from src.embedding.embedder import CodeEmbedder
 
 class TestCodeEmbedderExtra(unittest.TestCase):
     def setUp(self):
@@ -14,7 +14,7 @@ class TestCodeEmbedderExtra(unittest.TestCase):
         vecs = self.embedder.embed_chunks([])
         self.assertEqual(vecs, [])
 
-    def test_non_string_input(self):
+    def test_embedder_non_string_input(self):
         with self.assertRaises(Exception):
             self.embedder.embed_chunks([None, 123, {}])
 

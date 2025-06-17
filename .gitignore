@@ -1,9 +1,36 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.env
-.venv
-data/
-logs/
+*.py[cod]
+*.so
+
+# Logs
 *.log
+logs/
+
+# Data outputs
+data/
+adapters/
+checkpoints/
+
+# Model outputs
+*.safetensors
+
+# Environment files
+.env
+.venv/
+env/
+venv/
+ENV/
+venv/        # <-- add this line if not present
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+#

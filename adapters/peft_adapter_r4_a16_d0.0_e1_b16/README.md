@@ -8,191 +8,74 @@ tags:
 - loss:MultipleNegativesRankingLoss
 base_model: sentence-transformers/all-MiniLM-L6-v2
 widget:
-- source_sentence: 'This class provides a generic function for comparing any two tuples.
+- source_sentence: '>>> import io
 
-    Each instance records a list of tuple-indices (from most significant
+    >>> read_floatnl(io.BytesIO(b"-1.25\n6"))
 
-    to least significant), and sort direction (ascending or descending) for
-
-    each tuple-index.  The compare functions can then be used as the function
-
-    argument to the system sort() function when a list of tuples need to be
-
-    sorted in the instances order.'
+    -1.25'
   sentences:
-  - "Type variable tuple. A specialized form of type variable that enables\nvariadic\
-    \ generics.\n\nThe preferred way to construct a type variable tuple is via the\n\
-    dedicated syntax for generic functions, classes, and type aliases,\nwhere a single\
-    \ '*' indicates a type variable tuple::\n\n    def move_first_element_to_last[T,\
-    \ *Ts](tup: tuple[T, *Ts]) -> tuple[*Ts, T]:\n        return (*tup[1:], tup[0])\n\
-    \nType variables tuples can have default values:\n\n    type AliasWithDefault[*Ts\
-    \ = (str, int)] = tuple[*Ts]\n\nFor compatibility with Python 3.11 and earlier,\
-    \ TypeVarTuple objects\ncan also be created as follows::\n\n    Ts = TypeVarTuple('Ts')\
-    \  # Can be given any name\n    DefaultTs = TypeVarTuple('Ts', default=(str, int))\n\
-    \nJust as a TypeVar (type variable) is a placeholder for a single type,\na TypeVarTuple\
-    \ is a placeholder for an *arbitrary* number of types. For\nexample, if we define\
-    \ a generic class using a TypeVarTuple::\n\n    class C[*Ts]: ...\n\nThen we can\
-    \ parameterize that class with an arbitrary number of type\narguments::\n\n  \
-    \  C[int]       # Fine\n    C[int, str]  # Also fine\n    C[()]        # Even\
-    \ this is fine\n\nFor more details, see PEP 646.\n\nNote that only TypeVarTuples\
-    \ defined in the global scope can be\npickled."
-  - 'Return an instance of the FileInput class, which can be iterated.
-
-
-    The parameters are passed to the constructor of the FileInput class.
-
-    The returned instance, in addition to being an iterator,
-
-    keeps global state for the functions of this module,.'
-  - "Loads or creates a SentenceTransformer model that can be used to map sentences\
-    \ / text to embeddings.\n\nArgs:\n    model_name_or_path (str, optional): If it\
-    \ is a filepath on disc, it loads the model from that path. If it is not a path,\n\
-    \        it first tries to download a pre-trained SentenceTransformer model. If\
-    \ that fails, tries to construct a model\n        from the Hugging Face Hub with\
-    \ that name.\n    modules (Iterable[nn.Module], optional): A list of torch Modules\
-    \ that should be called sequentially, can be used to create custom\n        SentenceTransformer\
-    \ models from scratch.\n    device (str, optional): Device (like \"cuda\", \"\
-    cpu\", \"mps\", \"npu\") that should be used for computation. If None, checks\
-    \ if a GPU\n        can be used.\n    prompts (Dict[str, str], optional): A dictionary\
-    \ with prompts for the model. The key is the prompt name, the value is the prompt\
-    \ text.\n        The prompt text will be prepended before any text to encode.\
-    \ For example:\n        `{\"query\": \"query: \", \"passage\": \"passage: \"}`\
-    \ or `{\"clustering\": \"Identify the main category based on the\n        titles\
-    \ in \"}`.\n    default_prompt_name (str, optional): The name of the prompt that\
-    \ should be used by default. If not set,\n        no prompt will be applied.\n\
-    \    similarity_fn_name (str or SimilarityFunction, optional): The name of the\
-    \ similarity function to use. Valid options are \"cosine\", \"dot\",\n       \
-    \ \"euclidean\", and \"manhattan\". If not set, it is automatically set to \"\
-    cosine\" if `similarity` or\n        `similarity_pairwise` are called while `model.similarity_fn_name`\
-    \ is still `None`.\n    cache_folder (str, optional): Path to store models. Can\
-    \ also be set by the SENTENCE_TRANSFORMERS_HOME environment variable.\n    trust_remote_code\
-    \ (bool, optional): Whether or not to allow for custom models defined on the Hub\
-    \ in their own modeling files.\n        This option should only be set to True\
-    \ for repositories you trust and in which you have read the code, as it\n    \
-    \    will execute code present on the Hub on your local machine.\n    revision\
-    \ (str, optional): The specific model version to use. It can be a branch name,\
-    \ a tag name, or a commit id,\n        for a stored model on Hugging Face.\n \
-    \   local_files_only (bool, optional): Whether or not to only look at local files\
-    \ (i.e., do not try to download the model).\n    token (bool or str, optional):\
-    \ Hugging Face authentication token to download private models.\n    use_auth_token\
-    \ (bool or str, optional): Deprecated argument. Please use `token` instead.\n\
-    \    truncate_dim (int, optional): The dimension to truncate sentence embeddings\
-    \ to. `None` does no truncation. Truncation is\n        only applicable during\
-    \ inference when :meth:`SentenceTransformer.encode` is called.\n    model_kwargs\
-    \ (Dict[str, Any], optional): Additional model configuration parameters to be\
-    \ passed to the Hugging Face Transformers model.\n        Particularly useful\
-    \ options are:\n\n        - ``torch_dtype``: Override the default `torch.dtype`\
-    \ and load the model under a specific `dtype`.\n          The different options\
-    \ are:\n\n                1. ``torch.float16``, ``torch.bfloat16`` or ``torch.float``:\
-    \ load in a specified\n                ``dtype``, ignoring the model's ``config.torch_dtype``\
-    \ if one exists. If not specified - the model will\n                get loaded\
-    \ in ``torch.float`` (fp32).\n\n                2. ``\"auto\"`` - A ``torch_dtype``\
-    \ entry in the ``config.json`` file of the model will be\n                attempted\
-    \ to be used. If this entry isn't found then next check the ``dtype`` of the first\
-    \ weight in\n                the checkpoint that's of a floating point type and\
-    \ use that as ``dtype``. This will load the model\n                using the ``dtype``\
-    \ it was saved in at the end of the training. It can't be used as an indicator\
-    \ of how\n                the model was trained. Since it could be trained in\
-    \ one of half precision dtypes, but saved in fp32.\n        - ``attn_implementation``:\
-    \ The attention implementation to use in the model (if relevant). Can be any of\n\
-    \          `\"eager\"` (manual implementation of the attention), `\"sdpa\"` (using\
-    \ `F.scaled_dot_product_attention\n          <https://pytorch.org/docs/master/generated/torch.nn.functional.scaled_dot_product_attention.html>`_),\n\
-    \          or `\"flash_attention_2\"` (using `Dao-AILab/flash-attention <https://github.com/Dao-AILab/flash-attention>`_).\n\
-    \          By default, if available, SDPA will be used for torch>=2.1.1. The default\
-    \ is otherwise the manual `\"eager\"`\n          implementation.\n        - ``provider``:\
-    \ If backend is \"onnx\", this is the provider to use for inference, for example\
-    \ \"CPUExecutionProvider\",\n          \"CUDAExecutionProvider\", etc. See https://onnxruntime.ai/docs/execution-providers/\
-    \ for all ONNX execution providers.\n        - ``file_name``: If backend is \"\
-    onnx\" or \"openvino\", this is the file name to load, useful for loading optimized\n\
-    \          or quantized ONNX or OpenVINO models.\n        - ``export``: If backend\
-    \ is \"onnx\" or \"openvino\", then this is a boolean flag specifying whether\
-    \ this model should\n          be exported to the backend. If not specified, the\
-    \ model will be exported only if the model repository or directory\n         \
-    \ does not already contain an exported model.\n\n        See the `PreTrainedModel.from_pretrained\n\
-    \        <https://huggingface.co/docs/transformers/en/main_classes/model#transformers.PreTrainedModel.from_pretrained>`_\n\
-    \        documentation for more details.\n    tokenizer_kwargs (Dict[str, Any],\
-    \ optional): Additional tokenizer configuration parameters to be passed to the\
-    \ Hugging Face Transformers tokenizer.\n        See the `AutoTokenizer.from_pretrained\n\
-    \        <https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained>`_\n\
-    \        documentation for more details.\n    config_kwargs (Dict[str, Any], optional):\
-    \ Additional model configuration parameters to be passed to the Hugging Face Transformers\
-    \ config.\n        See the `AutoConfig.from_pretrained\n        <https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoConfig.from_pretrained>`_\n\
-    \        documentation for more details.\n    model_card_data (:class:`~sentence_transformers.model_card.SentenceTransformerModelCardData`,\
-    \ optional): A model\n        card data object that contains information about\
-    \ the model. This is used to generate a model card when saving\n        the model.\
-    \ If not set, a default model card data object is created.\n    backend (str):\
-    \ The backend to use for inference. Can be one of \"torch\" (default), \"onnx\"\
-    , or \"openvino\".\n        See https://sbert.net/docs/sentence_transformer/usage/efficiency.html\
-    \ for benchmarking information\n        on the different backends.\n\nExample:\n\
-    \    ::\n\n        from sentence_transformers import SentenceTransformer\n\n \
-    \       # Load a pre-trained SentenceTransformer model\n        model = SentenceTransformer('all-mpnet-base-v2')\n\
-    \n        # Encode some texts\n        sentences = [\n            \"The weather\
-    \ is lovely today.\",\n            \"It's so sunny outside!\",\n            \"\
-    He drove to the stadium.\",\n        ]\n        embeddings = model.encode(sentences)\n\
-    \        print(embeddings.shape)\n        # (3, 768)\n\n        # Get the similarity\
-    \ scores between all sentences\n        similarities = model.similarity(embeddings,\
-    \ embeddings)\n        print(similarities)\n        # tensor([[1.0000, 0.6817,\
-    \ 0.0492],\n        #         [0.6817, 1.0000, 0.0421],\n        #         [0.0492,\
-    \ 0.0421, 1.0000]])"
-- source_sentence: 'Common operations on Posix pathnames.
-
-
-    Instead of importing this module directly, import os and refer to
-
-    this module as os.path.  The "os.path" name is an alias for this
-
-    module on Posix systems; on other systems (e.g. Windows),
-
-    os.path provides the same operations in a manner specific to that
-
-    platform, and is an alias to another module (e.g. ntpath).
-
-
-    Some of this can actually be useful on non-Posix systems too, e.g.
-
-    for manipulation of the pathname component of URLs.'
-  sentences:
-  - 'Set or return backgroundcolor of the TurtleScreen.
-
-
-    Arguments (if given): a color string or three numbers
-
-    in the range 0..colormode or a 3-tuple of such numbers.
-
-
-    Example:
-
-    >>> bgcolor("orange")
-
-    >>> bgcolor()
-
-    ''orange''
-
-    >>> bgcolor(0.5,0,0.5)
-
-    >>> bgcolor()
-
-    ''#800080'''
-  - A base class for ExitStack and AsyncExitStack.
   - A string substitution required a setting which was not available.
-- source_sentence: DecimalTuple(sign, digits, exponent)
+  - 'zipimporter(archivepath) -> zipimporter object
+
+
+    Create a new zipimporter instance. ''archivepath'' must be a path to
+
+    a zipfile, or to a specific path inside a zipfile. For example, it can be
+
+    ''/tmp/myimport.zip'', or ''/tmp/myimport.zip/mydirectory'', if mydirectory is
+    a
+
+    valid directory inside the archive.
+
+
+    ''ZipImportError is raised if ''archivepath'' doesn''t point to a valid Zip
+
+    archive.
+
+
+    The ''archive'' attribute of zipimporter objects contains the name of the
+
+    zipfile targeted.'
+  - '>>> import io
+
+    >>> read_string4(io.BytesIO(b"\x00\x00\x00\x00abc"))
+
+    ''''
+
+    >>> read_string4(io.BytesIO(b"\x03\x00\x00\x00abcdef"))
+
+    ''abc''
+
+    >>> read_string4(io.BytesIO(b"\x00\x00\x00\x03abcdef"))
+
+    Traceback (most recent call last):
+
+    ...
+
+    ValueError: expected 50331648 bytes in a string4, but only 6 remain'
+- source_sentence: 'Register the core Python file extensions.
+
+
+    defPyIcon -- The default icon to use for .py files, in ''fname,offset'' format.
+
+    defPycIcon -- The default icon to use for .pyc files, in ''fname,offset'' format.
+
+    runCommand -- The command line to use for running .py files'
   sentences:
-  - 'Tests if the type is a :class:`typing.ForwardRef`. Examples::
+  - 'StreamReaderWriter instances allow wrapping streams which
+
+    work in both read and write modes.
 
 
-    u = Union["Milk", Way]
+    The design is such that one can use the factory functions
 
-    args = get_args(u)
+    returned by the codec.lookup() function to construct the
 
-    is_forward_ref(args[0]) == True
-
-    is_forward_ref(args[1]) == False'
-  - 'Open a file in read only mode using the encoding detected by
-
-    detect_encoding().'
-  - Prints multi-column formatting for year calendars
-- source_sentence: String that doesn't quote its repr.
-  sentences:
+    instance.'
+  - "Abstract base class that provides __repr__.\n\nThe __repr__ method returns a\
+    \ string in the format::\n    ClassName(attr=name, attr=name, ...)\nThe attributes\
+    \ are determined either by a class-level attribute,\n'_kwarg_names', or by inspecting\
+    \ the instance __dict__."
   - '>>> import io
 
     >>> read_long4(io.BytesIO(b"\x02\x00\x00\x00\xff\x00"))
@@ -214,74 +97,64 @@ widget:
     >>> read_long1(io.BytesIO(b"\x00\x00\x00\x00"))
 
     0'
-  - Clear the cache entirely.
-  - "Exception raised when an error occurs while attempting to\ncompile the file.\n\
-    \nTo raise this exception, use\n\n    raise PyCompileError(exc_type,exc_value,file[,msg])\n\
-    \nwhere\n\n    exc_type:   exception type to be used in error message\n      \
-    \          type name can be accesses as class variable\n                'exc_type_name'\n\
-    \n    exc_value:  exception value to be used in error message\n              \
-    \  can be accesses as class variable 'exc_value'\n\n    file:       name of file\
-    \ being compiled to be used in error message\n                can be accesses\
-    \ as class variable 'file'\n\n    msg:        string message to be written as\
-    \ error message\n                If no value is given, a default exception message\
-    \ will be\n                given, consistent with 'standard' py_compile output.\n\
-    \                message (or default) can be accesses as class variable\n    \
-    \            'msg'"
-- source_sentence: 'The `winxpgui` module is obsolete and has been completely replaced
-    by `win32gui` and `win32console.GetConsoleWindow`. Use those instead. '
+- source_sentence: 'In case filepath is a symlink, follow it until a
+
+    real file is reached.'
   sentences:
-  - 'Extract the raw traceback from the current stack frame.
+  - 'Instances of this class behave much like the built-in compile
+
+    function, but if one is used to compile text containing a future
+
+    statement, it "remembers" and compiles all subsequent program texts
+
+    with the statement in force.'
+  - 'int([x]) -> integer
+
+    int(x, base=10) -> integer
 
 
-    The return value has the same format as for extract_tb().  The
+    Convert a number or string to an integer, or return 0 if no arguments
 
-    optional ''f'' and ''limit'' arguments have the same meaning as for
+    are given.  If x is a number, return x.__int__().  For floating-point
 
-    print_stack().  Each item in the list is a quadruple (filename,
-
-    line number, function name, text), and the entries are in order
-
-    from oldest to newest stack frame.'
-  - 'FileInput([files[, inplace[, backup]]], *, mode=None, openhook=None)
+    numbers, this truncates towards zero.
 
 
-    Class FileInput is the implementation of the module; its methods
+    If x is not a number or if base is given, then x must be a string,
 
-    filename(), lineno(), fileline(), isfirstline(), isstdin(), fileno(),
+    bytes, or bytearray instance representing an integer literal in the
 
-    nextfile() and close() correspond to the functions of the same name
+    given base.  The literal can be preceded by ''+'' or ''-'' and be surrounded
 
-    in the module.
+    by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
 
-    In addition it has a readline() method which returns the next
+    Base 0 means to interpret the base from the string as an integer literal.
 
-    input line, and a __getitem__() method which implements the
+    >>> int(''0b100'', base=0)
 
-    sequence behavior. The sequence must be accessed in strictly
+    4'
+  - A private marker - used in Parameter & Signature.
+- source_sentence: Quote a single character.
+  sentences:
+  - 'Raised when a registry operation with the archiving
 
-    sequential order; random access and readline() cannot be mixed.'
-  - "Abstract base class for the individual library controllers\n\nA library controller\
-    \ must expose the following class attributes:\n    - user_api : str\n        Usually\
-    \ the name of the library or generic specification the library\n        implements,\
-    \ e.g. \"blas\" is a specification with different implementations.\n    - internal_api\
-    \ : str\n        Usually the name of the library or concrete implementation of\
-    \ some\n        specification, e.g. \"openblas\" is an implementation of the \"\
-    blas\"\n        specification.\n    - filename_prefixes : tuple\n        Possible\
-    \ prefixes of the shared library's filename that allow to\n        identify the\
-    \ library. e.g. \"libopenblas\" for libopenblas.so.\n\nand implement the following\
-    \ methods: `get_num_threads`, `set_num_threads` and\n`get_version`.\n\nThreadpoolctl\
-    \ loops through all the loaded shared libraries and tries to match\nthe filename\
-    \ of each library with the `filename_prefixes`. If a match is found, a\ncontroller\
-    \ is instantiated and a handler to the library is stored in the `dynlib`\nattribute\
-    \ as a `ctypes.CDLL` object. It can be used to access the necessary symbols\n\
-    of the shared library to implement the above methods.\n\nThe following information\
-    \ will be exposed in the info dictionary:\n  - user_api : standardized API, if\
-    \ any, or a copy of internal_api.\n  - internal_api : implementation-specific\
-    \ API.\n  - num_threads : the current thread limit.\n  - prefix : prefix of the\
-    \ shared library's filename.\n  - filepath : path to the loaded shared library.\n\
-    \  - version : version of the library (if available).\n\nIn addition, each library\
-    \ controller may expose internal API specific entries. They\nmust be set as attributes\
-    \ in the `set_additional_attributes` method."
+    and unpacking registries fails'
+  - "Statically assert that a line of code is unreachable.\n\nExample::\n\n    def\
+    \ int_or_str(arg: int | str) -> None:\n        match arg:\n            case int():\n\
+    \                print(\"It's an int\")\n            case str():\n           \
+    \     print(\"It's a str\")\n            case _:\n                assert_never(arg)\n\
+    \nIf a type checker finds that a call to assert_never() is\nreachable, it will\
+    \ emit an error.\n\nAt runtime, this throws an exception when called."
+  - Quote a single character.
+- source_sentence: String that doesn't quote its repr.
+  sentences:
+  - "ASN.1 object identifier lookup\n    "
+  - "Represent an address as 4 packed bytes in network (big-endian) order.\n\nArgs:\n\
+    \    address: An integer representation of an IPv4 IP address.\n\nReturns:\n \
+    \   The integer address packed as 4 bytes in network (big-endian) order.\n\nRaises:\n\
+    \    ValueError: If the integer is negative or too large to be an\n      IPv4\
+    \ IP address."
+  - Clear the cache entirely.
 pipeline_tag: sentence-similarity
 library_name: sentence-transformers
 ---
@@ -336,9 +209,9 @@ from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("sentence_transformers_model_id")
 # Run inference
 sentences = [
-    'The `winxpgui` module is obsolete and has been completely replaced by `win32gui` and `win32console.GetConsoleWindow`. Use those instead. ',
-    'Abstract base class for the individual library controllers\n\nA library controller must expose the following class attributes:\n    - user_api : str\n        Usually the name of the library or generic specification the library\n        implements, e.g. "blas" is a specification with different implementations.\n    - internal_api : str\n        Usually the name of the library or concrete implementation of some\n        specification, e.g. "openblas" is an implementation of the "blas"\n        specification.\n    - filename_prefixes : tuple\n        Possible prefixes of the shared library\'s filename that allow to\n        identify the library. e.g. "libopenblas" for libopenblas.so.\n\nand implement the following methods: `get_num_threads`, `set_num_threads` and\n`get_version`.\n\nThreadpoolctl loops through all the loaded shared libraries and tries to match\nthe filename of each library with the `filename_prefixes`. If a match is found, a\ncontroller is instantiated and a handler to the library is stored in the `dynlib`\nattribute as a `ctypes.CDLL` object. It can be used to access the necessary symbols\nof the shared library to implement the above methods.\n\nThe following information will be exposed in the info dictionary:\n  - user_api : standardized API, if any, or a copy of internal_api.\n  - internal_api : implementation-specific API.\n  - num_threads : the current thread limit.\n  - prefix : prefix of the shared library\'s filename.\n  - filepath : path to the loaded shared library.\n  - version : version of the library (if available).\n\nIn addition, each library controller may expose internal API specific entries. They\nmust be set as attributes in the `set_additional_attributes` method.',
-    'FileInput([files[, inplace[, backup]]], *, mode=None, openhook=None)\n\nClass FileInput is the implementation of the module; its methods\nfilename(), lineno(), fileline(), isfirstline(), isstdin(), fileno(),\nnextfile() and close() correspond to the functions of the same name\nin the module.\nIn addition it has a readline() method which returns the next\ninput line, and a __getitem__() method which implements the\nsequence behavior. The sequence must be accessed in strictly\nsequential order; random access and readline() cannot be mixed.',
+    "String that doesn't quote its repr.",
+    'Clear the cache entirely.',
+    'Represent an address as 4 packed bytes in network (big-endian) order.\n\nArgs:\n    address: An integer representation of an IPv4 IP address.\n\nReturns:\n    The integer address packed as 4 bytes in network (big-endian) order.\n\nRaises:\n    ValueError: If the integer is negative or too large to be an\n      IPv4 IP address.',
 ]
 embeddings = model.encode(sentences)
 print(embeddings.shape)
@@ -400,11 +273,11 @@ You can finetune this model on your own dataset.
   | type    | string                                                                             | string                                                                             |
   | details | <ul><li>min: 5 tokens</li><li>mean: 62.12 tokens</li><li>max: 256 tokens</li></ul> | <ul><li>min: 6 tokens</li><li>mean: 80.42 tokens</li><li>max: 256 tokens</li></ul> |
 * Samples:
-  | sentence_0                                                                                                                                                                                                                                     | sentence_1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-  |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | <code>Will be raised in TurtleScreen.update, if _RUNNING becomes False.<br><br>This stops execution of a turtle graphics script.<br>Main purpose: use in the Demo-Viewer turtle.Demo.py.</code>                                                | <code>Connect to *address* and return the socket object.<br><br>Convenience function.  Connect to *address* (a 2-tuple ``(host,<br>port)``) and return the socket object.  Passing the optional<br>*timeout* parameter will set the timeout on the socket instance<br>before attempting to connect.  If no *timeout* is supplied, the<br>global default timeout setting returned by :func:`getdefaulttimeout`<br>is used.  If *source_address* is set it must be a tuple of (host, port)<br>for the socket to bind as a source address before making the connection.<br>A host of '' or port 0 tells the OS to use the default. When a connection<br>cannot be created, raises the last error if *all_errors* is False,<br>and an ExceptionGroup of all errors if *all_errors* is True.</code> |
-  | <code>AsyncFunctionDef(identifier name, arguments args, stmt* body, expr* decorator_list, expr? returns, string? type_comment, type_param* type_params)</code>                                                                                 | <code>Return the number of Thread objects currently alive.<br><br>This function is deprecated, use active_count() instead.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-  | <code>Compress a block of data.<br><br>Refer to LZMACompressor's docstring for a description of the<br>optional arguments *format*, *check*, *preset* and *filters*.<br><br>For incremental compression, use an LZMACompressor instead.</code> | <code>AsyncFunctionDef(identifier name, arguments args, stmt* body, expr* decorator_list, expr? returns, string? type_comment, type_param* type_params)</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | sentence_0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | sentence_1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | <code>Compress a block of data.<br><br>Refer to LZMACompressor's docstring for a description of the<br>optional arguments *format*, *check*, *preset* and *filters*.<br><br>For incremental compression, use an LZMACompressor instead.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | <code>AsyncFunctionDef(identifier name, arguments args, stmt* body, expr* decorator_list, expr? returns, string? type_comment, type_param* type_params)</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | <code>Guess the type of a file based on its URL.<br><br>Return value is a tuple (type, encoding) where type is None if the<br>type can't be guessed (no or unknown suffix) or a string of the<br>form type/subtype, usable for a MIME Content-type header; and<br>encoding is None for no encoding or the name of the program used<br>to encode (e.g. compress or gzip).  The mappings are table<br>driven.  Encoding suffixes are case sensitive; type suffixes are<br>first tried case sensitive, then case insensitive.<br><br>The suffixes .tgz, .taz and .tz (case sensitive!) are all mapped<br>to ".tar.gz".  (This is table-driven too, using the dictionary<br>suffix_map).<br><br>Optional `strict' argument when false adds a bunch of commonly found, but<br>non-standard types.</code> | <code>zipimporter(archivepath) -> zipimporter object<br><br>Create a new zipimporter instance. 'archivepath' must be a path to<br>a zipfile, or to a specific path inside a zipfile. For example, it can be<br>'/tmp/myimport.zip', or '/tmp/myimport.zip/mydirectory', if mydirectory is a<br>valid directory inside the archive.<br><br>'ZipImportError is raised if 'archivepath' doesn't point to a valid Zip<br>archive.<br><br>The 'archive' attribute of zipimporter objects contains the name of the<br>zipfile targeted.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | <code>Text wrapping and filling.</code>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | <code>Get type arguments with all substitutions performed. For unions,<br>basic simplifications used by Union constructor are performed.<br>On versions prior to 3.7 if `evaluate` is False (default),<br>report result as nested tuple, this matches<br>the internal representation of types. If `evaluate` is True<br>(or if Python version is 3.7 or greater), then all<br>type parameters are applied (this could be time and memory expensive).<br>Examples::<br><br>    get_args(int) == ()<br>    get_args(Union[int, Union[T, int], str][int]) == (int, str)<br>    get_args(Union[int, Tuple[T, int]][str]) == (int, (Tuple, str, int))<br><br>    get_args(Union[int, Tuple[T, int]][str], evaluate=True) ==                  (int, Tuple[str, int])<br>    get_args(Dict[int, Tuple[T, T]][Optional[int]], evaluate=True) ==                  (int, Tuple[Optional[int], Optional[int]])<br>    get_args(Callable[[], T][int], evaluate=True) == ([], int,)</code> |
 * Loss: [<code>MultipleNegativesRankingLoss</code>](https://sbert.net/docs/package_reference/sentence_transformer/losses.html#multiplenegativesrankingloss) with these parameters:
   ```json
   {

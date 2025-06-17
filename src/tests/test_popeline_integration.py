@@ -1,12 +1,12 @@
 import unittest
 import os
-from utils.utils import read_yaml
-from ingestion.data_ingestion import DataIngestion
-from cleaning.data_cleaning import DataCleaning
-from storage.versioning import DataVersioning
-from chunking.chunker import CodeChunker
-from embedding.embedder import CodeEmbedder
-from storage.vectordb import VectorDB
+from src.utils.utils import read_yaml
+from src.ingestion.data_ingestion import DataIngestion
+from src.cleaning.data_cleaning import DataCleaning
+from src.storage.versioning import DataVersioning
+from src.chunking.chunker import CodeChunker
+from src.embedding.embedder import CodeEmbedder
+from src.storage.vectordb import VectorDB
 
 class TestPipelineIntegration(unittest.TestCase):
     def test_pipeline_on_sample(self):
@@ -27,6 +27,8 @@ class TestPipelineIntegration(unittest.TestCase):
         embedder = CodeEmbedder()
         vectordb = VectorDB()
         for fname in os.listdir("data/clean"):
+            if not fname.endswith((".txt", ".py")):
+                continue  # skip non-text files
             fpath = os.path.join("data/clean", fname)
             with open(fpath, "r", encoding="utf-8") as f:
                 content = f.read()

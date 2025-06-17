@@ -1,5 +1,5 @@
 import unittest
-from embedding.embedder import CodeEmbedder
+from src.embedding.embedder import CodeEmbedder
 
 class TestCodeEmbedder(unittest.TestCase):
     def test_embedding_shape(self):

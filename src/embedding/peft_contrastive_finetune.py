@@ -11,7 +11,7 @@ def load_pairs(path="data/clean/contrastive_pairs.json"):
     with open(path, "r", encoding="utf-8") as f:
         pairs = json.load(f)
     if not pairs:
-        raise ValueError(f"No pairs found in {path}. Run prepare_contrastive_pairs.py and check your data.")
+        raise ValueError(f"No pairs found in {path}. Run prepare_contrastive_pairs.py and check data.")
     return [InputExample(texts=[a, b]) for a, b in pairs]
 
 def load_config(config_path="config.yaml"):
@@ -45,7 +45,7 @@ def main():
 
     train_examples = load_pairs()
     if not train_examples:
-        raise ValueError("No training pairs found. Please check your data.")
+        raise ValueError("No training pairs found. Please check data.")
     train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=batch_size)
     train_loss = losses.MultipleNegativesRankingLoss(model)
 

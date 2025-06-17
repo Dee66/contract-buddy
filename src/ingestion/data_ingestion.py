@@ -6,11 +6,11 @@ Fetches, validates, and stores data from approved sources for RAG and model fine
 
 from pathlib import Path
 from typing import Dict
-from utils.logger_factory import LoggerFactory
-from ingestion.sources.github import fetch_github_repos
-from ingestion.sources.docs import fetch_docs
-from ingestion.sources.stackoverflow import fetch_stackoverflow
-from utils.utils import save_json
+from src.utils.logger_factory import LoggerFactory
+from src.ingestion.sources.github import fetch_github_repos
+from src.ingestion.sources.docs import fetch_docs
+from src.ingestion.sources.stackoverflow import fetch_stackoverflow
+from src.utils.utils import save_json
 
 class DataIngestion:
     def __init__(self, config: Dict):

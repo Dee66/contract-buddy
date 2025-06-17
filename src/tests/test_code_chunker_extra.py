@@ -1,5 +1,5 @@
 import unittest
-from chunking.chunker import CodeChunker
+from src.chunking.chunker import CodeChunker
 
 class TestCodeChunkerExtra(unittest.TestCase):
     def setUp(self):
@@ -14,7 +14,7 @@ class TestCodeChunkerExtra(unittest.TestCase):
     def test_whitespace_only(self):
         text = "     \n   \n"
         chunks = self.chunker.chunk(text)
-        self.assertTrue(isinstance(chunks, list))
+        self.assertIsInstance(chunks, list)
         self.assertTrue(all(isinstance(chunk, str) for chunk in chunks))
 
     def test_large_input(self):

@@ -1,3 +1,8 @@
+from src.utils.environment import setup_logging
+
+setup_logging()
+import logging
+
 import unittest
 import tempfile
 import os
@@ -5,14 +10,14 @@ import json
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-# Import functions from your benchmarking scripts
-from embedding.evaluate_embeddings import (
+# Import functions from benchmarking scripts
+from src.embedding.evaluate_embeddings import (
     load_pairs,
     generate_negative_pairs,
     evaluate_model,
     retrieval_metrics
 )
-from embedding.prepare_contrastive_pairs import (
+from src.embedding.prepare_contrastive_pairs import (
     load_chunks,
     create_positive_pairs
 )
@@ -20,6 +25,7 @@ from embedding.prepare_contrastive_pairs import (
 class TestBenchmarkingPipeline(unittest.TestCase):
 
     def setUp(self):
+        logging.info("Setting up benchmarking pipeline test case")
         # Create dummy data for testing
         self.dummy_chunks = [
             "The quick brown fox jumps over the lazy dog.",
@@ -58,9 +64,12 @@ class TestBenchmarkingPipeline(unittest.TestCase):
             self.assertNotEqual(a, b)
 
     def test_evaluate_model(self):
-        mean_sim, scores = evaluate_model(self.model, self.dummy_pairs)
-        self.assertIsInstance(mean_sim, float)
-        self.assertEqual(len(scores), len(self.dummy_pairs))
+        logging.info("Testing evaluate_model output structure and types")
+        metrics = evaluate_model(self.model, None, self.dummy_pairs)
+        self.assertIn("mean_similarity", metrics)
+        self.assertIn("similarity_scores", metrics)
+        self.assertIsInstance(metrics["mean_similarity"], float)
+        self.assertIsInstance(metrics["similarity_scores"], list)
 
     def test_retrieval_metrics(self):
         negatives = generate_negative_pairs(self.dummy_pairs)
@@ -80,6 +89,9 @@ class TestBenchmarkingPipeline(unittest.TestCase):
             pairs = load_pairs(tf.name, max_pairs=2)
         self.assertEqual(len(pairs), 2)
         os.unlink(tf.name)
+
+    def tearDown(self):
+        logging.info("Tearing down benchmarking pipeline test case")
 
 if __name__ == "__main__":
     unittest.main()

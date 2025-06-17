@@ -1,5 +1,5 @@
 import unittest
-from chunking.chunker import CodeChunker
+from src.chunking.chunker import CodeChunker
 
 class TestCodeChunker(unittest.TestCase):
     def test_basic_chunking(self):

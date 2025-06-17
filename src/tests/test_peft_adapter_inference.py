@@ -1,5 +1,5 @@
 import unittest
-from embedding.embedder import CodeEmbedder
+from src.embedding.embedder import CodeEmbedder
 
 class TestPeftAdapterInference(unittest.TestCase):
     def test_embedder_with_adapter(self):

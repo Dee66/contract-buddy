@@ -6,9 +6,78 @@ Handles dataset versioning for reproducibility and auditability.
 
 from pathlib import Path
 from typing import Dict
-from utils.logger_factory import LoggerFactory
+from src.utils.logger_factory import LoggerFactory
 import subprocess
 import datetime
+import json
+import os
+from datetime import datetime
+import tempfile
+import shutil
+
+REGISTRY_PATH = "data/clean/model_registry.json"
+
+def load_registry():
+    if not os.path.exists(REGISTRY_PATH):
+        return []
+    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_registry(registry):
+    # Write to a temp file, then move atomically
+    dir_name = os.path.dirname(REGISTRY_PATH)
+    with tempfile.NamedTemporaryFile("w", dir=dir_name, delete=False, encoding="utf-8") as tf:
+        json.dump(registry, tf, indent=2)
+        tempname = tf.name
+    shutil.move(tempname, REGISTRY_PATH)
+
+def validate_entry(entry):
+    required_keys = {"version", "path", "hyperparams", "metrics", "status", "timestamp"}
+    if not isinstance(entry, dict):
+        raise ValueError("Registry entry must be a dict.")
+    missing = required_keys - set(entry.keys())
+    if missing:
+        raise ValueError(f"Registry entry missing keys: {missing}")
+    if entry["status"] not in {"active", "deprecated"}:
+        raise ValueError("Status must be 'active' or 'deprecated'.")
+    # Add more validation as needed (e.g., types, metrics structure)
+
+def register_model(path, hyperparams, metrics, status="active"):
+    registry = load_registry()
+    version = datetime.now().strftime("%Y%m%d-%H%M%S-%f")  # Add microseconds
+    if status == "active":
+        for entry in registry:
+            entry["status"] = "deprecated"
+    entry = {
+        "version": version,
+        "path": path,
+        "hyperparams": hyperparams,
+        "metrics": metrics,
+        "status": status,
+        "timestamp": datetime.now().isoformat()
+    }
+    validate_entry(entry)
+    registry.append(entry)
+    save_registry(registry)
+    return version
+
+def list_models():
+    return load_registry()
+
+def set_active(version):
+    registry = load_registry()
+    found = False
+    for entry in registry:
+        if entry["version"] == version:
+            entry["status"] = "active"
+            found = True
+        else:
+            entry["status"] = "deprecated"
+    save_registry(registry)
+    return found
+
+def rollback_to(version):
+    return set_active(version)
 
 class DataVersioning:
     """

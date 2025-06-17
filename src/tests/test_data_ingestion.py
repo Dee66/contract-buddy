@@ -1,5 +1,5 @@
 import unittest
-from ingestion.sources.github import fetch_github_repos
+from src.ingestion.sources.github import fetch_github_repos
 
 class DummyLogger:
     def debug(self, *args, **kwargs): pass

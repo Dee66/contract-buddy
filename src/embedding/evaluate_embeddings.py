@@ -6,6 +6,8 @@ import os
 import random
 import time
 import sys
+import torch
+from typing import Any, List, Tuple, Optional
 
 try:
     import psutil
@@ -35,32 +37,69 @@ def generate_negative_pairs(pairs, num_negatives=None):
             break
     return negatives
 
-def evaluate_model(model: SentenceTransformer, pairs):
-    """Compute average cosine similarity for pairs."""
+def evaluate_model(
+    model: Any,
+    tokenizer: Optional[Any],
+    pairs: List[Tuple[str, str]],
+    device: Optional[torch.device] = None
+) -> dict:
+    """
+    Compute average cosine similarity for pairs using either a HuggingFace model+tokenizer or a SentenceTransformer.
+    Returns a dictionary for easy downstream use.
+    """
     scores = []
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     for a, b in pairs:
-        emb_a = model.encode(a, convert_to_numpy=True)
-        emb_b = model.encode(b, convert_to_numpy=True)
-        sim = float(cosine_similarity([emb_a], [emb_b])[0][0])
-        scores.append(sim)
-    return float(np.mean(scores)), scores
+        try:
+            if tokenizer is not None:
+                # HuggingFace model
+                inputs_a = tokenizer(a, return_tensors="pt", truncation=True, padding="max_length", max_length=128).to(device)
+                inputs_b = tokenizer(b, return_tensors="pt", truncation=True, padding="max_length", max_length=128).to(device)
+                with torch.no_grad():
+                    emb_a = model(**inputs_a).logits.squeeze().cpu().numpy()
+                    emb_b = model(**inputs_b).logits.squeeze().cpu().numpy()
+            else:
+                # SentenceTransformer
+                emb_a = model.encode(a, convert_to_numpy=True)
+                emb_b = model.encode(b, convert_to_numpy=True)
+            sim = float(cosine_similarity([emb_a], [emb_b])[0][0])
+            scores.append(sim)
+        except Exception as e:
+            print(f"[ERROR] Failed to compute similarity for pair: {a[:30]}..., {b[:30]}...: {e}")
+    mean_similarity = float(np.mean(scores)) if scores else 0.0
+    return {
+        "mean_similarity": mean_similarity,
+        "similarity_scores": scores
+    }
 
-def retrieval_metrics(model: SentenceTransformer, pairs, negatives, top_k=5):
+def retrieval_metrics(model: SentenceTransformer, pairs, negatives, tokenizer=None, top_k=5):
     """
     For each anchor (a), rank all possible candidates (b's) including the true positive and negatives.
     Compute top-1, top-k accuracy and MRR.
+    Supports both SentenceTransformer and HuggingFace models.
     """
     anchors = [a for a, _ in pairs]
     positives = [b for _, b in pairs]
     candidates = positives + [b for a, b in negatives]
     metrics = {"top1": 0, "topk": 0, "mrr": 0}
-    for idx, (anchor, true_b) in enumerate(zip(anchors, positives)):
-        anchor_emb = model.encode(anchor, convert_to_numpy=True)
+    n = len(anchors)
+
+    # Encode all candidates once for efficiency
+    if tokenizer is not None:
+        # HuggingFace model
+        candidate_embs = encode_hf_model(model, tokenizer, candidates)
+    else:
+        # SentenceTransformer
         candidate_embs = model.encode(candidates, convert_to_numpy=True)
+
+    for idx, (anchor, true_b) in enumerate(zip(anchors, positives)):
+        if tokenizer is not None:
+            anchor_emb = encode_hf_model(model, tokenizer, [anchor])[0]
+        else:
+            anchor_emb = model.encode(anchor, convert_to_numpy=True)
         sims = cosine_similarity([anchor_emb], candidate_embs)[0]
-        # Rank candidates by similarity
         ranked_indices = np.argsort(sims)[::-1]
-        # Find the rank of the true positive
         true_idx = candidates.index(true_b)
         rank = np.where(ranked_indices == true_idx)[0][0] + 1  # 1-based
         metrics["mrr"] += 1.0 / rank
@@ -68,11 +107,45 @@ def retrieval_metrics(model: SentenceTransformer, pairs, negatives, top_k=5):
             metrics["top1"] += 1
         if rank <= top_k:
             metrics["topk"] += 1
-    n = len(anchors)
     metrics["top1"] /= n
     metrics["topk"] /= n
     metrics["mrr"] /= n
     return metrics
+
+def encode_hf_model(model, tokenizer, sentences, device=None, max_length=128, batch_size=16):
+    """
+    Encode a list of sentences using a HuggingFace model+tokenizer.
+    Returns a numpy array of embeddings (uses [CLS] token or pooled output).
+    Batches for efficiency.
+    """
+    import torch
+    import numpy as np
+
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = model.to(device)
+    model.eval()
+    embeddings = []
+    with torch.no_grad():
+        for i in range(0, len(sentences), batch_size):
+            batch = sentences[i:i+batch_size]
+            inputs = tokenizer(
+                batch,
+                return_tensors="pt",
+                truncation=True,
+                padding="max_length",
+                max_length=max_length
+            ).to(device)
+            outputs = model(**inputs, output_hidden_states=True)
+            # Try to use pooled output if available, else use CLS token from last hidden state
+            if hasattr(outputs, "pooler_output") and outputs.pooler_output is not None:
+                embs = outputs.pooler_output.cpu().numpy()
+            elif hasattr(outputs, "hidden_states") and outputs.hidden_states is not None:
+                embs = outputs.hidden_states[-1][:, 0, :].cpu().numpy()  # CLS token
+            else:
+                raise ValueError("Model output does not contain pooler_output or hidden_states.")
+            embeddings.append(embs)
+    return np.vstack(embeddings)
 
 def main():
     pairs = load_pairs()
@@ -87,13 +160,13 @@ def main():
     # Evaluate base model
     print("Evaluating base model...")
     base_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-    base_pos_mean, base_pos_scores = evaluate_model(base_model, pairs)
-    base_neg_mean, base_neg_scores = evaluate_model(base_model, negatives)
+    base_pos_results = evaluate_model(base_model, None, pairs)
+    base_neg_results = evaluate_model(base_model, None, negatives)
     base_retrieval = retrieval_metrics(base_model, pairs, negatives)
-    results["base_mean_similarity_positive"] = base_pos_mean
-    results["base_mean_similarity_negative"] = base_neg_mean
-    results["base_scores_positive"] = [float(s) for s in base_pos_scores]
-    results["base_scores_negative"] = [float(s) for s in base_neg_scores]
+    results["base_mean_similarity_positive"] = base_pos_results["mean_similarity"]
+    results["base_mean_similarity_negative"] = base_neg_results["mean_similarity"]
+    results["base_scores_positive"] = [float(s) for s in base_pos_results["similarity_scores"]]
+    results["base_scores_negative"] = [float(s) for s in base_neg_results["similarity_scores"]]
     results["base_retrieval"] = base_retrieval
 
     # Evaluate PEFT-adapted model
@@ -102,13 +175,13 @@ def main():
     if os.path.exists(peft_dir):
         print("Evaluating PEFT-adapted model...")
         peft_model = SentenceTransformer(peft_dir)
-        peft_pos_mean, peft_pos_scores = evaluate_model(peft_model, pairs)
-        peft_neg_mean, peft_neg_scores = evaluate_model(peft_model, negatives)
+        peft_pos_results = evaluate_model(peft_model, None, pairs)
+        peft_neg_results = evaluate_model(peft_model, None, negatives)
         peft_retrieval = retrieval_metrics(peft_model, pairs, negatives)
-        results["peft_mean_similarity_positive"] = peft_pos_mean
-        results["peft_mean_similarity_negative"] = peft_neg_mean
-        results["peft_scores_positive"] = [float(s) for s in peft_pos_scores]
-        results["peft_scores_negative"] = [float(s) for s in peft_neg_scores]
+        results["peft_mean_similarity_positive"] = peft_pos_results["mean_similarity"]
+        results["peft_mean_similarity_negative"] = peft_neg_results["mean_similarity"]
+        results["peft_scores_positive"] = [float(s) for s in peft_pos_results["similarity_scores"]]
+        results["peft_scores_negative"] = [float(s) for s in peft_neg_results["similarity_scores"]]
         results["peft_retrieval"] = peft_retrieval
     else:
         print(f"[INFO] PEFT adapter directory '{peft_dir}' not found. Only base model will be evaluated.")

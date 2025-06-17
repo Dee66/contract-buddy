@@ -1,5 +1,5 @@
 import requests
-from utils.logger_factory import LoggerFactory
+from src.utils.logger_factory import LoggerFactory
 
 def fetch_docs(doc_urls, logger=None):
     """Fetch documentation pages (simplified example)."""

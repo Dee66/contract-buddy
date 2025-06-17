@@ -1,7 +1,7 @@
 import os
 import shutil
 import unittest
-from embedding import peft_finetune
+from src.embedding import peft_finetune
 
 class TestPeftFinetune(unittest.TestCase):
     def setUp(self):

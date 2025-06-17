@@ -1,7 +1,7 @@
 import unittest
 import os
 import json
-from embedding import evaluate_embeddings
+from src.embedding import evaluate_embeddings
 
 class TestEvaluateEmbeddings(unittest.TestCase):
     def setUp(self):
@@ -17,6 +17,11 @@ class TestEvaluateEmbeddings(unittest.TestCase):
         negatives = evaluate_embeddings.generate_negative_pairs(pairs)
         self.assertTrue(len(negatives) > 0)
         self.assertTrue(all(len(pair) == 2 for pair in negatives))
+
+    def test_generate_negative_pairs_empty(self):
+        pairs = []
+        negatives = evaluate_embeddings.generate_negative_pairs(pairs)
+        self.assertEqual(negatives, [])
 
     def tearDown(self):
         if os.path.exists(self.pairs_path):

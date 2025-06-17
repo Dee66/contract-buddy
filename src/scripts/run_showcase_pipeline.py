@@ -1,32 +1,105 @@
-import subprocess
-import sys
 import os
+import sys
+import subprocess
+from src.utils.environment import setup_logging
 
-def run(cmd, desc):
-    print(f"\n=== {desc} ===")
-    result = subprocess.run(cmd, shell=True)
-    if result.returncode != 0:
-        print(f"[ERROR] Step failed: {desc}")
-        sys.exit(result.returncode)
+def check_json_file(path, min_len, desc):
+    import json
+    import logging
+    if not os.path.exists(path):
+        logging.error(f"{desc} at {path} does not exist.")
+        return False
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    # Support both old (list) and new (dict with "runs") formats
+    if isinstance(data, dict) and "runs" in data:
+        entries = data["runs"]
+    else:
+        entries = data
+    if not isinstance(entries, list) or len(entries) < min_len:
+        logging.error(f"{desc} at {path} is invalid or has fewer than {min_len} entries.")
+        return False
+    logging.info(f"Validated {desc}: {len(entries)} entries.")
+    return True
+
+def run_step(cmd, desc):
+    logging = __import__("logging")
+    logging.info(f"Starting: {desc}")
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        if result.stdout:
+            logging.debug(f"{desc} output:\n{result.stdout}")
+        if result.stderr:
+            logging.debug(f"{desc} errors:\n{result.stderr}")
+        logging.info(f"{desc} completed successfully.")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"{desc} failed with exit code {e.returncode}")
+        if e.stdout:
+            logging.error(f"Stdout:\n{e.stdout}")
+        if e.stderr:
+            logging.error(f"Stderr:\n{e.stderr}")
+        sys.exit(1)
+
+def print_summary():
+    results_path = "data/clean/hyperparam_sweep_results.json"
+    logging = __import__("logging")
+    if os.path.exists(results_path):
+        with open(results_path, "r", encoding="utf-8") as f:
+            results = json.load(f)
+        if results:
+            best = max(
+                results,
+                key=lambda r: (
+                    r.get("peft_retrieval", {}).get("top1", float('-inf'))
+                    if isinstance(r.get("peft_retrieval", {}).get("top1"), (int, float))
+                    else float('-inf')
+                )
+            )
+            logging.info(f"Total runs: {len(results)}")
+            logging.info(
+                f"Best top-1: {best['peft_retrieval'].get('top1')} "
+                f"(hyperparams: {best['hyperparams']})"
+            )
+        else:
+            logging.info("No results found for summary statistics.")
 
 def main():
-    # All paths are relative to project root
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.abspath(os.path.join(script_dir, "..", ".."))
-    os.chdir(project_root)
+    setup_logging()
+    logging = __import__("logging")
+    logging.info("=== Pre-flight Check: Contract Buddy Showcase Pipeline ===")
 
-    # Step 1: Download base model
-    run("python src/scripts/download_base_model.py", "Downloading and caching base model")
-    # Step 2: Prepare contrastive pairs
-    run("python src/embedding/prepare_contrastive_pairs.py", "Preparing contrastive pairs")
-    # Step 3: Run PEFT hyperparameter sweep
-    run("python src/scripts/peft_hyperparam_sweep.py", "Running PEFT hyperparameter sweep")
-    # Step 4: (Optional) Run all tests
-    run("python run_tests.py", "Running all tests")
-    # Generate Python docstrings dataset
-    subprocess.run("python src/scripts/generate_python_docstrings_dataset.py", shell=True, check=True)
-    print("\nShowcase pipeline complete! See data/clean/hyperparam_sweep_results.json for results.")
+    # Step 1: Generate docstrings
+    run_step([sys.executable, "-m", "src.scripts.generate_python_docstrings_dataset"], "Generate Python docstrings dataset")
+    check_json_file("data/clean/docs.json", 2, "Python docstrings dataset")
+
+    # Step 2: Download base model
+    run_step([sys.executable, "-m", "src.scripts.download_base_model"], "Download base model")
+
+    # Step 3: Prepare contrastive pairs
+    run_step([sys.executable, "-m", "src.embedding.prepare_contrastive_pairs"], "Prepare contrastive pairs")
+    check_json_file("data/clean/contrastive_pairs.json", 2, "Contrastive pairs for training")
+
+    # Step 4: Run PEFT hyperparameter sweep
+    run_step([sys.executable, "-m", "src.scripts.peft_hyperparam_sweep"], "Run PEFT hyperparameter sweep")
+    check_json_file("data/clean/hyperparam_sweep_results.json", 1, "Aggregated hyperparameter sweep results")
+
+    # Step 5: Analyze benchmark results
+    run_step([sys.executable, "-m", "src.scripts.analyze_benchmark_results"], "Analyze benchmark results")
+
+    # Step 6: Visualize benchmarks
+    run_step([sys.executable, "-m", "src.scripts.visualize_benchmarks"], "Visualize benchmark results")
+
+    # Step 6b: Generate interactive HTML report
+    run_step([sys.executable, "-m", "src.scripts.generate_html_report"], "Generate interactive HTML report")
+
+    # Step 7: Summarize experiments
+    run_step([sys.executable, "-m", "src.scripts.summarize_experiments"], "Summarize experiments")
+
+    # Step 8: Run all tests
+    run_step([sys.executable, "run_tests.py"], "Run all tests")
+
+    print_summary()
+    logging.info("=== Pipeline complete! All pre-flight checks passed. ===")
 
 if __name__ == "__main__":
-    main()
     main()

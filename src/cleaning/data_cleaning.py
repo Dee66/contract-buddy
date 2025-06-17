@@ -6,9 +6,9 @@ Removes duplicates, irrelevant data, and standardizes format for downstream use.
 
 from pathlib import Path
 from typing import Dict
-from utils.logger_factory import LoggerFactory
-from cleaning.sensitive_data_filter import filter_sensitive_entries
-from utils.utils import load_json, save_json
+from src.utils.logger_factory import LoggerFactory
+from src.cleaning.sensitive_data_filter import filter_sensitive_entries
+from src.utils.utils import load_json, save_json
 import tempfile
 import os
 
@@ -78,7 +78,7 @@ class DataCleaning:
 
 if __name__ == "__main__":
     import sys
-    from utils.utils import save_json
+    from src.utils.utils import save_json
     config_path = sys.argv[1] if len(sys.argv) > 1 else "config.yaml"
     config = read_yaml(config_path)
     cleaner = DataCleaning(config)

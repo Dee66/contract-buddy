@@ -1,6 +1,6 @@
 import re
 from typing import List, Any
-from utils.logger_factory import LoggerFactory
+from src.utils.logger_factory import LoggerFactory
 
 SECRET_PATTERNS = [
     r"AKIA[0-9A-Z]{16}",  # AWS Access Key ID

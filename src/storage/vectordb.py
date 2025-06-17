@@ -22,11 +22,11 @@ class VectorDB:
         """
         self.vectors[id_] = np.array(vector, dtype=float)
 
-    def query(self, vector: List[float], top_k: int = 1) -> List[Dict[str, Any]]:
+    def query(self, vector, top_k=1):
         """
         Return the top_k most similar vectors to the input vector.
         """
-        if not self.vectors:
+        if not vector:  # empty query vector
             return []
         query_vec = np.array(vector, dtype=float)
         similarities = []

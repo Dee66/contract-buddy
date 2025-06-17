@@ -100,6 +100,6 @@ def process_html_file(input_path, output_path):
 
 if __name__ == "__main__":
     # Example usage:
-    input_html = "data/raw/python_doc.html"  # Path to your HTML file
+    input_html = "data/raw/python_doc.html"  # Path to HTML file
     output_json = "data/clean/docs.json"
     process_html_file(input_html, output_json)

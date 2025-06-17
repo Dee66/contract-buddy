@@ -1,4 +1,4 @@
-from utils.logger_factory import LoggerFactory
+from src.utils.logger_factory import LoggerFactory
 
 def fetch_stackoverflow(api_key, query="python", logger=None):
     """Stub for Stack Overflow API fetch (implement as needed)."""

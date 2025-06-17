@@ -1,7 +1,6 @@
 import unittest
 import os
-import json
-from scripts import generate_python_docstrings_dataset
+from src.scripts import generate_python_docstrings_dataset
 
 class TestGeneratePythonDocstringsDataset(unittest.TestCase):
     def setUp(self):
@@ -10,9 +9,16 @@ class TestGeneratePythonDocstringsDataset(unittest.TestCase):
             os.remove(self.output_path)
 
     def test_docstring_extraction(self):
-        docs = generate_python_docstrings_dataset.extract_docstrings(["os"], max_per_module=2)
+        docs, failed = generate_python_docstrings_dataset.extract_docstrings(["os"], max_per_module=2)
         self.assertTrue(isinstance(docs, list))
         self.assertTrue(all("content" in d for d in docs))
+
+    def test_deduplicate_docs_removes_duplicates(self):
+        docs = [{"content": "foo"}, {"content": "foo"}, {"content": "bar"}]
+        unique = generate_python_docstrings_dataset.deduplicate_docs(docs)
+        self.assertEqual(len(unique), 2)
+        self.assertTrue(any(d["content"] == "foo" for d in unique))
+        self.assertTrue(any(d["content"] == "bar" for d in unique))
 
     def tearDown(self):
         if os.path.exists(self.output_path):

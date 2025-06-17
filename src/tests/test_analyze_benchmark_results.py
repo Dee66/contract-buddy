@@ -1,7 +1,7 @@
 import unittest
 import os
 import json
-from scripts import analyze_benchmark_results
+from src.scripts import analyze_benchmark_results
 
 class TestAnalyzeBenchmarkResults(unittest.TestCase):
     def setUp(self):

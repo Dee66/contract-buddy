@@ -1,5 +1,5 @@
 import unittest
-from cleaning.sensitive_data_filter import SensitiveDataFilter
+from src.cleaning.sensitive_data_filter import SensitiveDataFilter
 
 class TestSensitiveDataFilter(unittest.TestCase):
     def setUp(self):

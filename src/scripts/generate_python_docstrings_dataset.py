@@ -2,41 +2,36 @@ import json
 import inspect
 import pkgutil
 import importlib
+import os
+import sys
+from pathlib import Path
+from src.utils.environment import get_mode, setup_logging
 
-def get_stdlib_modules():
-    # Get a list of standard library modules (excluding builtins and packages)
-    stdlib_modules = []
-    for _, name, ispkg in pkgutil.iter_modules():
-        if not ispkg and not name.startswith("_"):
-            stdlib_modules.append(name)
-    return stdlib_modules
-
-def extract_docstrings(module_names, max_per_module=50):
+def extract_docstrings(module_names, max_per_module=50, min_length=10):
+    logging = __import__("logging")
     docs = []
+    failed = []
     for name in module_names:
         try:
             module = importlib.import_module(name)
             doc = inspect.getdoc(module)
-            if doc:
+            if doc and len(doc) >= min_length:
                 docs.append({"content": doc})
-            # Extract docstrings from functions/classes in the module
             count = 0
             for _, member in inspect.getmembers(module):
                 if inspect.isfunction(member) or inspect.isclass(member):
                     doc = inspect.getdoc(member)
-                    if doc:
+                    if doc and len(doc) >= min_length:
                         docs.append({"content": doc})
                         count += 1
                 if count >= max_per_module:
                     break
-        except Exception:
-            continue
-    return docs
+        except Exception as e:
+            logging.warning(f"Failed to import {name}: {e}")
+            failed.append(name)
+    return docs, failed
 
-if __name__ == "__main__":
-    modules = get_stdlib_modules()
-    docs = extract_docstrings(modules, max_per_module=50)
-    # Deduplicate
+def deduplicate_docs(docs):
     seen = set()
     unique_docs = []
     for d in docs:
@@ -44,6 +39,37 @@ if __name__ == "__main__":
         if c not in seen:
             unique_docs.append(d)
             seen.add(c)
-    with open("data/clean/docs.json", "w", encoding="utf-8") as f:
+    return unique_docs
+
+def main():
+    setup_logging()
+    logging = __import__("logging")
+    mode = get_mode()
+    if mode == "dev":
+        modules = ["os", "sys", "json", "math", "random"]
+        max_per_module = 10
+    else:
+        # For showcase, you may want to expand this list
+        modules = ["os", "sys", "json", "math", "random", "datetime", "re", "collections", "itertools", "functools"]
+        max_per_module = 50
+
+    output_path = "data/clean/docs.json"
+    Path(os.path.dirname(output_path)).mkdir(parents=True, exist_ok=True)
+
+    logging.info(f"Extracting docstrings from modules: {modules} (max {max_per_module} per module)")
+    docs, failed = extract_docstrings(modules, max_per_module)
+    unique_docs = deduplicate_docs(docs)
+
+    if len(unique_docs) < 2:
+        logging.error(f"Only {len(unique_docs)} docstrings found. Pipeline will not proceed.")
+        sys.exit(1)
+
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(unique_docs, f, indent=2)
-    print(f"Saved {len(unique_docs)} docstring chunks to data/clean/docs.json")
+    logging.info(f"Docstring extraction complete: {len(unique_docs)} entries written to {output_path}")
+
+    if failed:
+        logging.warning(f"Failed to import {len(failed)} modules: {failed}")
+
+if __name__ == "__main__":
+    main()

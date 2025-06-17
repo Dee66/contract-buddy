@@ -1,5 +1,5 @@
 import requests
-from utils.logger_factory import LoggerFactory
+from src.utils.logger_factory import LoggerFactory
 
 def fetch_github_repos(repo_list, logger=None):
     """Fetch README files from a list of GitHub repositories."""

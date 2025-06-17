@@ -1,5 +1,5 @@
 import unittest
-from storage.vectordb import VectorDB
+from src.storage.vectordb import VectorDB
 
 class TestVectorDBExtra(unittest.TestCase):
     def setUp(self):
@@ -20,6 +20,12 @@ class TestVectorDBExtra(unittest.TestCase):
         # Query before any add
         db2 = VectorDB()
         results = db2.query([1.0, 2.0, 3.0], top_k=1)
+        self.assertEqual(results, [])
+
+    def test_add_and_query_empty(self):
+        db = VectorDB()
+        db.add("id_empty", [])
+        results = db.query([], top_k=1)
         self.assertEqual(results, [])
 
 if __name__ == "__main__":
