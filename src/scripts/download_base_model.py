@@ -1,12 +1,13 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-from src.utils.environment import setup_logging, get_mode
+from src.utils.environment import setup_logging, get_mode, get_config
 import sys
 
 def main():
     setup_logging()
     logging = __import__("logging")
     mode = get_mode()
-    base_model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    config = get_config()
+    base_model_name = config["embedding"]["model_name"]
     logging.info(f"Downloading base model: {base_model_name} (mode: {mode})")
     try:
         # Download and cache the model and tokenizer

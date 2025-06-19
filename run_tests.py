@@ -1,10 +1,19 @@
 import unittest
 import sys
 import os
+import yaml
 from src.utils.environment import setup_logging
+
+def load_and_set_env(config_path="config.yaml"):
+    with open(config_path, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    env = config.get("environment", "dev")
+    os.environ["MODE"] = env  # For legacy code
+    os.environ["CB_ENV"] = env  # For new code
 
 def main():
     setup_logging()
+    load_and_set_env()  # Ensure environment is set for all tests
     logging = __import__("logging")
     logging.info("Running tests...")
 

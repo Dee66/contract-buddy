@@ -1,7 +1,15 @@
-from src.utils.environment import get_mode, setup_logging
+from src.utils.environment import get_mode, setup_logging, get_env_config
 from src.embedding.peft_finetune import peft_finetune
 from src.embedding.evaluate_embeddings import evaluate_model
 from src.embedding.prepare_contrastive_pairs import prepare_contrastive_pairs
+import yaml
+
+def load_config(path="src/scripts/config.yaml"):
+    with open(path, "r") as f:
+        config = yaml.safe_load(f)
+    env = config.get("environment", "dev")
+    env_config = config.get(env, {})
+    return env, env_config
 
 def main():
     setup_logging()
@@ -9,28 +17,22 @@ def main():
     logging = __import__("logging")
     logging.info(f"PEFT pipeline running in {mode.upper()} mode")
 
-    # DEV mode: use smaller dataset, fewer epochs, smaller batch size
-    if mode == "dev":
-        train_pairs_path = "data/clean/contrastive_pairs.json"
-        model_output_dir = "adapters/peft_adapter_dev"
-        epochs = 1
-        batch_size = 8
-        max_pairs = 50  # Only use 50 pairs for quick dev runs
-        logging.info("DEV mode: Using 50 pairs, 1 epoch, batch size 8")
-    else:
-        train_pairs_path = "data/clean/contrastive_pairs.json"
-        model_output_dir = "adapters/peft_adapter_prod"
-        epochs = 3
-        batch_size = 32
-        max_pairs = None  # Use all pairs
-        logging.info("PROD mode: Using all pairs, 3 epochs, batch size 32")
+    env_config = get_env_config()
+    dataset_size = env_config.get("dataset_size", 100)
+    sweep_params = env_config.get("sweep_params", {})
+    epochs = sweep_params.get("epochs", [1])[0]
+    batch_size = sweep_params.get("batch_sizes", [8])[0]
+    max_pairs = dataset_size
 
-    # Prepare contrastive pairs (if needed)
+    train_pairs_path = "data/clean/contrastive_pairs.json"
+    model_output_dir = f"adapters/peft_adapter_{mode}"
+
+    logging.info(f"{mode.upper()} mode: Using {max_pairs or 'all'} pairs, {epochs} epoch(s), batch size {batch_size}")
+
     pairs = prepare_contrastive_pairs(train_pairs_path)
     if max_pairs:
         pairs = pairs[:max_pairs]
 
-    # Fine-tune with PEFT
     peft_finetune(
         pairs=pairs,
         output_dir=model_output_dir,
@@ -38,7 +40,6 @@ def main():
         batch_size=batch_size
     )
 
-    # Evaluate the fine-tuned model
     evaluate_model(
         model_dir=model_output_dir,
         eval_data_path="data/clean/docs.json"

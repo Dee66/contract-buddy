@@ -18,11 +18,16 @@ graph TD
     act1_2 --> act1_3
     act1_3 --> act1_4
 
-    click act1_1 "Business_Problem_Value.md" "See Business Problem & Value"
-    click act1_2 "Architecture_Blueprint.md" "See Architecture Blueprint"
-    click act1_3 "Model_Strategy.md" "See Model & AI Strategy"
-    click act1_4 "Risk_Constraints.md" "See Risk & Constraints"
+    %% Mermaid 'click' links are not supported in VS Code Preview or GitHub.
+    %% They will only work in some web renderers (e.g., Mermaid Live Editor).
+    %% Use the Markdown links below for navigation.
+    %% click act1_1 "Business_Problem_Value.md" "See Business Problem & Value"
+    %% click act1_2 "Architecture_Blueprint.md" "See Architecture Blueprint"
+    %% click act1_3 "Model_Strategy.md" "See Model & AI Strategy"
+    %% click act1_4 "Risk_Constraints.md" "See Risk & Constraints"
 ```
+
+> _Note: Diagram links are not clickable in VS Code Preview or GitHub. Use the list below for navigation._
 
 ---
 

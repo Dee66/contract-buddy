@@ -98,23 +98,15 @@ def main():
     mode = get_mode()
     logging.info(f"PEFT hyperparameter sweep running in {mode.upper()} mode")
 
-    # DEV mode: small but real
-    if mode == "dev":
-        lora_rs = [4]
-        lora_alphas = [16]
-        lora_dropouts = [0.0]
-        epochs = [2]  # Slightly more than 1 for better signal
-        batch_sizes = [8]
-        max_pairs = 200  # Increased for meaningful evaluation
-        logging.info("DEV mode: 200 pairs, 2 epochs, batch size 8")
-    else:
-        lora_rs = [4, 8]
-        lora_alphas = [16, 32]
-        lora_dropouts = [0.0, 0.1]
-        epochs = [1, 3]
-        batch_sizes = [16, 32]
-        max_pairs = None
-        logging.info("PROD mode: full sweep, all pairs, multiple epochs and batch sizes")
+    env_config = get_env_config()
+    sweep_params = env_config.get("sweep_params", {})
+    lora_rs = sweep_params.get("lora_rs", [4])
+    lora_alphas = sweep_params.get("lora_alphas", [16])
+    lora_dropouts = sweep_params.get("lora_dropouts", [0.0])
+    epochs = sweep_params.get("epochs", [1])
+    batch_sizes = sweep_params.get("batch_sizes", [8])
+    max_pairs = env_config.get("dataset_size", None)
+    logging.info(f"{mode.upper()} mode: {max_pairs or 'all'} pairs, epochs {epochs}, batch sizes {batch_sizes}")
 
     input_path = "data/clean/contrastive_pairs.json"
     output_path = "data/clean/hyperparam_sweep_results.json"

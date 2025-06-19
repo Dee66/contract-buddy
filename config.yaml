@@ -1,1 +1,45 @@
-{"embedding": {"model_name": "sentence-transformers/all-MiniLM-L6-v2"}, "peft": {"r": 4, "alpha": 16, "dropout": 0.0, "num_train_epochs": 1, "batch_size": 16, "output_dir": "adapters/peft_adapter_r4_a16_d0.0_e1_b16"}}
+environment: dev
+
+embedding:
+  model_name: sentence-transformers/all-MiniLM-L6-v2
+
+peft:
+  r: 4
+  alpha: 16
+  dropout: 0.0
+  num_train_epochs: 1
+  batch_size: 16
+  output_dir: adapters/peft_adapter_r4_a16_d0.0_e1_b16
+
+dev:
+  dataset_size: 100
+  sweep_params:
+    lora_rs: [4]
+    lora_alphas: [16]
+    lora_dropouts: [0.0]
+    epochs: [1]
+    batch_sizes: [8]
+  logging_level: INFO
+
+staging:
+  dataset_size: 1000
+  sweep_params:
+    lora_rs: [4, 8]
+    lora_alphas: [16, 32]
+    lora_dropouts: [0.0, 0.1]
+    epochs: [2]
+    batch_sizes: [8, 16]
+  logging_level: INFO
+
+prod:
+  dataset_size: 10000
+  sweep_params:
+    lora_rs: [4, 8, 16]
+    lora_alphas: [16, 32]
+    lora_dropouts: [0.0, 0.1]
+    epochs: [3, 5]
+    batch_sizes: [8, 16]
+  logging_level: WARNING
+
+dashboard:
+  output_path: data/clean/benchmark_interactive.html

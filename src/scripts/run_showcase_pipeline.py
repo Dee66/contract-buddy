@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 from src.utils.environment import setup_logging
+import yaml
 
 def check_json_file(path, min_len, desc):
     import json
@@ -63,10 +64,38 @@ def print_summary():
         else:
             logging.info("No results found for summary statistics.")
 
+def log_file_status(path, desc):
+    import os
+    logging = __import__("logging")
+    if os.path.exists(path):
+        size = os.path.getsize(path)
+        logging.info(f"{desc}: {path} exists, size={size} bytes")
+    else:
+        logging.warning(f"{desc}: {path} does NOT exist")
+
+def load_and_set_env(config_path="config.yaml"):
+    with open(config_path, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    env = config.get("environment", "dev")
+    os.environ["MODE"] = env  # For legacy code
+    os.environ["CB_ENV"] = env  # For new code
+
+def load_config(path="config.yaml"):
+    with open(path, "r") as f:
+        config = yaml.safe_load(f)
+    env = config.get("environment", "dev")
+    env_config = config.get(env, {})
+    return env, env_config
+
 def main():
     setup_logging()
+    load_and_set_env()  # Ensure environment is set for all subprocesses
     logging = __import__("logging")
     logging.info("=== Pre-flight Check: Contract Buddy Showcase Pipeline ===")
+
+    # Load environment-specific config
+    env, env_config = load_config()
+    logging.info(f"Loaded configuration for environment: {env}")
 
     # Step 1: Generate docstrings
     run_step([sys.executable, "-m", "src.scripts.generate_python_docstrings_dataset"], "Generate Python docstrings dataset")
@@ -83,14 +112,26 @@ def main():
     run_step([sys.executable, "-m", "src.scripts.peft_hyperparam_sweep"], "Run PEFT hyperparameter sweep")
     check_json_file("data/clean/hyperparam_sweep_results.json", 1, "Aggregated hyperparameter sweep results")
 
+    # Log file status after PEFT sweep
+    log_file_status("data/clean/hyperparam_sweep_results.json", "After PEFT sweep")
+
     # Step 5: Analyze benchmark results
     run_step([sys.executable, "-m", "src.scripts.analyze_benchmark_results"], "Analyze benchmark results")
+
+    # Log file status after analyze benchmark
+    log_file_status("data/clean/hyperparam_sweep_results.json", "After analyze benchmark")
 
     # Step 6: Visualize benchmarks
     run_step([sys.executable, "-m", "src.scripts.visualize_benchmarks"], "Visualize benchmark results")
 
+    # Log file status after visualize benchmarks
+    log_file_status("data/clean/hyperparam_sweep_results.json", "After visualize benchmarks")
+
     # Step 6b: Generate interactive HTML report
     run_step([sys.executable, "-m", "src.scripts.generate_html_report"], "Generate interactive HTML report")
+
+    # Log file status after generate HTML report
+    log_file_status("data/clean/hyperparam_sweep_results.json", "After generate HTML report")
 
     # Step 7: Summarize experiments
     run_step([sys.executable, "-m", "src.scripts.summarize_experiments"], "Summarize experiments")

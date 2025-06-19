@@ -1,10 +1,33 @@
-# Contract Buddy
+# 🤖 Contract Buddy AI
 
-A modular, production-ready AI pipeline for code and document analysis.
+A showcase-ready, modular AI pipeline for code completion, documentation, and analysis—built to demonstrate best-in-class architecture, business value, and technical acumen.
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Executive Summary
+
+**Contract Buddy AI** is a production-grade, revenue-oriented AI assistant for code and document workflows.  
+It leverages Retrieval-Augmented Generation (RAG), LLMs, and modern MLOps to deliver up-to-date code suggestions, documentation, and deployment assets.  
+This project is designed as a portfolio centerpiece for senior/architect-level roles.
+
+---
+
+## 🧭 How to Explore This Project
+
+- **[Solution Foundation](docs/foundation/README.md):**  
+  Business framing, architecture, and value proposition.
+- **[AI Core & Optimization](docs/core/README.md):**  
+  Model, pipeline, and optimization details.
+- **[System Build & Readiness](docs/build/README.md):**  
+  Deployment, scalability, and operationalization.
+- **[Portfolio & Narrative](docs/portfolio/README.md):**  
+  Storytelling, demo highlights, and executive summary.
+- **[Project Checklist](docs/checklist.md):**  
+  Progress tracker and best-practice milestones.
+
+---
+
+## 🏁 Quickstart
 
 ```sh
 pip install -r requirements.txt
@@ -15,18 +38,12 @@ python -m unittest discover -s src/tests
 
 ---
 
-## 📚 Documentation Overview
+## 📊 For Reviewers & Stakeholders
 
-- **[Solution Foundation](docs/foundation/README.md)**  
-  Business value, architecture, risk, and strategy.
-- **[AI Core & Optimization](docs/core/README.md)**  
-  Data pipeline, model implementation, benchmarking, and evaluation.
-- **[System Build & Readiness](docs/build/README.md)**  
-  API, UI, deployment, CI/CD, and operational playbooks.
-- **[Portfolio & Narrative](docs/portfolio/README.md)**  
-  Portfolio, narrative, and future roadmap.
-- **[Project Checklist](docs/checklist.md)**  
-  Implementation and delivery checklist.
+- [Ultimate Portfolio Summary](docs/portfolio/Ultimate_README.md)
+- [Interactive Dashboard](data/clean/benchmark_interactive.html)
+- [Experiment Log](data/clean/experiments.json)
+- [Core Deliverables & Review Table](docs/core/Deliverables.md)
 
 ---
 
@@ -40,7 +57,7 @@ contract-buddy/
 │   run_tests.py
 │   organize_project.py
 │
-├── src/             # All source code (modular, OOP, SOLID)
+├── src/
 │   ├── ingestion/
 │   ├── cleaning/
 │   ├── chunking/
@@ -48,18 +65,17 @@ contract-buddy/
 │   ├── storage/
 │   ├── utils/
 │   └── tests/
-│
-├── data/            # Data (excluded from git)
-├── logs/            # Logs (excluded from git)
-├── docs/            # Full documentation (see above)
+├── data/
+├── logs/
+├── docs/
 ```
 
 ---
 
-## 📝 About This README
+## 🔗 Navigation
 
-This is the main entry point for the project and documentation.  
-For in-depth technical and business documentation, start with [docs/foundation/README.md](docs/foundation/README.md).
+- [Solution Foundation](docs/foundation/README.md)
+- [Documentation Home](docs/README.md)
 
 ---
 

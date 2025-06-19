@@ -5,7 +5,7 @@ import importlib
 import os
 import sys
 from pathlib import Path
-from src.utils.environment import get_mode, setup_logging
+from src.utils.environment import get_mode, setup_logging, get_env_config
 
 def extract_docstrings(module_names, max_per_module=50, min_length=10):
     logging = __import__("logging")
@@ -16,13 +16,13 @@ def extract_docstrings(module_names, max_per_module=50, min_length=10):
             module = importlib.import_module(name)
             doc = inspect.getdoc(module)
             if doc and len(doc) >= min_length:
-                docs.append({"content": doc})
+                docs.append({"content": doc, "module": name})  # <-- add module key
             count = 0
             for _, member in inspect.getmembers(module):
                 if inspect.isfunction(member) or inspect.isclass(member):
                     doc = inspect.getdoc(member)
                     if doc and len(doc) >= min_length:
-                        docs.append({"content": doc})
+                        docs.append({"content": doc, "module": name})  # <-- add module key
                         count += 1
                 if count >= max_per_module:
                     break
@@ -45,13 +45,9 @@ def main():
     setup_logging()
     logging = __import__("logging")
     mode = get_mode()
-    if mode == "dev":
-        modules = ["os", "sys", "json", "math", "random"]
-        max_per_module = 10
-    else:
-        # For showcase, you may want to expand this list
-        modules = ["os", "sys", "json", "math", "random", "datetime", "re", "collections", "itertools", "functools"]
-        max_per_module = 50
+    env_config = get_env_config()
+    modules = env_config.get("modules", ["os", "sys", "json", "math", "random"])
+    max_per_module = env_config.get("max_per_module", 10)
 
     output_path = "data/clean/docs.json"
     Path(os.path.dirname(output_path)).mkdir(parents=True, exist_ok=True)

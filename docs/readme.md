@@ -1,67 +1,49 @@
-# Data Pipeline
+[⬅ Back to Project Overview](../README.md)
 
-## Overview
+# 🗄️ Data Pipeline Module
 
-This module provides a modular, extensible pipeline for data ingestion, cleaning, sensitive data filtering, and versioning for Contract Buddy's AI code assistant.
+This document provides technical details for the data pipeline component of Contract Buddy AI.
 
-## Structure
+---
 
-- `config.yaml` — Central configuration for sources and paths.
-- `pipeline_runner.py` — Orchestrates the full pipeline.
-- `data_ingestion.py` — Fetches raw data from configured sources.
-- `data_cleaning.py` — Cleans and normalizes raw data.
-- `sensitive_data_filter.py` — Detects and removes secrets or PII.
-- `versioning.py` — Handles dataset versioning.
-- `sources/` — Source-specific fetchers (e.g., GitHub, docs, Stack Overflow).
-- `utils.py` — Shared utilities.
-- `tests/` — Unit tests for pipeline components.
+## 📚 Quick Navigation
+
+- [Module Overview](#module-overview)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Best Practices](#best-practices)
+
+---
+
+## Module Overview
+
+Describes the ingestion, cleaning, chunking, and storage steps for data used in the AI pipeline.
+
+---
 
 ## Requirements
 
-Before running the pipeline, install all dependencies:
+List any dependencies or setup steps specific to this module.
 
-```sh
-pip install -r ../../requirements.txt
-```
-
-### Main dependencies
-
-- `requests` (for HTTP requests to data sources)
-- `sentence-transformers` (for embedding models)
-- `numpy` (for vector operations)
-- `pyyaml` (for config file parsing)
-- `vectordb` (for vector database operations; swap for production DB as needed)
-
-If you see a `ModuleNotFoundError`, install the missing package with `pip install <package>`.
+---
 
 ## Usage
 
-```sh
-python pipeline_runner.py
-```
+Instructions for running or integrating the data pipeline.
 
-## Running the Pipeline
-
-```sh
-python pipeline_runner.py config.yaml
-```
-
-Outputs and logs will be written to the directories specified in `config.yaml`.
-
-## Adding a New Source
-
-1. Create a new module in `sources/` (e.g., `my_source.py`).
-2. Add configuration to `config.yaml`.
-3. Update `data_ingestion.py` to call new fetcher.
+---
 
 ## Testing
 
-```sh
-python -m unittest discover tests
-```
+How to run tests for this module.
+
+---
 
 ## Best Practices
 
-- All data is logged, versioned, and auditable.
-- Sensitive data is filtered before storage.
-- Modular design enables easy extension and maintenance.
+Design patterns, data validation, and operational tips.
+
+---
+
+For the project’s executive summary, navigation, and demo instructions, [return to the main README](../README.md).

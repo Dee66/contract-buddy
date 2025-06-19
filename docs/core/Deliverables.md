@@ -26,6 +26,19 @@
 
 ---
 
+## 📝 Stakeholder Review Table
+
+| Deliverable                | Reviewed By | Feedback Summary                | Status      | Notes                |
+|----------------------------|-------------|---------------------------------|-------------|----------------------|
+| Functional AI Core (Code)  |             |                                 | Pending     |                      |
+| Model Adapters             |             |                                 | Pending     |                      |
+| Experimentation Log        |             |                                 | Pending     |                      |
+| Data Governance Notes      |             |                                 | Pending     |                      |
+| Benchmark Report           |             |                                 | Pending     |                      |
+| Cost Tracking Report       |             |                                 | Pending     |                      |
+
+---
+
 ```mermaid
 graph TD
     core["<b>🧠 AI Core (Code)</b>"]

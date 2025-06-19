@@ -1,27 +1,56 @@
-## 🧩 PEFT (Parameter-Efficient Fine-Tuning) Workflow
+[⬅ Back to Project Overview](../../README.md)
 
-This project supports parameter-efficient fine-tuning (PEFT) using Hugging Face’s [peft](https://github.com/huggingface/peft) library.
+# 🧬 Embedding Module
 
-### How it works
-
-1. **Prepare data:**  
-   Run the pipeline to generate cleaned code and documentation chunks in `data/clean/`.
-
-2. **Configure PEFT:**  
-   Edit `config.yaml` to set PEFT parameters (method, LoRA rank, epochs, batch size, etc.).
-   - To enable supervised fine-tuning, set `supervised: true` under `peft:` and ensure data entries include a `label` field.
-
-3. **Run fine-tuning:**  
-   ```sh
-   python src/embedding/peft_finetune.py
-   ```
-   This will use actual cleaned data for fine-tuning.
-
-4. **Use the adapter:**  
-   The resulting PEFT adapter is saved to the directory specified in config.  
-   The embedder will automatically load this adapter for inference if present.
+This document details the embedding and PEFT (Parameter-Efficient Fine-Tuning) workflow for Contract Buddy AI.
 
 ---
 
-**Sage Wisdom:**  
-_“Document  workflow and support both supervised and unsupervised learning for maximum flexibility.”_
+## 📚 Quick Navigation
+
+- [Module Overview](#module-overview)
+- [PEFT Workflow](#peft-workflow)
+- [Configuration](#configuration)
+- [Running the Module](#running-the-module)
+- [Using the Adapter](#using-the-adapter)
+- [Testing](#testing)
+
+---
+
+## Module Overview
+
+Explains the role of embeddings and PEFT in the AI pipeline.
+
+---
+
+## PEFT Workflow
+
+Step-by-step guide to fine-tuning and using adapters for efficient model updates.
+
+---
+
+## Configuration
+
+How to configure this module via YAML or environment variables.
+
+---
+
+## Running the Module
+
+Instructions for executing embedding and fine-tuning tasks.
+
+---
+
+## Using the Adapter
+
+How to load and use the trained adapter in downstream tasks.
+
+---
+
+## Testing
+
+How to run tests for this module.
+
+---
+
+For the project’s executive summary, navigation, and demo instructions, [return to the main README](../../README.md)

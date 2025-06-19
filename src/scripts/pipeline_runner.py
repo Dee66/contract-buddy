@@ -1,5 +1,5 @@
 import os
-from src.utils.environment import get_mode, setup_logging, get_config
+from src.utils.environment import get_mode, setup_logging, get_config, get_env_config
 from src.ingestion.data_ingestion import DataIngestion
 from src.cleaning.data_cleaning import DataCleaning
 from src.storage.versioning import DataVersioning
@@ -35,6 +35,7 @@ def main(config_path="config.yaml"):
     mode = get_mode()
     logging = __import__("logging")
     config = get_config(config_path)
+    env_config = get_env_config(config_path)
     logging.info(f"Starting data pipeline in {mode.upper()} mode...")
 
     DataIngestion(config).fetch_and_store()
@@ -45,7 +46,7 @@ def main(config_path="config.yaml"):
     embedder = CodeEmbedder()
     vectordb = VectorDB()
 
-    clean_data_dir = config["paths"]["clean_data"]
+    clean_data_dir = env_config.get("clean_data_dir", config.get("paths", {}).get("clean_data", "data/clean/"))
     files = os.listdir(clean_data_dir)
     if mode == "dev":
         files = files[:2]
