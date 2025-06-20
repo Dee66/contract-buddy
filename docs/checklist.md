@@ -30,7 +30,7 @@
 - 🟩 **[Benchmarking & optimization](core/Benchmarking_Optimization.md):** Baseline metrics, trade-off analysis, and optimization documented.
 - 🟩 **[Cost tracking](core/Benchmarking_Optimization.md):** Resource and cloud costs tracked and reported.
 - 🟩 **[Evaluation plan](core/Evaluation_Plan.md):** Metrics defined, automated evaluation scripts and dashboards implemented.
-- 🟥 **[Stakeholder review](core/Deliverables.md):** Core deliverables reviewed and feedback incorporated.
+- 🟩 **[Stakeholder review](core/Deliverables.md):** Core deliverables reviewed and feedback incorporated.
 - 🟥 **[Deliverables](core/Deliverables.md):** Functional AI core, model adapters (if applicable), experiment log, data notes, benchmarking report, cost tracking.
 
 ---
