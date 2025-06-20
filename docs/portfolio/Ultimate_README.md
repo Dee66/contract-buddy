@@ -1,4 +1,6 @@
-[⬅ Back to Portfolio & Narrative](README.md) | [⬅ Back to Project Overview](../../README.md)
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../../../INDEX.md#portfolio)
 
 # 🏆 Ultimate Portfolio Summary
 

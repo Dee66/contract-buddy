@@ -1,4 +1,6 @@
-[⬅ Back to Solution Foundation Overview](README.md)
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../../../INDEX.md#foundation)
 
 # 🎯 Objective
 

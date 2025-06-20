@@ -1,3 +1,7 @@
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../../../INDEX.md#core)
+
 # 📚 Data Sourcing Strategy
 
 ## Purpose

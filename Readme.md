@@ -1,3 +1,7 @@
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../INDEX.md)
+
 # 🤖 Contract Buddy AI
 
 A showcase-ready, modular AI pipeline for code completion, documentation, and analysis—built to demonstrate best-in-class architecture, business value, and technical acumen.

@@ -1,4 +1,6 @@
-[⬅ Back to AI Core & Optimization Overview](README.md)
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../../../INDEX.md#core)
 
 # 🎯 Objective
 

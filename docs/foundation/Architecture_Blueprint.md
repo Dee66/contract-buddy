@@ -1,5 +1,6 @@
-[⬅ Back to Key Activities Overview](Key_Activities.md)  
-[⬅ Back to Solution Foundation Overview](README.md)
+[⬅ Back to Section Overview](README.md)
+
+[⬅ Back to Main Index](../../../INDEX.md#foundation)
 
 # 🏗️ Architecture Blueprint
 

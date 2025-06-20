@@ -1,37 +1,29 @@
-[⬅ Back to Project Overview](../../README.md)
+[⬅ Back to Main Index](../../../INDEX.md#portfolio)
 
-# 🌟 Portfolio & Narrative
+# Portfolio Overview
 
-This section showcases the story, demo highlights, and executive summary for Contract Buddy AI.
-
----
-
-## 📚 Quick Navigation
-
-- [Ultimate Portfolio Summary](Ultimate_README.md)
-- [Demo Highlights](Demo_Highlights.md)
-- [Storytelling & Use Cases](Storytelling.md)
-- [Showcase Checklist](Showcase_Checklist.md)
+Welcome to the Portfolio module of Contract Buddy AI.
 
 ---
 
-## About This Section
+## Purpose
 
-Here you’ll find:
-- The “why” and “wow” behind the project.
-- Demo instructions and highlights for reviewers.
-- Use cases and storytelling for portfolio presentation.
-
-For the project’s executive summary, navigation, and technical details, [return to the main README](../../README.md).
+[Brief description of this module's purpose.]
 
 ---
 
-## 📈 Success Metrics
+## Key Files
 
-- Project is ready for demo to employers or stakeholders.
-- Portfolio narrative is clear, compelling, and business-focused.
-- All showcase materials are accessible and up to date.
+- [List of important files]
 
 ---
 
-Start with the [Ultimate Portfolio Summary](Ultimate_README.md) or explore
+## Navigation
+
+[⬅ Back to Documentation Index](../INDEX.md)
+
+---
+
+## Last Updated
+
+- 2025-06-20
