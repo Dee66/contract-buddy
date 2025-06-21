@@ -4,7 +4,7 @@
 
 # 🏗️ Architecture Blueprint
 
-> **Purpose:**  
+> **Purpose:**
 > Design a modular, secure, and scalable architecture for CodeCraft AI, embedding MLOps, observability, and data governance from the start.
 
 ---
@@ -57,21 +57,21 @@ flowchart TD
 
 ## 🔒 Data Privacy & Compliance
 
-- **Data Minimization:**  
+- **Data Minimization:**
   Only collect and process the minimum data required for code generation and retrieval.
-- **User Consent:**  
+- **User Consent:**
   Do not store user prompts, code, or context unless explicit consent is given.
-- **Data Retention:**  
+- **Data Retention:**
   Automatically delete transient data after processing unless retention is required and consented.
-- **Access Controls:**  
+- **Access Controls:**
   Restrict access to sensitive data and logs using role-based access control (RBAC).
-- **Encryption:**  
+- **Encryption:**
   Use encryption in transit (TLS) and at rest for any stored data or logs.
-- **Compliance Standards:**  
+- **Compliance Standards:**
   Design and document all data flows to align with GDPR, CCPA, and other relevant privacy regulations.
-- **Auditability:**  
+- **Auditability:**
   Maintain audit logs for all access to user data and model outputs.
-- **Third-Party Services:**  
+- **Third-Party Services:**
   Ensure all integrated APIs and services meet the privacy and compliance standards.
 
 ---
@@ -112,5 +112,5 @@ flowchart TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > A modular, layered architecture ensures CodeCraft AI is maintainable, extensible, and secure—ready for both rapid prototyping and enterprise deployment.

@@ -4,7 +4,7 @@
 
 # 🤖 Model Implementation & Experimentation
 
-> **Purpose:**  
+> **Purpose:**
 > Implement, experiment, and iterate on the AI model with scientific rigor, regardless of the domain.
 
 ---
@@ -45,5 +45,5 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Experimentation and measurement are the heart of trustworthy AI—apply these principles to any model or use case.

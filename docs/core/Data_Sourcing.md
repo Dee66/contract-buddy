@@ -12,9 +12,9 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 1. Foundational Model
 
-- **Provider:**  
+- **Provider:**
   Use a reputable foundational LLM (e.g., OpenAI GPT-4, Anthropic Claude, or open-source models like Llama 3).
-- **Usage:**  
+- **Usage:**
   The foundational model provides general code understanding and generation capabilities.
 
 ---
@@ -119,7 +119,7 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 8. Model Evaluation & Benchmarking
 
-- **Why:**  
+- **Why:**
   Regular benchmarking ensures the chosen model meets quality, latency, and cost targets as the use case evolves.
 - **How:**
   - Use open code generation benchmarks (e.g., HumanEval, MBPP, MultiPL-E).
@@ -130,7 +130,7 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 9. Monitoring & Feedback Loops
 
-- **Why:**  
+- **Why:**
   Continuous monitoring and user feedback are essential for maintaining and improving code generation quality.
 - **How:**
   - Log model outputs and user interactions (with consent) for analysis.
@@ -141,7 +141,7 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 10. Security & Privacy Considerations
 
-- **Why:**  
+- **Why:**
   Protecting user data and intellectual property is critical in code generation applications.
 - **How:**
   - Ensure all data in transit and at rest is encrypted.
@@ -152,7 +152,7 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 11. Cost Management
 
-- **Why:**  
+- **Why:**
   Model inference costs can scale rapidly in production.
 - **How:**
   - Monitor and log inference usage and associated costs.
@@ -163,7 +163,7 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ## 12. Documentation & Provenance
 
-- **Why:**  
+- **Why:**
   Clear documentation of data and model sources is essential for transparency and compliance.
 - **How:**
   - Maintain a data and model provenance log (source, license, date ingested, version).
@@ -171,8 +171,8 @@ Define the sources, licensing considerations, and ingestion process for all data
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > “Select a model that matches the environment: lightweight for dev, state-of-the-art for production. Always validate licensing and resource requirements before deployment.”
 >
-> **Sage Wisdom:**  
+> **Sage Wisdom:**
 > “A robust data sourcing strategy is not just about what you use, but how you evaluate, monitor, and govern it. This is what sets apart a mature, production-ready AI solution.”

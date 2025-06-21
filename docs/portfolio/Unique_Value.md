@@ -4,7 +4,7 @@
 
 # 💎 Unique Value Proposition
 
-> **Purpose:**  
+> **Purpose:**
 > Articulate what sets you and the AI solution apart.
 
 ---

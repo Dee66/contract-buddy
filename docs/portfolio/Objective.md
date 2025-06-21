@@ -18,5 +18,5 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > The story is as important as the code—make it memorable and adaptable for any AI project.

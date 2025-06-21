@@ -4,7 +4,7 @@
 
 # 🗝️ Key Activities Overview
 
-> **My roadmap for building a production-ready AI system.**  
+> **My roadmap for building a production-ready AI system.**
 > Each activity below is a critical step in delivering a robust, usable product for any AI use case.
 
 ---

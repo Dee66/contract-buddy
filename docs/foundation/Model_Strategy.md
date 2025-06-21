@@ -4,7 +4,7 @@
 
 # 🤖 Model & AI Strategy
 
-> **Purpose:**  
+> **Purpose:**
 > Select and justify the AI approach for CodeCraft AI, ensuring up-to-date, context-aware, and high-quality code generation.
 
 ---
@@ -23,13 +23,13 @@
 
 ## ⚖️ AI Strategy Decision
 
-- **Chosen Approach:**  
+- **Chosen Approach:**
   - **Retrieval-Augmented Generation (RAG) + LLM Synthesis**
     - RAG provides up-to-date, context-rich information.
     - LLM synthesizes code using retrieved context, user prompt, and architectural hints.
     - This hybrid approach balances accuracy, freshness, and flexibility.
 
-- **Rationale:**  
+- **Rationale:**
   - RAG mitigates LLM hallucination and outdated knowledge.
   - Enables rapid adaptation to new frameworks, libraries, and coding standards.
   - Supports explainability by surfacing sources for generated code.
@@ -48,9 +48,9 @@
 
 ## 🛡️ Fallback & Continuous Improvement
 
-- **Fallback Strategy:**  
+- **Fallback Strategy:**
   If retrieval fails, gracefully degrade to LLM-only generation with a warning to the user.
-- **Continuous Improvement:**  
+- **Continuous Improvement:**
   Collect user feedback on code quality and relevance; use this data to retrain or fine-tune models and update retrieval sources.
 
 ---
@@ -64,5 +64,5 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > RAG is the gold standard for production AI assistants—combining the creativity of LLMs with the reliability of curated, real-world knowledge.

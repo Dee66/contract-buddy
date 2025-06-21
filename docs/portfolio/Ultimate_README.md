@@ -48,5 +48,5 @@ Summary of how CodeCraft AI delivers real-world value, supports revenue generati
 
 ---
 
-For technical details, see the [AI Core & Optimization](../../docs/core/README.md).  
+For technical details, see the [AI Core & Optimization](../../docs/core/README.md).
 For the project’s executive summary and

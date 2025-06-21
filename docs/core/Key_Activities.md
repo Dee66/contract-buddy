@@ -4,7 +4,7 @@
 
 # 🗝️ Key Activities Overview
 
-> **Roadmap for building a production-grade AI core.**  
+> **Roadmap for building a production-grade AI core.**
 > Each activity below is a critical step in delivering measurable, reliable intelligence for any AI project.
 
 ---

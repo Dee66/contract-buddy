@@ -4,7 +4,7 @@
 
 # 🚀 Deployment & Infrastructure
 
-> **Purpose:**  
+> **Purpose:**
 > Deploy the AI solution with confidence using modern, repeatable infrastructure practices.
 
 ---
@@ -12,7 +12,7 @@
 ## 🐳 Dockerization
 
 - Containerize all components for portability and consistency.
-- **Example Dockerfile:**  
+- **Example Dockerfile:**
   ```dockerfile
   FROM python:3.10-slim
   WORKDIR /app
@@ -28,7 +28,7 @@
 
 - Use tools like **Terraform** or **CloudFormation** for reproducible environments.
 - Define infrastructure as code for scalability and disaster recovery.
-- **Example Terraform Snippet:**  
+- **Example Terraform Snippet:**
   ```hcl
   resource "aws_instance" "example" {
     ami           = "ami-0c55b159cbfafe1f0"
@@ -44,11 +44,11 @@
 ## ☁️ Cloud Service Integration
 
 - Integrate with cloud platforms for scalability and reliability.
-- **Target Platforms:**  
-  - **AWS:** ECS, Lambda, S3, CloudWatch.  
-  - **Azure:** AKS, Blob Storage, Monitor.  
+- **Target Platforms:**
+  - **AWS:** ECS, Lambda, S3, CloudWatch.
+  - **Azure:** AKS, Blob Storage, Monitor.
   - **GCP:** GKE, Cloud Functions, Stackdriver.
-- **Example:**  
+- **Example:**
   - Deploy containers using **AWS ECS** with auto-scaling policies.
 
 ---
@@ -57,7 +57,7 @@
 
 - Automate deployment, testing, and updates using CI/CD pipelines.
 - Pipelines include build, test, security scan, deploy, and rollback steps for both application and infrastructure.
-- **Example Workflow:**  
+- **Example Workflow:**
   ```yaml
   name: CI/CD Pipeline
   on:
@@ -122,13 +122,13 @@ flowchart LR
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Modern deployment is automated, repeatable, and cloud-ready for every AI project.
 
-> **Automation Insight:**  
+> **Automation Insight:**
 > CI/CD pipelines accelerate delivery, reduce manual errors, and enable rapid iteration.
 
-> **Security Insight:**  
+> **Security Insight:**
 > Automated security scanning helps catch vulnerabilities early and ensures compliance.
 
 ---

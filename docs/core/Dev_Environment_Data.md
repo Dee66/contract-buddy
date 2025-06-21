@@ -4,7 +4,7 @@
 
 # ⚙️ Dev Environment & Data
 
-> **Purpose:**  
+> **Purpose:**
 > Establish a production-ready development environment and source high-quality, governed data for the AI solution.
 
 ---
@@ -44,7 +44,7 @@
 
    ```sh
    git clone https://github.com/Dee66/contract-buddy.git
-   cd contract-buddy
+   cd corecraft-ai
    ```
 
 2. **Copy environment variables template:**
@@ -82,11 +82,11 @@ Establish robust processes for ingesting, cleaning, normalizing, and versioning 
 
 ## Data Ingestion
 
-- **Automated Pipelines:**  
+- **Automated Pipelines:**
   Scripts and/or services fetch data from approved sources (official docs, open-source repos, etc.).
-- **Scheduling:**  
+- **Scheduling:**
   Regular updates scheduled (e.g., nightly/weekly) to keep the RAG index current.
-- **Logging:**  
+- **Logging:**
   All ingestion events are logged for traceability.
 
 ---
@@ -104,34 +104,34 @@ Establish robust processes for ingesting, cleaning, normalizing, and versioning 
 
 ## Privacy & Compliance
 
-- **Data Minimization:**  
+- **Data Minimization:**
   Only ingest data necessary for code generation.
-- **Anonymization:**  
+- **Anonymization:**
   Remove or mask any personal or sensitive information.
-- **Audit Trails:**  
+- **Audit Trails:**
   Maintain logs of data source, ingestion date, and processing steps.
-- **License Tracking:**  
+- **License Tracking:**
   Track and enforce licensing for all ingested data.
 
 ---
 
 ## Data Versioning
 
-- **Version Control:**  
+- **Version Control:**
   Store processed datasets and indexes with version tags (e.g., in DVC, Git LFS, or object storage).
-- **Reproducibility:**  
+- **Reproducibility:**
   Document dataset versions used for each model or RAG deployment.
 
 ---
 
-> **Sage Wisdom:**  
+> **Sage Wisdom:**
 > “Strong data governance is the foundation of trustworthy, scalable AI. Every byte ingested should be traceable, compliant, and ready for audit.”
 
 ---
 
 ## Data Sourcing (Overview)
 
-- **Foundational Model:**  
+- **Foundational Model:**
   The core LLM will be sourced from reputable providers (e.g., OpenAI, Anthropic, or open-source alternatives).
 - **Supplemental Data for RAG:**
   - Plan to ingest and index high-quality, legally-permissible sources such as official documentation, curated GitHub repos, and (if licensing allows) Stack Overflow Q&A.
@@ -142,7 +142,7 @@ Establish robust processes for ingesting, cleaning, normalizing, and versioning 
 
 ---
 
-> **Note:**  
+> **Note:**
 > Data sourcing and ingestion pipelines are modular and can be toggled or extended as new sources become available or as legal review permits.
 
 ```mermaid
@@ -154,7 +154,7 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > A disciplined environment and clean data are the foundation of reliable AI, no matter the domain.
 
 ---
@@ -188,14 +188,14 @@ volumes:
 
 ## 💻 Dev Container Support
 
-For seamless onboarding, a `.devcontainer` folder is provided.  
+For seamless onboarding, a `.devcontainer` folder is provided.
 Open the project in VS Code and select **“Reopen in Container”** to get started instantly with a pre-configured environment.
 
 ---
 
 ## 🔑 Environment Variables
 
-A `.env.example` file is included as a template for environment variables and secrets.  
+A `.env.example` file is included as a template for environment variables and secrets.
 Copy it to `.env` and fill in any required values before starting the stack.
 
 ---
@@ -219,47 +219,47 @@ Ensure continuous, proactive review of all data handling, privacy, and complianc
 
 ## Continuous Review Practices
 
-- **Regular Audits:**  
+- **Regular Audits:**
   Schedule quarterly reviews of all data sources, ingestion scripts, and storage to ensure compliance with internal policies and external regulations (e.g., GDPR, CCPA).
-- **Data Provenance Tracking:**  
+- **Data Provenance Tracking:**
   Maintain detailed logs of data origin, licensing, and processing steps for every dataset version.
-- **Access Controls:**  
+- **Access Controls:**
   Enforce strict RBAC (Role-Based Access Control) for all sensitive data and logs.
-- **Incident Response:**  
+- **Incident Response:**
   Document and rehearse procedures for responding to privacy or compliance incidents, including notification and remediation steps.
-- **User Consent & Rights:**  
+- **User Consent & Rights:**
   Ensure mechanisms exist for users to request data deletion or review, and honor opt-out requests.
-- **Automated Monitoring:**  
+- **Automated Monitoring:**
   Use automated tools to scan for PII, secrets, or policy violations in both raw and processed data.
-- **Policy Updates:**  
+- **Policy Updates:**
   Stay informed of regulatory changes and update documentation, processes, and training accordingly.
 
 ---
 
 ## Documentation & Reporting
 
-- **Audit Logs:**  
+- **Audit Logs:**
   Store audit logs securely and review them regularly.
-- **Compliance Reports:**  
+- **Compliance Reports:**
   Generate and archive compliance reports after each audit or major release.
-- **Training:**  
+- **Training:**
   Provide ongoing privacy and compliance training for all contributors.
 
 ---
 
 ## Automation & Code Hooks for Compliance
 
-- **Automated PII/Secret Scanning:**  
+- **Automated PII/Secret Scanning:**
   Integrate scripts (e.g., in the data pipeline) that scan all ingested and processed data for personally identifiable information (PII), secrets, or credentials using regex and ML-based detectors.
   - Example: Extend `SensitiveDataFilter` to flag and report PII patterns (emails, phone numbers, etc.).
-- **Pre-Commit & CI/CD Hooks:**  
+- **Pre-Commit & CI/CD Hooks:**
   Add pre-commit hooks and CI/CD pipeline steps to automatically check for sensitive data, license violations, or policy breaches before code or data is merged or deployed.
   - Tools: [pre-commit](https://pre-commit.com/), [detect-secrets](https://github.com/Yelp/detect-secrets), [git-secrets](https://github.com/awslabs/git-secrets)
-- **Automated Audit Log Review:**  
+- **Automated Audit Log Review:**
   Schedule scripts to periodically review audit logs for unauthorized access or anomalies, and alert maintainers if issues are detected.
-- **Compliance Test Suite:**  
+- **Compliance Test Suite:**
   Develop automated tests that validate data handling against compliance requirements (e.g., ensuring all data is anonymized, opt-out requests are honored, and logs are retained/deleted per policy).
-- **Continuous Monitoring:**  
+- **Continuous Monitoring:**
   Integrate with monitoring tools to track data access patterns and flag unusual or non-compliant activity in real time.
 
 ---
@@ -287,25 +287,25 @@ def scan_for_pii(text):
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > “Automated compliance checks are the first line of defense. Integrate them early and run them often to ensure the AI solution remains trustworthy and audit-ready.”
 
 ---
 
 ## Addressing Bias & Hallucinations
 
-- **Bias Monitoring:**  
+- **Bias Monitoring:**
   Regularly audit model outputs for biased, discriminatory, or non-inclusive code suggestions. Use automated tests and human review to flag and correct problematic patterns.
-- **Hallucination Detection:**  
+- **Hallucination Detection:**
   Implement checks to identify and flag hallucinated (factually incorrect or fabricated) code or documentation. Provide clear warnings to users when confidence is low or when outputs are not directly sourced from trusted data.
-- **User Feedback Loops:**  
+- **User Feedback Loops:**
   Enable users to report biased or incorrect outputs, and use this feedback to retrain models and improve retrieval sources.
-- **Transparency:**  
+- **Transparency:**
   Document known limitations and risks related to bias and hallucination in user-facing materials and compliance reports.
 
 ---
 
-> **Ethical Insight:**  
+> **Ethical Insight:**
 > “Responsible AI means not only protecting privacy, but also actively reducing bias and hallucination. Continuous vigilance in these areas is essential for trust and compliance.”
 
 ---

@@ -1,0 +1,36 @@
+#
+# High-level dependencies for the CodeCraft AI project.
+# Use 'pip-compile requirements.in -o requirements.txt' to generate the lockfile.
+#
+
+# --- Core Application Dependencies ---
+fastapi
+uvicorn[standard]
+python-dotenv
+PyYAML
+boto3
+numpy
+pandas
+
+# --- ML & Data Dependencies ---
+# Pinning pydantic to v1.x is critical for compatibility with many langchain versions.
+pydantic<2
+langchain
+langchain-text-splitters
+faiss-cpu
+sentence-transformers
+torch
+transformers
+peft
+accelerate
+bitsandbytes
+scikit-learn
+matplotlib
+plotly
+tabulate
+
+# --- Development & Testing Dependencies ---
+pre-commit
+ruff
+pytest
+requests

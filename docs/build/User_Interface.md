@@ -4,7 +4,7 @@
 
 # 🖥️ User Interface
 
-> **Purpose:**  
+> **Purpose:**
 > Deliver a functional, intuitive, and visually appealing interface for the AI solution.
 
 ---
@@ -32,5 +32,5 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > The user interface is where the AI meets the world—make it count for every project.

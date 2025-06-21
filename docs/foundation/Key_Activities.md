@@ -4,7 +4,7 @@
 
 # 🗝️ Key Activities Overview
 
-> **Roadmap for building a world-class AI solution.**  
+> **Roadmap for building a world-class AI solution.**
 > Each activity below is a critical pillar in the foundation of the project, no matter the domain.
 
 ---

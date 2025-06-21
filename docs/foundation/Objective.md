@@ -8,8 +8,8 @@
 
 ---
 
-**Objective Statement:**  
-Lay the groundwork for a production-grade AI solution that accelerates software development by delivering context-aware, high-quality code suggestions and scaffolding.  
+**Objective Statement:**
+Lay the groundwork for a production-grade AI solution that accelerates software development by delivering context-aware, high-quality code suggestions and scaffolding.
 This foundation will support future enhancements, seamless integration, and operational excellence.
 
 ---
@@ -28,11 +28,11 @@ flowchart TD
 
 ---
 
-> **Professional Insight:**  
-> A well-defined objective is the compass for every architectural decision.  
+> **Professional Insight:**
+> A well-defined objective is the compass for every architectural decision.
 > For CodeCraft AI, this means building not just for today’s requirements, but for tomorrow’s opportunities and challenges.
 
-> **Elevator Pitch:**  
+> **Elevator Pitch:**
 > *CodeCraft AI is an AI-powered coding assistant that delivers context-aware, production-ready code and deployment assets—accelerating developer productivity and enabling rapid, secure delivery for teams of any size.*
 
 ---

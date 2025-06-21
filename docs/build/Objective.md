@@ -44,7 +44,7 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > This phase is about turning intelligence into impact—making AI accessible, reliable, and ready for the real world.
 
 ---

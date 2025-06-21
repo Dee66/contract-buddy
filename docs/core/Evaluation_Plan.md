@@ -4,7 +4,7 @@
 
 # 🧪 Evaluation Plan
 
-> **Purpose:**  
+> **Purpose:**
 > Define, automate, and document how you measure AI success for the chosen use case.
 
 ---
@@ -31,5 +31,5 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Automated, transparent evaluation is the mark of a mature AI workflow—adapt the metrics to each project.

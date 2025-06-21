@@ -4,7 +4,7 @@
 
 # 🚀 Future Architectural Roadmap
 
-> **Purpose:**  
+> **Purpose:**
 > Demonstrate vision and strategic thinking for future growth of any AI solution.
 
 ---
@@ -33,5 +33,5 @@
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Vision is what turns a project into a platform—show how the approach can scale to any AI use case.

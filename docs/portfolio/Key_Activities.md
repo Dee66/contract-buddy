@@ -4,7 +4,7 @@
 
 # 🗝️ Key Activities Overview
 
-> **Roadmap for turning technical achievement into career impact.**  
+> **Roadmap for turning technical achievement into career impact.**
 > Each activity below is a step toward a standout portfolio and a compelling personal brand, no matter the AI use case.
 
 ---

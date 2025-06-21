@@ -4,7 +4,7 @@
 
 # 🔍 Business Problem & Value
 
-> **Purpose:**  
+> **Purpose:**
 > Identify user needs, clarify the business value, and define clear input/output requirements for the AI solution.
 
 ---
@@ -27,7 +27,7 @@
 
 ## 💡 Value Proposition & ROI
 
-- **Business Value:**  
+- **Business Value:**
   CodeCraft AI accelerates software delivery by generating production-ready code, reducing manual effort, and minimizing errors.
 - **Cost Savings:**
   - Reduces developer time spent on boilerplate and research by up to 50%.
@@ -40,7 +40,7 @@
 
   - Unlike Copilot or Tabnine, CodeCraft AI is designed for extensibility, explainability, and enterprise integration, with a focus on compliance and custom workflows.
 
-- **ROI Example:**  
+- **ROI Example:**
   If a team of 5 developers saves 2 hours/week each, at $60/hour, that’s $600/month or $7,200/year in productivity gains—before considering quality and velocity improvements.
 
 | Team Size | Hours Saved/Week | Hourly Rate | Monthly Savings | Annual Savings |
@@ -75,6 +75,6 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
-> A clear understanding of the business problem and value proposition is the foundation of any impactful AI solution.  
+> **Professional Insight:**
+> A clear understanding of the business problem and value proposition is the foundation of any impactful AI solution.
 > For CodeCraft AI, this means focusing on real developer workflows and measurable outcomes.

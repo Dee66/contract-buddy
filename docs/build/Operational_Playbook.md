@@ -4,7 +4,7 @@
 
 # 📒 Operational Playbook
 
-> **Purpose:**  
+> **Purpose:**
 > Prepare for real-world operations—know how to monitor, update, and respond for any AI solution.
 
 ---
@@ -18,13 +18,13 @@
   - Retraining models with updated datasets.
   - Reviewing features for fairness.
   - Consulting stakeholders for ethical considerations.
-- **Example Drift Threshold Configuration:**  
+- **Example Drift Threshold Configuration:**
   ```yaml
   drift_thresholds:
     accuracy: 0.85
     drift: 0.10
   ```
-- **Example Fairness Metric Visualization:**  
+- **Example Fairness Metric Visualization:**
   ```json
   {
     "metric": "equal_opportunity",
@@ -40,12 +40,12 @@
 
 - Define workflows for updating or retraining models:
   - **Trigger Conditions:** Model drift, new data availability, or performance degradation.
-  - **Steps:**  
+  - **Steps:**
     - Data preparation and validation.
     - Model retraining and testing.
     - Deployment and monitoring.
 - Use CI/CD pipelines for automated retraining and deployment.
-- **Example Workflow:**  
+- **Example Workflow:**
   ```yaml
   retraining_pipeline:
     steps:
@@ -60,12 +60,12 @@
 ## 🚨 Incident Response
 
 - Document steps for handling failures or incidents:
-  - **Failure Scenarios:**  
+  - **Failure Scenarios:**
     - Model performance degradation: Roll back to the previous version.
     - Infrastructure failures: Use self-healing mechanisms (e.g., Kubernetes auto-restart).
-  - **Response Workflow:**  
+  - **Response Workflow:**
     - Detect -> Notify -> Diagnose -> Resolve -> Document.
-- **Example Incident Playbook:**  
+- **Example Incident Playbook:**
   ```yaml
   incident_response:
     steps:
@@ -75,7 +75,7 @@
       - resolve: "Apply fixes or rollbacks."
       - document: "Record incident details for future reference."
   ```
-- **Example Log Analysis During Diagnosis:**  
+- **Example Log Analysis During Diagnosis:**
   ```json
   {
     "timestamp": "2025-06-21T12:00:00Z",
@@ -105,7 +105,7 @@
   - Switch to fallback models during model failures.
 - Monitor system health and trigger self-healing scripts when issues are detected.
 - Document self-healing logic and escalation paths for unresolved incidents.
-- **Example Self-Healing Workflow:**  
+- **Example Self-Healing Workflow:**
   ```yaml
   self_healing:
     triggers:
@@ -139,7 +139,7 @@ graph TD
 - **Automated Incident Response:** Integrate self-healing mechanisms for faster recovery.
 - **Advanced Bias Mitigation:** Develop real-time fairness monitoring tools.
 - **Lifecycle Management:** Expand workflows for continuous improvement.
-- **Example Lifecycle Management Workflow:**  
+- **Example Lifecycle Management Workflow:**
   ```yaml
   lifecycle_management:
     triggers:
@@ -149,7 +149,7 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Operational readiness is what turns a prototype into a product—make it robust for every AI solution.
 
 ---

@@ -42,10 +42,10 @@ We established baseline retrieval metrics by running the pipeline with the base 
 
 ## ⚖️ Trade-off Analysis
 
-A hyperparameter sweep was performed, varying LoRA rank, alpha, dropout, epochs, and batch size.  
+A hyperparameter sweep was performed, varying LoRA rank, alpha, dropout, epochs, and batch size.
 For each configuration, retrieval metrics and resource usage were recorded.
 
-**Visualization:**  
+**Visualization:**
 The results are visualized as Top-1 Accuracy vs. Runtime, with color indicating MRR.
 
 ![Benchmark Top-1 vs Runtime](../data/clean/benchmark_top1_vs_runtime.png)
@@ -61,7 +61,7 @@ The results are visualized as Top-1 Accuracy vs. Runtime, with color indicating 
 
 Based on the trade-off analysis, the configuration with the best balance of accuracy and efficiency was selected:
 
-- **Best run:**  
+- **Best run:**
   - `r=4, alpha=16, dropout=0.0, epochs=2, batch_size=8`
   - Top-1: 0.82, MRR: 0.87, Runtime: 32.5s, Memory: 745.8MB
 

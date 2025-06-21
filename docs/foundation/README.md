@@ -35,7 +35,7 @@ The decisions documented in this phase embed the following non-negotiable princi
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > A well-defined foundation is the most significant predictor of a project's success. It transforms development from a series of reactive tasks into a deliberate, strategic execution of a well-laid plan.
 
 ---

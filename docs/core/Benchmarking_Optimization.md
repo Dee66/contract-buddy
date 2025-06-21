@@ -4,7 +4,7 @@
 
 # 📊 Benchmarking & Optimization
 
-> **Purpose:**  
+> **Purpose:**
 > Measure, analyze, and optimize the AI for real-world performance and efficiency, regardless of the application.
 
 ---
@@ -49,14 +49,14 @@ graph TD
 | 4  | 16    | 0.1     | 0.00  | 0.03 | 4.95    | 142.46  |
 | ...| ...   | ...     | ...   | ...  | ...     | ...     |
 
-**Interpretation:**  
+**Interpretation:**
 With the current dataset size, all hyperparameter configurations yield similar (low) retrieval metrics. No clear trade-off between accuracy and resource usage is observed. To see meaningful optimization, we recommend expanding the dataset to 1000+ chunks.
 
-**Next Steps:**  
+**Next Steps:**
 - Expand dataset for more robust benchmarking.
 - Re-run hyperparameter sweep and update this analysis.
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Optimization is not just about speed—it's about delivering value efficiently for every AI solution.

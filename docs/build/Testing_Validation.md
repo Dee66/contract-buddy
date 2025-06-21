@@ -4,7 +4,7 @@
 
 # 🧪 Testing & Validation
 
-> **Purpose:**  
+> **Purpose:**
 > Prove the system works—at every level, for every AI solution.
 
 ---
@@ -47,8 +47,8 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Automated testing ensures reliability, speeds up delivery, and prevents regressions for every AI project.
 
-> **Automation Insight:**  
+> **Automation Insight:**
 > Automated testing ensures reliability, speeds up delivery, and prevents regressions.

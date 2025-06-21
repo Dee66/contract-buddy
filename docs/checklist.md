@@ -43,14 +43,17 @@
 
 - 🟩 **[Objective defined](build/Objective.md):** System integration, deployment, and operationalization goals set.
 - 🟩 **[API & integration](build/API_Integration.md):** REST/GraphQL endpoints, input validation, error handling, logging, and authentication.
-- 🟩 **[Deployment & infrastructure](build/Deployment_Infrastructure.md):** Dockerization, IaC, cloud integration, and automated CI/CD pipelines.
-- 🟩 **[Observability & monitoring](build/Observability_Monitoring.md):** Metrics, dashboards, tracing, logging, and bias/fairness monitoring.
+- 🟥 **[Deployment & infrastructure](build/Deployment_Infrastructure.md):** Dockerization, IaC, cloud integration.
+- 🟥 **[Dockerization](build/Deployment_Infrastructure.md):** Create and implement a Dockerfile for the AI system to ensure containerization and portability.
+- 🟥 **[CI/CD build](build/Deployment_Infrastructure.md):** Automate build, test, and deployment workflows using GitHub Actions.
+- 🟥 **[AWS hosting](build/Deployment_Infrastructure.md):** Deploy the AI system to AWS with auto-scaling and monitoring enabled.
+- 🟩 **[Observability & monitoring](build/Observability_Monitoring.md):** Metrics, dashboards, tracing, logging, and bias/fairness monitoring implemented.
 - 🟩 **[Operational playbook](build/Operational_Playbook.md):** Model drift/bias monitoring, update/retraining, incident response, version control, model lifecycle, self-healing.
 - 🟥 **[User interface](build/User_Interface.md):** Core UI components and interactive elements implemented.
 - 🟥 **[CI/CD workflow](build/Deployment_Infrastructure.md):** Sample YAML or diagram included; rollback automation clarified.
 - 🟥 **[Security scans](build/Deployment_Infrastructure.md):** Static/dynamic scans (Snyk, SonarQube, Bandit) in CI/CD.
 - 🟥 **[Automated alerting](build/Observability_Monitoring.md):** Alerts integrated with email, Slack, PagerDuty, etc.
-- 🟥 **[Testing & validation](build/Testing_Validation.md):** Automated unit, integration, E2E, and performance tests with coverage reporting.
+- 🟩 **[Testing & validation](build/Testing_Validation.md):** Automated unit, integration, E2E, and performance tests with coverage reporting.
 - 🟥 **[Cost reporting](build/Deliverables.md):** Final resource and cloud cost report completed.
 - 🟥 **[Stakeholder review](build/Deliverables.md):** System Build deliverables reviewed and feedback incorporated.
 - 🟥 **[Deliverables](build/Deliverables.md):** End-to-end prototype, latency report, IaC scripts, logging/monitoring plan, test results, playbook snippets, cost report.

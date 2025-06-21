@@ -1,30 +1,62 @@
-import unittest
+import sys
 import os
+import unittest
+from unittest.mock import patch
 import json
-from src.scripts import analyze_benchmark_results
+import tempfile
+import shutil
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from scripts.analyze_benchmark_results import main as analyze_main  # noqa: E402
+
 
 class TestAnalyzeBenchmarkResults(unittest.TestCase):
     def setUp(self):
-        self.results_path = "data/clean/hyperparam_sweep_results.json"
-        os.makedirs(os.path.dirname(self.results_path), exist_ok=True)
-        results = [
-            {
-                "hyperparams": {"r": 4, "alpha": 16, "dropout": 0.0},
-                "peft_retrieval": {"top1": 0.5, "mrr": 0.7},
-                "timing_seconds": 1.0,
-                "memory_usage_mb": 100.0
-            }
-        ]
-        with open(self.results_path, "w", encoding="utf-8") as f:
-            json.dump(results, f)
+        self.test_dir = tempfile.mkdtemp()
+        self.input_dir = os.path.join(self.test_dir, "input")
+        self.output_dir = os.path.join(self.test_dir, "output")
+        os.makedirs(self.input_dir)
+        os.makedirs(self.output_dir)
 
-    def test_script_runs(self):
-        # Just check that the script runs without error
-        analyze_benchmark_results.main()
+        results1 = {
+            "model_name": "model_a",
+            "top_1_accuracy": 0.95,
+            "avg_inference_time_ms": 100,
+        }
+        with open(os.path.join(self.input_dir, "eval_results_1.json"), "w") as f:
+            json.dump(results1, f)
+
+        results2 = {
+            "model_name": "model_b",
+            "top_1_accuracy": 0.92,
+            "avg_inference_time_ms": 120,
+        }
+        with open(os.path.join(self.input_dir, "eval_results_2.json"), "w") as f:
+            json.dump(results2, f)
 
     def tearDown(self):
-        if os.path.exists(self.results_path):
-            os.remove(self.results_path)
+        shutil.rmtree(self.test_dir)
+
+    def test_script_runs_and_creates_output(self):
+        with patch("sys.argv", ["script_name", self.input_dir, self.output_dir]):
+            analyze_main()
+
+        self.assertTrue(
+            os.path.exists(os.path.join(self.output_dir, "benchmark_report.csv"))
+        )
+        self.assertTrue(
+            os.path.exists(os.path.join(self.output_dir, "benchmark_report.md"))
+        )
+        self.assertTrue(os.path.exists(os.path.join(self.output_dir, "best_run.json")))
+
+        with open(os.path.join(self.output_dir, "best_run.json"), "r") as f:
+            best_run = json.load(f)
+        self.assertEqual(best_run["model_name"], "model_a")
+        self.assertAlmostEqual(best_run["top_1_accuracy"], 0.95)
+
 
 if __name__ == "__main__":
     unittest.main()

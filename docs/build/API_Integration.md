@@ -4,7 +4,7 @@
 
 # 🔌 API & Integration Layer
 
-> **Purpose:**  
+> **Purpose:**
 > Expose the AI’s capabilities through robust, secure, and well-documented APIs for any use case.
 
 ---
@@ -13,17 +13,17 @@
 
 - Design RESTful or GraphQL endpoints for core AI features.
 - Ensure clear, versioned, and discoverable APIs.
-- **Example:**  
+- **Example:**
   - **Endpoint:** `/api/v1/ai/predict`
   - **Method:** `POST`
   - **Description:** Accepts input data and returns predictions.
-  - **Payload Example:**  
+  - **Payload Example:**
     ```json
     {
       "input_data": [1.2, 3.4, 5.6]
     }
     ```
-  - **Response Example:**  
+  - **Response Example:**
     ```json
     {
       "predictions": [0.9, 0.1]
@@ -36,11 +36,11 @@
 
 - Validate all inputs and handle errors gracefully.
 - Provide meaningful error messages and status codes.
-- **Example:**  
+- **Example:**
   - **Validation:** Reject requests with missing or malformed fields.
-  - **Error Codes:**  
-    - `400`: Bad Request  
-    - `401`: Unauthorized  
+  - **Error Codes:**
+    - `400`: Bad Request
+    - `401`: Unauthorized
     - `500`: Internal Server Error
 
 ---
@@ -49,8 +49,8 @@
 
 - Implement structured, queryable logs for all API activity.
 - Use tools like ELK Stack or CloudWatch for log aggregation and querying.
-- **Example:**  
-  - Log format:  
+- **Example:**
+  - Log format:
     ```json
     {
       "timestamp": "2025-06-21T12:00:00Z",
@@ -66,7 +66,7 @@
 
 - Secure endpoints with modern auth (JWT, OAuth, etc.).
 - Plan for role-based access if needed.
-- **Example:**  
+- **Example:**
   - **JWT:** Include a `Bearer` token in the `Authorization` header.
   - **Roles:** Define roles like `admin`, `user`, and `viewer`.
 
@@ -103,7 +103,7 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > A great API is the gateway to adoption and integration for any AI solution. Focus on usability, security, and performance.
 
 ---

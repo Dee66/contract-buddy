@@ -1,5 +1,4 @@
-environment: dev
-
+# Global settings
 embedding:
   model_name: sentence-transformers/all-MiniLM-L6-v2
 
@@ -11,6 +10,43 @@ peft:
   batch_size: 16
   output_dir: adapters/peft_adapter_r4_a16_d0.0_e1_b16
 
+ports:
+  app: 8000
+  monitoring: 9000
+
+resource_limits:
+  memory: "512Mi"
+  cpu: "0.5"
+
+paths:
+  logs: logs/
+  temp: temp/
+
+docker:
+  health_check_interval: 30s
+  labels:
+    app: "ai-solution"
+    environment: "${environment}"
+
+monitoring:
+  enabled: true
+  endpoint: /metrics
+  alerting:
+    error_threshold: 5
+    latency_threshold_ms: 500
+
+deployment:
+  aws_region: "${AWS_REGION}"
+  availability_zones: ["${AWS_ZONE_1}", "${AWS_ZONE_2}"]
+
+ci_cd:
+  pipeline_id: "ai-solution-pipeline"
+  artifact_path: "artifacts/"
+
+version: 1.0.0
+last_updated: "2025-06-21"
+
+# Environment-specific configurations
 dev:
   dataset_size: 100
   sweep_params:
@@ -19,7 +55,25 @@ dev:
     lora_dropouts: [0.0]
     epochs: [1]
     batch_sizes: [8]
-  logging_level: INFO
+  logging_level: DEBUG
+  metadata:
+    description: "Development environment for testing and debugging"
+    owner: "dev-team"
+  rag_pipeline:
+    embedding_dimension: 1536
+    aws_region: "us-east-1"
+    bedrock_model_id: "amazon.titan-embed-text-v1"
+    data_source:
+      type: "file_system"
+      path: "./data/source_documents"
+    vector_store:
+      type: "faiss"
+      index_path: "./data/vector_store/dev_index.faiss"
+      metadata_path: "./data/vector_store/dev_metadata.pkl"
+    chunking_strategy:
+      type: "langchain"
+      chunk_size: 1000
+      chunk_overlap: 200
 
 staging:
   dataset_size: 1000
@@ -30,6 +84,25 @@ staging:
     epochs: [2]
     batch_sizes: [8, 16]
   logging_level: INFO
+  metadata:
+    description: "Staging environment for pre-production testing"
+    owner: "qa-team"
+  rag_pipeline:
+    embedding_dimension: 1536
+    aws_region: "us-east-1"
+    bedrock_model_id: "amazon.titan-embed-text-v1"
+    data_source:
+      type: "s3"
+      bucket: "ai-solutions-staging-bucket"
+      prefix: "source-documents/"
+    vector_store:
+      type: "opensearch"
+      host: "search-staging-cluster.amazonaws.com"
+      index_name: "staging_doc_index"
+    chunking_strategy:
+      type: "langchain"
+      chunk_size: 1000
+      chunk_overlap: 200
 
 prod:
   dataset_size: 10000
@@ -40,6 +113,25 @@ prod:
     epochs: [3, 5]
     batch_sizes: [8, 16]
   logging_level: WARNING
+  metadata:
+    description: "Production environment for live deployment"
+    owner: "ops-team"
+  rag_pipeline:
+    embedding_dimension: 1536
+    aws_region: "us-east-1"
+    bedrock_model_id: "amazon.titan-embed-text-v1"
+    data_source:
+      type: "s3"
+      bucket: "ai-solutions-prod-bucket"
+      prefix: "source-documents/"
+    vector_store:
+      type: "opensearch"
+      host: "search-prod-cluster.amazonaws.com"
+      index_name: "prod_doc_index"
+    chunking_strategy:
+      type: "langchain"
+      chunk_size: 500
+      chunk_overlap: 100
 
 dashboard:
   output_path: data/clean/benchmark_interactive.html

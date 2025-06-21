@@ -4,7 +4,7 @@
 
 # 📈 Observability & Monitoring
 
-> **Purpose:**  
+> **Purpose:**
 > Build in visibility and insight from day one—know what’s happening, always.
 
 ---
@@ -28,7 +28,7 @@
 - **Resource Metrics:** CPU, memory, disk usage.
 - **AI-Specific Metrics:** Model accuracy, drift detection, bias monitoring.
 - Expose metrics for dashboards and alerts using tools like **Prometheus**, **Grafana**, or **AWS CloudWatch**.
-- **Example Prometheus Configuration:**  
+- **Example Prometheus Configuration:**
   ```yaml
   scrape_configs:
     - job_name: "ai_system"
@@ -46,7 +46,7 @@
   - Latency and throughput trends.
   - Resource utilization (CPU, memory, disk).
   - Model-specific metrics (accuracy, drift, bias).
-- **Example Grafana Dashboard Panel:**  
+- **Example Grafana Dashboard Panel:**
   ```json
   {
     "type": "graph",
@@ -67,7 +67,7 @@
 - Implement tracing for request flows and performance bottlenecks.
 - Use tools like **Jaeger**, **Zipkin**, or **AWS X-Ray**.
 - Ensure logs are structured and actionable.
-- **Example Log Format:**  
+- **Example Log Format:**
   ```json
   {
     "timestamp": "2025-06-21T12:00:00Z",
@@ -85,7 +85,7 @@
 - Implement metrics and dashboards to monitor for model bias and fairness in production.
 - Regularly review outputs for disparate impact or unintended consequences.
 - Use tools like **AI Fairness 360** or **What-If Tool** for proactive bias detection.
-- **Example Bias Metric Visualization:**  
+- **Example Bias Metric Visualization:**
   ```json
   {
     "metric": "disparate_impact",
@@ -102,7 +102,7 @@
 - Configure automated alerts for critical metrics (e.g., errors, latency, drift, cost overruns).
 - Integrate with channels such as **email**, **Slack**, or **PagerDuty** for real-time notifications.
 - Alerts are triggered on threshold breaches or system failures to enable rapid response.
-- **Example Alert Configuration:**  
+- **Example Alert Configuration:**
   ```yaml
   alert:
     name: High Latency
@@ -139,7 +139,7 @@ graph TD
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Observability is essential for reliability and rapid troubleshooting in any AI deployment. Proactive monitoring ensures system health and builds trust in AI solutions.
 
 ---

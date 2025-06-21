@@ -4,7 +4,7 @@
 
 # 🗣️ Verbal Narrative Practice
 
-> **Purpose:**  
+> **Purpose:**
 > Prepare to confidently present the AI solution in interviews or talks.
 
 ---
@@ -27,5 +27,5 @@
 
 ---
 
-> **Professional Insight:**  
+> **Professional Insight:**
 > Great communicators turn technical work into career opportunities—practice for every AI solution you build.

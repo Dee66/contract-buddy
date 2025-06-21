@@ -3,34 +3,22 @@ __pycache__/
 *.py[cod]
 *.so
 
-# Logs
-*.log
-logs/
-
-# Data outputs
-data/
-adapters/
-checkpoints/
-
-# Model outputs
-*.safetensors
-
-# Environment files
+# Environment & Tooling
 .env
 .venv/
-env/
 venv/
 ENV/
-venv/        # <-- add this line if not present
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
-
-# VSCode settings
+.pytest_cache/
 .vscode/
+cdk.out/
+node_modules/
 
-# OS files
+# OS generated files
 .DS_Store
 Thumbs.db
 
-#document_sorter.py
+# Editor temporary files
+.__atomic-write*
+
+# --- Generated Outputs ---
+outputs/
