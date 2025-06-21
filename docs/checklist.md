@@ -41,16 +41,16 @@
 
 ## 🏗️ System Build & Readiness
 
-- 🟥 **[Objective defined](build/Objective.md):** System integration, deployment, and operationalization goals set.
-- 🟥 **[API & integration](build/API_Integration.md):** REST/GraphQL endpoints, input validation, error handling, logging, and authentication.
+- 🟩 **[Objective defined](build/Objective.md):** System integration, deployment, and operationalization goals set.
+- 🟩 **[API & integration](build/API_Integration.md):** REST/GraphQL endpoints, input validation, error handling, logging, and authentication.
+- 🟩 **[Deployment & infrastructure](build/Deployment_Infrastructure.md):** Dockerization, IaC, cloud integration, and automated CI/CD pipelines.
+- 🟩 **[Observability & monitoring](build/Observability_Monitoring.md):** Metrics, dashboards, tracing, logging, and bias/fairness monitoring.
+- 🟩 **[Operational playbook](build/Operational_Playbook.md):** Model drift/bias monitoring, update/retraining, incident response, version control, model lifecycle, self-healing.
 - 🟥 **[User interface](build/User_Interface.md):** Core UI components and interactive elements implemented.
-- 🟥 **[Deployment & infrastructure](build/Deployment_Infrastructure.md):** Dockerization, IaC, cloud integration, and automated CI/CD pipelines.
 - 🟥 **[CI/CD workflow](build/Deployment_Infrastructure.md):** Sample YAML or diagram included; rollback automation clarified.
 - 🟥 **[Security scans](build/Deployment_Infrastructure.md):** Static/dynamic scans (Snyk, SonarQube, Bandit) in CI/CD.
-- 🟥 **[Observability & monitoring](build/Observability_Monitoring.md):** Metrics, dashboards, tracing, logging, and bias/fairness monitoring.
 - 🟥 **[Automated alerting](build/Observability_Monitoring.md):** Alerts integrated with email, Slack, PagerDuty, etc.
 - 🟥 **[Testing & validation](build/Testing_Validation.md):** Automated unit, integration, E2E, and performance tests with coverage reporting.
-- 🟥 **[Operational playbook](build/Operational_Playbook.md):** Model drift/bias monitoring, update/retraining, incident response, version control, model lifecycle, self-healing.
 - 🟥 **[Cost reporting](build/Deliverables.md):** Final resource and cloud cost report completed.
 - 🟥 **[Stakeholder review](build/Deliverables.md):** System Build deliverables reviewed and feedback incorporated.
 - 🟥 **[Deliverables](build/Deliverables.md):** End-to-end prototype, latency report, IaC scripts, logging/monitoring plan, test results, playbook snippets, cost report.
