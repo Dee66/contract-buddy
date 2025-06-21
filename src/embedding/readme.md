@@ -1,10 +1,10 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🧬 Embedding Module
 
-This document details the embedding and PEFT (Parameter-Efficient Fine-Tuning) workflow for Contract Buddy AI.
+This document details the embedding and PEFT (Parameter-Efficient Fine-Tuning) workflow for CodeCraft AI.
 
 ---
 

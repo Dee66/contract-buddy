@@ -1,10 +1,10 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../INDEX.md)
+[⬅ Back to Main Index](../INDEX.md)
 
 # 🗄️ Data Pipeline Module
 
-This document provides technical details for the data pipeline component of Contract Buddy AI.
+This document provides technical details for the data pipeline component of CodeCraft AI.
 
 ---
 

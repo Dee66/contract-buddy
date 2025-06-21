@@ -91,7 +91,7 @@ def main():
     setup_logging()
     load_and_set_env()  # Ensure environment is set for all subprocesses
     logging = __import__("logging")
-    logging.info("=== Pre-flight Check: Contract Buddy Showcase Pipeline ===")
+    logging.info("=== Pre-flight Check: CodeCraft AI Showcase Pipeline ===")
 
     # Load environment-specific config
     env, env_config = load_config()

@@ -1,4 +1,4 @@
-[⬅ Back to Main Index](../../../INDEX.md)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # Peft_adapter_r4_a16_d0.0_e1_b16 Overview
 

@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🔍 Business Problem & Value
 
@@ -28,7 +28,7 @@
 ## 💡 Value Proposition & ROI
 
 - **Business Value:**  
-  Contract Buddy accelerates software delivery by generating production-ready code, reducing manual effort, and minimizing errors.
+  CodeCraft AI accelerates software delivery by generating production-ready code, reducing manual effort, and minimizing errors.
 - **Cost Savings:**
   - Reduces developer time spent on boilerplate and research by up to 50%.
   - Lowers onboarding costs for new team members by providing instant, context-aware code examples.
@@ -38,7 +38,7 @@
   - Lays the foundation for monetization via SaaS/API offerings.
 - **Competitive Landscape:**
 
-  - Unlike Copilot or Tabnine, Contract Buddy is designed for extensibility, explainability, and enterprise integration, with a focus on compliance and custom workflows.
+  - Unlike Copilot or Tabnine, CodeCraft AI is designed for extensibility, explainability, and enterprise integration, with a focus on compliance and custom workflows.
 
 - **ROI Example:**  
   If a team of 5 developers saves 2 hours/week each, at $60/hour, that’s $600/month or $7,200/year in productivity gains—before considering quality and velocity improvements.
@@ -77,4 +77,4 @@ graph TD
 
 > **Professional Insight:**  
 > A clear understanding of the business problem and value proposition is the foundation of any impactful AI solution.  
-> For Contract Buddy, this means focusing on real developer workflows and measurable outcomes.
+> For CodeCraft AI, this means focusing on real developer workflows and measurable outcomes.

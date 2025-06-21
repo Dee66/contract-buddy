@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#core)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # ⚙️ Dev Environment & Data
 
@@ -76,7 +76,7 @@
 
 ## Overview
 
-Establish robust processes for ingesting, cleaning, normalizing, and versioning all data used in Contract Buddy, with a focus on privacy and compliance.
+Establish robust processes for ingesting, cleaning, normalizing, and versioning all data used in CodeCraft AI, with a focus on privacy and compliance.
 
 ---
 

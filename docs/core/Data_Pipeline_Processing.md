@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#core)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🔗 Data Pipeline & Processing
 
@@ -13,7 +13,7 @@
 
 ## Overview
 
-This document details the modular, testable data pipeline powering Contract Buddy’s AI code assistant. The pipeline supports ingestion, cleaning, chunking, embedding, and vector database integration for scalable, context-aware code retrieval and generation.
+This document details the modular, testable data pipeline powering CodeCraft AI’s AI code assistant. The pipeline supports ingestion, cleaning, chunking, embedding, and vector database integration for scalable, context-aware code retrieval and generation.
 
 ---
 

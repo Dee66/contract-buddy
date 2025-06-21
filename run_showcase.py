@@ -17,11 +17,11 @@ def load_and_set_env(config_path="config.yaml"):
 
 if __name__ == "__main__":
     load_and_set_env()
-    logging.info("Starting Contract Buddy Showcase pipeline from run_showcase.py")
+    logging.info("Starting CodeCraft AI Showcase pipeline from run_showcase.py")
     try:
         from src.scripts.run_showcase_pipeline import main
         main()
-        logging.info("Contract Buddy Showcase pipeline finished")
+        logging.info("CodeCraft AI Showcase pipeline finished")
     except Exception as e:
         logging.exception(f"Pipeline failed with an unexpected error: {e}")
         sys.exit(1)

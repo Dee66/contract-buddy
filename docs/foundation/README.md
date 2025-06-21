@@ -1,14 +1,14 @@
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🏛️ Foundation Overview
 
-Welcome to the Foundation module of Contract Buddy AI. This is the strategic core of the project, where we establish the "why," "how," and "what if" before a single line of production code is written.
+Welcome to the Foundation module of CodeCraft AI. This is the strategic core of the project, where we establish the "why," "how," and "what if" before a single line of production code is written.
 
 ---
 
 ## Purpose
 
-This module lays the strategic and architectural groundwork for Contract Buddy, ensuring every technical decision in subsequent phases is purposeful, secure, and aligned with measurable business value. It is the professional due diligence that de-risks the project and separates a prototype from a production-ready, enterprise-grade system.
+This module lays the strategic and architectural groundwork for CodeCraft AI, ensuring every technical decision in subsequent phases is purposeful, secure, and aligned with measurable business value. It is the professional due diligence that de-risks the project and separates a prototype from a production-ready, enterprise-grade system.
 
 ---
 

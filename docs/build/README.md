@@ -1,8 +1,8 @@
-[⬅ Back to Main Index](../../../INDEX.md#build)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # Build Overview
 
-Welcome to the Build module of Contract Buddy AI.
+Welcome to the Build module of CodeCraft AI.
 
 ---
 

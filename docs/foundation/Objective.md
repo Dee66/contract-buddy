@@ -1,10 +1,10 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🎯 Objective
 
-> **Establish a robust architectural foundation for Contract Buddy—an AI-powered coding assistant—ensuring scalability, reliability, and measurable business value from day one.**
+> **Establish a robust architectural foundation for CodeCraft AI—an AI-powered coding assistant—ensuring scalability, reliability, and measurable business value from day one.**
 
 ---
 
@@ -16,7 +16,7 @@ This foundation will support future enhancements, seamless integration, and oper
 
 ```mermaid
 flowchart TD
-    A["Solution Foundation Objective<br/><br/>Lay a resilient architectural foundation for<br/><b>Contract Buddy</b><br/><br/>Ensuring scalability, robustness, and business value from day one."]
+    A["Solution Foundation Objective<br/><br/>Lay a resilient architectural foundation for<br/><b>CodeCraft AI</b><br/><br/>Ensuring scalability, robustness, and business value from day one."]
 ```
 
 ---
@@ -30,10 +30,10 @@ flowchart TD
 
 > **Professional Insight:**  
 > A well-defined objective is the compass for every architectural decision.  
-> For Contract Buddy, this means building not just for today’s requirements, but for tomorrow’s opportunities and challenges.
+> For CodeCraft AI, this means building not just for today’s requirements, but for tomorrow’s opportunities and challenges.
 
 > **Elevator Pitch:**  
-> *Contract Buddy is an AI-powered coding assistant that delivers context-aware, production-ready code and deployment assets—accelerating developer productivity and enabling rapid, secure delivery for teams of any size.*
+> *CodeCraft AI is an AI-powered coding assistant that delivers context-aware, production-ready code and deployment assets—accelerating developer productivity and enabling rapid, secure delivery for teams of any size.*
 
 ---
 

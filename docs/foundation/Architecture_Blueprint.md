@@ -1,11 +1,11 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🏗️ Architecture Blueprint
 
 > **Purpose:**  
-> Design a modular, secure, and scalable architecture for Contract Buddy, embedding MLOps, observability, and data governance from the start.
+> Design a modular, secure, and scalable architecture for CodeCraft AI, embedding MLOps, observability, and data governance from the start.
 
 ---
 
@@ -113,4 +113,4 @@ flowchart TD
 ---
 
 > **Professional Insight:**  
-> A modular, layered architecture ensures Contract Buddy is maintainable, extensible, and secure—ready for both rapid prototyping and enterprise deployment.
+> A modular, layered architecture ensures CodeCraft AI is maintainable, extensible, and secure—ready for both rapid prototyping and enterprise deployment.

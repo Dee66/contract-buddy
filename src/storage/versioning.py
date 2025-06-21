@@ -1,5 +1,5 @@
 """
-Data Versioning Script for Contract Buddy
+Data Versioning Script for CodeCraft AI
 -----------------------------------------
 Handles dataset versioning for reproducibility and auditability.
 """

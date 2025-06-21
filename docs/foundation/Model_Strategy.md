@@ -1,11 +1,11 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🤖 Model & AI Strategy
 
 > **Purpose:**  
-> Select and justify the AI approach for Contract Buddy, ensuring up-to-date, context-aware, and high-quality code generation.
+> Select and justify the AI approach for CodeCraft AI, ensuring up-to-date, context-aware, and high-quality code generation.
 
 ---
 

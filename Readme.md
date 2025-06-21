@@ -1,8 +1,8 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../INDEX.md)
+[⬅ Back to Main Index](INDEX.md)
 
-# 🤖 Contract Buddy AI
+# 🤖 CodeCraft AI
 
 A showcase-ready, modular AI pipeline for code completion, documentation, and analysis—built to demonstrate best-in-class architecture, business value, and technical acumen.
 
@@ -10,7 +10,7 @@ A showcase-ready, modular AI pipeline for code completion, documentation, and an
 
 ## 🚀 Executive Summary
 
-**Contract Buddy AI** is a production-grade, revenue-oriented AI assistant for code and document workflows.  
+**CodeCraft AI** is a production-grade, revenue-oriented AI assistant for code and document workflows.  
 It leverages Retrieval-Augmented Generation (RAG), LLMs, and modern MLOps to deliver up-to-date code suggestions, documentation, and deployment assets.  
 This project is designed as a portfolio centerpiece for senior/architect-level roles.
 

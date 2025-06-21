@@ -17,9 +17,9 @@ class JsonFormatter(logging.Formatter):
         log_record = {
             "ts": self.formatTime(record, "%Y-%m-%d %H:%M"),
             "msg": record.getMessage(),
-            "mod": record.module,
-            "func": record.funcName,
-            "line": record.lineno,
+            # "mod": record.module,
+            # "func": record.funcName,
+            # "line": record.lineno,
         }
         return json.dumps(log_record)
 

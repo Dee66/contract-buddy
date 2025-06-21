@@ -1,5 +1,5 @@
 """
-Data Cleaning & Normalization Script for Contract Buddy
+Data Cleaning & Normalization Script for CodeCraft AI
 -------------------------------------------------------
 Removes duplicates, irrelevant data, and standardizes format for downstream use.
 """

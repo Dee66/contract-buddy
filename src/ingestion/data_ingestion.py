@@ -1,5 +1,5 @@
 """
-Data Ingestion Script for Contract Buddy
+Data Ingestion Script for CodeCraft AI
 ----------------------------------------
 Fetches, validates, and stores data from approved sources for RAG and model fine-tuning.
 """

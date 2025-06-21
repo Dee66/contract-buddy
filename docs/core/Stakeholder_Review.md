@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#core)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 📝 Stakeholder Review – AI Core & Optimization
 

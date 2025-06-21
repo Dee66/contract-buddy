@@ -1,12 +1,12 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#core)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 📚 Data Sourcing Strategy
 
 ## Purpose
 
-Define the sources, licensing considerations, and ingestion process for all data used in Contract Buddy’s Retrieval-Augmented Generation (RAG) and model fine-tuning.
+Define the sources, licensing considerations, and ingestion process for all data used in CodeCraft AI’s Retrieval-Augmented Generation (RAG) and model fine-tuning.
 
 ---
 

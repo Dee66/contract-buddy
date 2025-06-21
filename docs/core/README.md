@@ -1,8 +1,8 @@
-[⬅ Back to Main Index](../../../INDEX.md#core)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # Core Overview
 
-Welcome to the Core module of Contract Buddy AI.
+Welcome to the Core module of CodeCraft AI.
 
 ---
 

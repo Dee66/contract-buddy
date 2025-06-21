@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../INDEX.md)
+[⬅ Back to Main Index](../INDEX.md)
 
 # 📋 AI Solutions Project Implementation Checklist
 
@@ -35,7 +35,7 @@
 - 🟩 **[Cost tracking](core/Benchmarking_Optimization.md):** Resource and cloud costs tracked and reported.
 - 🟩 **[Evaluation plan](core/Evaluation_Plan.md):** Metrics defined, automated evaluation scripts and dashboards implemented.
 - 🟩 **[Stakeholder review](core/Deliverables.md):** Core deliverables reviewed and feedback incorporated.
-- 🟥 **[Deliverables](core/Deliverables.md):** Functional AI core, model adapters, experiment log, data notes, benchmarking report, cost tracking.
+- 🟩 **[Deliverables](core/Deliverables.md):** Functional AI core, model adapters, experiment log, data notes, benchmarking report, cost tracking.
 
 ---
 

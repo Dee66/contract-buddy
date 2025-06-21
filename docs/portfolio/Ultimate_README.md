@@ -1,10 +1,10 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#portfolio)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🏆 Ultimate Portfolio Summary
 
-This document provides an executive, end-to-end summary of Contract Buddy AI for portfolio and stakeholder review.
+This document provides an executive, end-to-end summary of CodeCraft AI for portfolio and stakeholder review.
 
 ---
 
@@ -44,7 +44,7 @@ Step-by-step guide for running the demo, viewing dashboards, and exploring resul
 
 ## Business Value & Impact
 
-Summary of how Contract Buddy AI delivers real-world value, supports revenue generation, and demonstrates technical leadership.
+Summary of how CodeCraft AI delivers real-world value, supports revenue generation, and demonstrates technical leadership.
 
 ---
 

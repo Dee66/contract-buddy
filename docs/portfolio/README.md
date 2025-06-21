@@ -1,8 +1,8 @@
-[⬅ Back to Main Index](../../../INDEX.md#portfolio)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # Portfolio Overview
 
-Welcome to the Portfolio module of Contract Buddy AI.
+Welcome to the Portfolio module of CodeCraft AI.
 
 ---
 

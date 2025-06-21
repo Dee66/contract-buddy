@@ -1,4 +1,4 @@
-from src.utils.environment import get_mode, setup_logging
+from src.utils.environment import get_env_config, get_mode, setup_logging
 from src.embedding.peft_finetune import peft_finetune
 from src.embedding.evaluate_embeddings import generate_negative_pairs, retrieval_metrics
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -73,6 +73,9 @@ def estimate_local_cost(runtime_seconds, cpu_percent, gpu_load=None, mode="prod"
     CPU_COST_PER_HOUR = 0.05 if mode == "dev" else 0.20  # dev: local, prod: cloud-like
     GPU_COST_PER_HOUR = 0.0 if mode == "dev" else 1.00   # dev: assume no GPU, prod: cloud GPU
 
+    if mode == "dev":
+        return 0  # Explicitly return 0 for dev mode
+
     cpu_hours = (runtime_seconds / 3600.0) * (cpu_percent / 100.0)
     cpu_cost = cpu_hours * CPU_COST_PER_HOUR
 
@@ -92,11 +95,19 @@ def get_cloud_info():
         "hourly_rate_usd": hourly_rate
     }
 
-def main():
+def main(dataset_path="data/clean/contrastive_pairs.json"):
     setup_logging()
     logging = __import__("logging")
     mode = get_mode()
     logging.info(f"PEFT hyperparameter sweep running in {mode.upper()} mode")
+
+    # Validate dataset
+    if not os.path.exists(dataset_path):
+        raise FileNotFoundError(f"Dataset not found at {dataset_path}")
+    with open(dataset_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if not data:
+        raise ValueError("Dataset is empty. Cannot proceed with PEFT hyperparameter sweep.")
 
     env_config = get_env_config()
     sweep_params = env_config.get("sweep_params", {})

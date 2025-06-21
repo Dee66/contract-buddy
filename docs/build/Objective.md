@@ -1,6 +1,6 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#build)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # 🎯 Objective
 

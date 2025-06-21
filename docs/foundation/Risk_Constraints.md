@@ -1,11 +1,11 @@
 [⬅ Back to Section Overview](README.md)
 
-[⬅ Back to Main Index](../../../INDEX.md#foundation)
+[⬅ Back to Main Index](../../INDEX.md)
 
 # ⚠️ Risk & Constraints
 
 > **Purpose:**  
-> Identify technical, ethical, and operational risks early to ensure a smooth project journey for Contract Buddy.
+> Identify technical, ethical, and operational risks early to ensure a smooth project journey for CodeCraft AI.
 
 ---
 
@@ -95,4 +95,4 @@ graph TD
 
 > **Professional Insight:**  
 > Proactive risk management and clear constraints are hallmarks of senior engineering and leadership.  
-> For Contract Buddy, document and revisit risks regularly as the project evolves.
+> For CodeCraft AI, document and revisit risks regularly as the project evolves.
