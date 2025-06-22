@@ -9,7 +9,7 @@ PyYAML
 
 # AWS SDK for Bedrock integration
 boto3
-urllib3<2.0  # Constrained by jina (dev dependency)
+urllib3<3.0  # Constrained by jina (dev dependency)
 
 # Core data and ML libraries for the RAG pipeline
 numpy
