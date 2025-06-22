@@ -1,0 +1,31 @@
+{
+  "name": "codecraft-ai-docs",
+  "version": "1.0.0",
+  "description": "Documentation site for the CodeCraft AI project, showcasing its architecture and capabilities as a portfolio centerpiece for transitioning to an AI solutions architect.",
+  "main": "index.js",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "deploy": "docusaurus deploy"
+  },
+  "keywords": [
+    "docusaurus",
+    "documentation",
+    "AI",
+    "portfolio",
+    "architecture"
+  ],
+  "author": "dee",
+  "license": "MIT",
+  "dependencies": {
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1"
+  },
+  "devDependencies": {
+    "docusaurus": "1.14.7"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "type": "commonjs"
+}

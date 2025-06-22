@@ -31,7 +31,7 @@ Experience the mastery of a full-stack, cloud-native AI implementation: from aut
 
 ---
 
-*CodeCraft AI is not just a project—it's a living demonstration of how to deliver secure, scalable, and business-aligned AI solutions at an enterprise level. This is what modern, cloud-native AI engineering looks like
+*CodeCraft AI is not just a project—it's a living demonstration of how to deliver secure, scalable, and business-aligned AI solutions at an enterprise level. This is what modern, cloud-native AI engineering looks like in practice.*
 
 ---
 
@@ -124,4 +124,4 @@ This page offers a strategic overview of CodeCraft AI. For a deeper dive into th
 ## Connect with Me
 
 I'm passionate about architecting secure, scalable, and impactful AI solutions that drive real business value.
-CodeCraft AI is more than a technical showcase — it's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact.
+CodeCraft AI is more than a technical showcase — it's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact. Let's transform the future with AI, one solution at a
