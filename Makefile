@@ -98,4 +98,4 @@ generate-config-schema: ## Generate Markdown config schema doc from Pydantic mod
 	python scripts/generate_config_schema_md.py
 
 security-audit: ## Run pip-audit on all requirements for vulnerability scanning
-    pip-audit -r requirements/dev.txt -r requirements/prod.txt
+	pip-audit -r requirements/dev.txt -r requirements/prod.txt
