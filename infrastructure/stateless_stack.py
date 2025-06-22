@@ -6,10 +6,13 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_ecs as ecs,
     aws_ecs_patterns as ecs_patterns,
+    aws_secretsmanager as secretsmanager,
+    aws_ssm as ssm,
     CfnOutput,
-    Duration,  # Import Duration directly
+    Duration,
 )
 from constructs import Construct
+import json
 
 
 class StatelessStack(Stack):
@@ -17,7 +20,7 @@ class StatelessStack(Stack):
         self,
         scope: Construct,
         construct_id: str,
-        env_name: str,  # Add env_name parameter
+        env_name: str,
         data_bucket: s3.IBucket,
         vector_store_bucket: s3.IBucket,
         api_repo: ecr.IRepository,
@@ -62,13 +65,40 @@ class StatelessStack(Stack):
             )
         )
 
+        # --- Secrets Management: Use or create per-environment vault ---
+        secret_name = f"codecraft-ai/secrets/{env_name}"
+        try:
+            # Try to look up an existing secret (recommended for dev/staging/prod)
+            env_secret = secretsmanager.Secret.from_secret_name_v2(
+                self, "EnvSecret", secret_name
+            )
+        except Exception:
+            # If not found, create a new one (for ephemeral/test environments)
+            env_secret = secretsmanager.Secret(
+                self,
+                "EnvSecret",
+                secret_name=secret_name,
+                description=f"Centralized secret vault for CodeCraft AI ({env_name})",
+                generate_secret_string=secretsmanager.SecretStringGenerator(
+                    secret_string_template=json.dumps(
+                        {
+                            "API_KEY": "replace_me",
+                            # ...add other required keys with dummy values...
+                        }
+                    ),
+                    generate_string_key="PLACEHOLDER",
+                    password_length=32,
+                    exclude_punctuation=True,
+                ),
+            )
+
         # --- Fargate Service for API ---
         api_service = ecs_patterns.ApplicationLoadBalancedFargateService(
             self,
             "ApiService",
             cluster=cluster,
-            cpu=256,  # .25 vCPU
-            memory_limit_mib=512,  # 0.5 GB
+            cpu=256,
+            memory_limit_mib=512,
             task_image_options={
                 "image": ecs.ContainerImage.from_ecr_repository(api_repo),
                 "environment": {
@@ -76,9 +106,15 @@ class StatelessStack(Stack):
                     "AWS_REGION": self.region,
                     "VECTOR_STORE_BUCKET": vector_store_bucket.bucket_name,
                 },
+                # Inject the full secret JSON and API_KEY as env vars
+                "secrets": {
+                    "APP_SECRETS_JSON": ecs.Secret.from_secrets_manager(env_secret),
+                    "API_KEY": ecs.Secret.from_secrets_manager(
+                        env_secret, field="API_KEY"
+                    ),
+                },
                 "task_role": api_role,
                 "container_port": 8000,
-                # Explicitly define logging for the API container
                 "log_driver": ecs.LogDrivers.aws_logs(
                     stream_prefix=f"api-service-{env_name}"
                 ),
@@ -102,20 +138,40 @@ class StatelessStack(Stack):
             self,
             "IngestionTaskDef",
             task_role=ingestion_role,
-            cpu=1024,  # 1 vCPU
-            memory_limit_mib=2048,  # 2 GB
+            cpu=1024,
+            memory_limit_mib=2048,
         )
         ingestion_task_definition.add_container(
             "IngestionContainer",
             image=ecs.ContainerImage.from_ecr_repository(ingestion_repo),
             environment={
-                "APP_MODE": env_name,  # Use the dynamic env_name
+                "APP_MODE": env_name,
                 "AWS_REGION": self.region,
                 "VECTOR_STORE_BUCKET": vector_store_bucket.bucket_name,
                 "DATA_BUCKET": data_bucket.bucket_name,
             },
             logging=ecs.LogDrivers.aws_logs(stream_prefix="ingestion-task"),
         )
+
+        # --- Centralized AppConfig in SSM Parameter Store ---
+        app_config = {
+            "vector_store_bucket": vector_store_bucket.bucket_name,
+            "data_bucket": data_bucket.bucket_name,
+            "log_level": "INFO",
+            "api_timeout_seconds": 30,
+            "feature_flags": {"enable_experimental": False},
+        }
+        ssm_param = ssm.StringParameter(
+            self,
+            "AppConfigParameter",
+            string_value=json.dumps(app_config),
+            parameter_name=f"/codecraft-ai/{env_name}/AppConfig",
+            description=f"Centralized application config for CodeCraft AI ({env_name})",
+        )
+
+        # --- Grant ECS Task Roles permission to read config ---
+        for role in [api_role, ingestion_role]:
+            ssm_param.grant_read(role)
 
         # --- Stack Outputs ---
         CfnOutput(self, "EcsClusterName", value=cluster.cluster_name)
@@ -128,8 +184,15 @@ class StatelessStack(Stack):
         CfnOutput(self, "ApiServiceRoleArn", value=api_role.role_arn)
         CfnOutput(
             self,
-            "ApiLoadBalancerDns",
-            value=api_service.load_balancer.load_balancer_dns_name,
+            "ApiUrl",
+            description="The public URL of the API service",
+            value=f"http://{api_service.load_balancer.load_balancer_dns_name}",
+        )
+        CfnOutput(
+            self,
+            "ApiKeySecretName",
+            description="The name of the secret in AWS Secrets Manager containing the API key",
+            value=env_secret.secret_name,
         )
         CfnOutput(self, "ApiServiceName", value=api_service.service.service_name)
         CfnOutput(

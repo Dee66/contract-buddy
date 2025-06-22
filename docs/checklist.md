@@ -47,6 +47,9 @@
 - 🟩 **[Containerization Strategy](build/Deployment_Infrastructure.md):** Optimized, multi-stage **Dockerfiles** for API and Ingestion services to ensure small, secure images.
 - 🟩 **[Infrastructure as Code (IaC)](build/Deployment_Infrastructure.md):** Entire AWS infrastructure defined in Python using the **AWS CDK**.
 - 🟩 **[IaC Architecture](build/Deployment_Infrastructure.md):** Clear separation of **Stateful** (S3, ECR) and **Stateless** (ECS, ALB) resources into distinct CDK stacks for independent lifecycle management.
+- 🟩 **[Configuration Management](build/Deployment_Infrastructure.md):** Centralized and environment-specific configuration (e.g., log levels, timeouts) managed via **AWS SSM Parameter Store**.
+- 🟩 **[Secrets Management](build/Deployment_Infrastructure.md):** Secure handling of all application secrets (e.g., API keys) using **AWS Secrets Manager**, injected at runtime.
+- 🟩 **[Automated Security Scanning](build/Deployment_Infrastructure.md):** Integrated vulnerability and dependency scanning (e.g., **Dependabot**, **pip-audit**) into the CI/CD pipeline.
 - 🟩 **[CI/CD Automation](build/Deployment_Infrastructure.md):** Fully automated build, test, and deployment pipeline orchestrated with **GitHub Actions**.
 - 🟩 **[Secure Cloud Authentication](build/Deployment_Infrastructure.md):** Passwordless deployment from CI/CD using secure **OIDC** connection between GitHub Actions and AWS IAM.
 - 🟩 **[Cloud Service Deployment](build/Deployment_Infrastructure.md):** Containerized services deployed to **AWS ECS on Fargate** for serverless compute.
@@ -59,6 +62,7 @@
 - 🟩 **[Code Quality & Formatting](build/Testing_Validation.md):** Code quality and consistent style enforced automatically with **Ruff** linter and formatter.
 - 🟩 **[Automated Testing](build/Testing_Validation.md):** Unit and integration test suite built with **Pytest** to ensure code correctness and prevent regressions.
 - 🟩 **[Centralized Logging](build/Observability_Monitoring.md):** Structured logging for all services and tasks captured and centralized in **AWS CloudWatch Logs**.
+- 🟥 **[Monitoring & Alerting](build/Observability_Monitoring.md):** Proactive system health monitoring with **CloudWatch Dashboards** and automated alerting on key metrics (e.g., latency, error rates, resource utilization).
 - 🟩 **[Developer Experience & Tooling](build/Deployment_Infrastructure.md):** Streamlined local development and cloud operations with a comprehensive **Makefile**.
 - 🟩 **[Stakeholder Review](build/Deliverables.md):** System Build deliverables reviewed and feedback incorporated.
 - 🟩 **[Deliverables](build/Deliverables.md):** End-to-end prototype, IaC scripts (CDK), CI/CD pipeline (GitHub Actions), and operational tooling (Makefile).

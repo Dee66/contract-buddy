@@ -1,0 +1,2286 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "CodeCraftAiStatefulStackStaging": {
+        "id": "CodeCraftAiStatefulStackStaging",
+        "path": "CodeCraftAiStatefulStackStaging",
+        "children": {
+          "DataBucket": {
+            "id": "DataBucket",
+            "path": "CodeCraftAiStatefulStackStaging/DataBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatefulStackStaging/DataBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "publicAccessBlockConfiguration": {
+                      "blockPublicAcls": true,
+                      "blockPublicPolicy": true,
+                      "ignorePublicAcls": true,
+                      "restrictPublicBuckets": true
+                    },
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.147.3"
+            }
+          },
+          "VectorStoreBucket": {
+            "id": "VectorStoreBucket",
+            "path": "CodeCraftAiStatefulStackStaging/VectorStoreBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatefulStackStaging/VectorStoreBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "publicAccessBlockConfiguration": {
+                      "blockPublicAcls": true,
+                      "blockPublicPolicy": true,
+                      "ignorePublicAcls": true,
+                      "restrictPublicBuckets": true
+                    },
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.147.3"
+            }
+          },
+          "ApiEcrRepo": {
+            "id": "ApiEcrRepo",
+            "path": "CodeCraftAiStatefulStackStaging/ApiEcrRepo",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatefulStackStaging/ApiEcrRepo/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECR::Repository",
+                  "aws:cdk:cloudformation:props": {
+                    "repositoryName": "codecraft-ai-api"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecr.CfnRepository",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.Repository",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionEcrRepo": {
+            "id": "IngestionEcrRepo",
+            "path": "CodeCraftAiStatefulStackStaging/IngestionEcrRepo",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatefulStackStaging/IngestionEcrRepo/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECR::Repository",
+                  "aws:cdk:cloudformation:props": {
+                    "repositoryName": "codecraft-ai-ingestion"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecr.CfnRepository",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.Repository",
+              "version": "2.147.3"
+            }
+          },
+          "DataBucketName": {
+            "id": "DataBucketName",
+            "path": "CodeCraftAiStatefulStackStaging/DataBucketName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "VectorStoreBucketName": {
+            "id": "VectorStoreBucketName",
+            "path": "CodeCraftAiStatefulStackStaging/VectorStoreBucketName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "ApiEcrRepoUri": {
+            "id": "ApiEcrRepoUri",
+            "path": "CodeCraftAiStatefulStackStaging/ApiEcrRepoUri",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionEcrRepoUri": {
+            "id": "IngestionEcrRepoUri",
+            "path": "CodeCraftAiStatefulStackStaging/IngestionEcrRepoUri",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "CodeCraftAiStatefulStackStaging/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "CodeCraftAiStatefulStackStaging/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.147.3"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "CodeCraftAiStatefulStackStaging/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "CodeCraftAiStatefulStackStaging/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"DataBucketE3889A50\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"DataBucketE3889A50\",\"Arn\"]}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"DataBucketE3889A50\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"VectorStoreBucketABEF753F\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"VectorStoreBucketABEF753F\",\"Arn\"]}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"VectorStoreBucketABEF753F\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"ApiEcrRepoCD93CD24\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"ApiEcrRepoCD93CD24\",\"Arn\"]}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"ApiEcrRepoCD93CD24\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Ref\":\"ApiEcrRepoCD93CD24\"}": {
+                "id": "Output{\"Ref\":\"ApiEcrRepoCD93CD24\"}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"ApiEcrRepoCD93CD24\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Ref\":\"VectorStoreBucketABEF753F\"}": {
+                "id": "Output{\"Ref\":\"VectorStoreBucketABEF753F\"}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"VectorStoreBucketABEF753F\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"IngestionEcrRepoFF775F78\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"IngestionEcrRepoFF775F78\",\"Arn\"]}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"IngestionEcrRepoFF775F78\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Ref\":\"IngestionEcrRepoFF775F78\"}": {
+                "id": "Output{\"Ref\":\"IngestionEcrRepoFF775F78\"}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"IngestionEcrRepoFF775F78\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "Output{\"Ref\":\"DataBucketE3889A50\"}": {
+                "id": "Output{\"Ref\":\"DataBucketE3889A50\"}",
+                "path": "CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"DataBucketE3889A50\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "CodeCraftAiStatefulStackStaging/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.147.3"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "CodeCraftAiStatefulStackStaging/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.147.3"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.147.3"
+        }
+      },
+      "CodeCraftAiStatelessStackStaging": {
+        "id": "CodeCraftAiStatelessStackStaging",
+        "path": "CodeCraftAiStatelessStackStaging",
+        "children": {
+          "Vpc": {
+            "id": "Vpc",
+            "path": "CodeCraftAiStatelessStackStaging/Vpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "CodeCraftAiStatelessStackStaging/Vpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+                  "version": "2.147.3"
+                }
+              },
+              "PublicSubnet1": {
+                "id": "PublicSubnet1",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.0.0/18",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VpcPublicSubnet1RouteTable6C95E38E"
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPublicSubnet1Subnet5C2D37C4"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "VpcIGWD7BA715C"
+                        },
+                        "routeTableId": {
+                          "Ref": "VpcPublicSubnet1RouteTable6C95E38E"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnEIP",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "VpcPublicSubnet1EIPD7E02669",
+                            "AllocationId"
+                          ]
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPublicSubnet1Subnet5C2D37C4"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnNatGateway",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.147.3"
+                }
+              },
+              "PublicSubnet2": {
+                "id": "PublicSubnet2",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.64.0/18",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VpcPublicSubnet2RouteTable94F7E489"
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPublicSubnet2Subnet691E08A3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "VpcIGWD7BA715C"
+                        },
+                        "routeTableId": {
+                          "Ref": "VpcPublicSubnet2RouteTable94F7E489"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnEIP",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "VpcPublicSubnet2EIP3C605A87",
+                            "AllocationId"
+                          ]
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPublicSubnet2Subnet691E08A3"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnNatGateway",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.147.3"
+                }
+              },
+              "PrivateSubnet1": {
+                "id": "PrivateSubnet1",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.128.0/18",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500"
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPrivateSubnet1Subnet536B997A"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "VpcPublicSubnet1NATGateway4D7517AA"
+                        },
+                        "routeTableId": {
+                          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.147.3"
+                }
+              },
+              "PrivateSubnet2": {
+                "id": "PrivateSubnet2",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.192.0/18",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VpcPrivateSubnet2RouteTableA678073B"
+                        },
+                        "subnetId": {
+                          "Ref": "VpcPrivateSubnet2Subnet3788AAA1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "VpcPublicSubnet2NATGateway9182C01D"
+                        },
+                        "routeTableId": {
+                          "Ref": "VpcPrivateSubnet2RouteTableA678073B"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.147.3"
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "CodeCraftAiStatelessStackStaging/Vpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                  "version": "2.147.3"
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "CodeCraftAiStatelessStackStaging/Vpc/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "internetGatewayId": {
+                      "Ref": "VpcIGWD7BA715C"
+                    },
+                    "vpcId": {
+                      "Ref": "Vpc8378EB38"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Vpc",
+              "version": "2.147.3"
+            }
+          },
+          "EcsCluster": {
+            "id": "EcsCluster",
+            "path": "CodeCraftAiStatelessStackStaging/EcsCluster",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/EcsCluster/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Cluster",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnCluster",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.Cluster",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionServiceRole": {
+            "id": "IngestionServiceRole",
+            "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRole",
+            "children": {
+              "ImportIngestionServiceRole": {
+                "id": "ImportIngestionServiceRole",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRole/ImportIngestionServiceRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.147.3"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "IAM role for the CodeCraft AI Ingestion Service"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.147.3"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "s3:GetObject*",
+                                "s3:GetBucket*",
+                                "s3:List*"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttDataBucketE3889A50Arn98F8399F"
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttDataBucketE3889A50Arn98F8399F"
+                                      },
+                                      "/raw/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Action": [
+                                "s3:GetObject*",
+                                "s3:GetBucket*",
+                                "s3:List*",
+                                "s3:DeleteObject*",
+                                "s3:PutObject",
+                                "s3:PutObjectLegalHold",
+                                "s3:PutObjectRetention",
+                                "s3:PutObjectTagging",
+                                "s3:PutObjectVersionTagging",
+                                "s3:Abort*"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646"
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646"
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Action": "bedrock:InvokeModel",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:aws:bedrock:",
+                                    {
+                                      "Ref": "AWS::Region"
+                                    },
+                                    "::foundation-model/*"
+                                  ]
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "IngestionServiceRoleDefaultPolicyFA5DA5D4",
+                        "roles": [
+                          {
+                            "Ref": "IngestionServiceRole01363068"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.147.3"
+            }
+          },
+          "ApiServiceRole": {
+            "id": "ApiServiceRole",
+            "path": "CodeCraftAiStatelessStackStaging/ApiServiceRole",
+            "children": {
+              "ImportApiServiceRole": {
+                "id": "ImportApiServiceRole",
+                "path": "CodeCraftAiStatelessStackStaging/ApiServiceRole/ImportApiServiceRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.147.3"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/ApiServiceRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "IAM role for the CodeCraft AI API Service"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.147.3"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "CodeCraftAiStatelessStackStaging/ApiServiceRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiServiceRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "s3:GetObject*",
+                                "s3:GetBucket*",
+                                "s3:List*"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646"
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646"
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Action": "bedrock:InvokeModel",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:aws:bedrock:",
+                                    {
+                                      "Ref": "AWS::Region"
+                                    },
+                                    "::foundation-model/*"
+                                  ]
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "ApiServiceRoleDefaultPolicyDE208E4E",
+                        "roles": [
+                          {
+                            "Ref": "ApiServiceRole7D72F03E"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.147.3"
+            }
+          },
+          "ApiKeySecret": {
+            "id": "ApiKeySecret",
+            "path": "CodeCraftAiStatelessStackStaging/ApiKeySecret",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/ApiKeySecret/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SecretsManager::Secret",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "API Key for CodeCraft AI API (staging)",
+                    "generateSecretString": {
+                      "excludePunctuation": true,
+                      "passwordLength": 32
+                    },
+                    "name": "codecraft-ai/api-key/staging"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_secretsmanager.CfnSecret",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_secretsmanager.Secret",
+              "version": "2.147.3"
+            }
+          },
+          "ApiService": {
+            "id": "ApiService",
+            "path": "CodeCraftAiStatelessStackStaging/ApiService",
+            "children": {
+              "LB": {
+                "id": "LB",
+                "path": "CodeCraftAiStatelessStackStaging/ApiService/LB",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                      "aws:cdk:cloudformation:props": {
+                        "loadBalancerAttributes": [
+                          {
+                            "key": "deletion_protection.enabled",
+                            "value": "false"
+                          }
+                        ],
+                        "scheme": "internet-facing",
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "ApiServiceLBSecurityGroup5C16BEF8",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnets": [
+                          {
+                            "Ref": "VpcPublicSubnet1Subnet5C2D37C4"
+                          },
+                          {
+                            "Ref": "VpcPublicSubnet2Subnet691E08A3"
+                          }
+                        ],
+                        "type": "application"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnLoadBalancer",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Automatically created Security Group for ELB CodeCraftAiStatelessStackStagingApiServiceLB7C74F24A",
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "ipProtocol": "tcp",
+                                "fromPort": 80,
+                                "toPort": 80,
+                                "description": "Allow from anyone on port 80"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                          "version": "2.147.3"
+                        }
+                      },
+                      "to CodeCraftAiStatelessStackStagingApiServiceSecurityGroup4D77D7FC:8000": {
+                        "id": "to CodeCraftAiStatelessStackStagingApiServiceSecurityGroup4D77D7FC:8000",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/SecurityGroup/to CodeCraftAiStatelessStackStagingApiServiceSecurityGroup4D77D7FC:8000",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupEgress",
+                          "aws:cdk:cloudformation:props": {
+                            "description": "Load balancer to target",
+                            "destinationSecurityGroupId": {
+                              "Fn::GetAtt": [
+                                "ApiServiceSecurityGroup2592096B",
+                                "GroupId"
+                              ]
+                            },
+                            "fromPort": 8000,
+                            "groupId": {
+                              "Fn::GetAtt": [
+                                "ApiServiceLBSecurityGroup5C16BEF8",
+                                "GroupId"
+                              ]
+                            },
+                            "ipProtocol": "tcp",
+                            "toPort": 8000
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupEgress",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "PublicListener": {
+                    "id": "PublicListener",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                          "aws:cdk:cloudformation:props": {
+                            "defaultActions": [
+                              {
+                                "type": "forward",
+                                "targetGroupArn": {
+                                  "Ref": "ApiServiceLBPublicListenerECSGroup14A87FE9"
+                                }
+                              }
+                            ],
+                            "loadBalancerArn": {
+                              "Ref": "ApiServiceLB08B891CD"
+                            },
+                            "port": 80,
+                            "protocol": "HTTP"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListener",
+                          "version": "2.147.3"
+                        }
+                      },
+                      "ECSGroup": {
+                        "id": "ECSGroup",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener/ECSGroup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener/ECSGroup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                              "aws:cdk:cloudformation:props": {
+                                "healthCheckIntervalSeconds": 30,
+                                "healthCheckPath": "/health",
+                                "healthCheckTimeoutSeconds": 5,
+                                "healthyThresholdCount": 2,
+                                "matcher": {
+                                  "httpCode": "200"
+                                },
+                                "port": 80,
+                                "protocol": "HTTP",
+                                "targetGroupAttributes": [
+                                  {
+                                    "key": "stickiness.enabled",
+                                    "value": "false"
+                                  }
+                                ],
+                                "targetType": "ip",
+                                "unhealthyThresholdCount": 2,
+                                "vpcId": {
+                                  "Ref": "Vpc8378EB38"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                              "version": "2.147.3"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListener",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationLoadBalancer",
+                  "version": "2.147.3"
+                }
+              },
+              "LoadBalancerDNS": {
+                "id": "LoadBalancerDNS",
+                "path": "CodeCraftAiStatelessStackStaging/ApiService/LoadBalancerDNS",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "ServiceURL": {
+                "id": "ServiceURL",
+                "path": "CodeCraftAiStatelessStackStaging/ApiService/ServiceURL",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.147.3"
+                }
+              },
+              "TaskDef": {
+                "id": "TaskDef",
+                "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                      "aws:cdk:cloudformation:props": {
+                        "containerDefinitions": [
+                          {
+                            "essential": true,
+                            "image": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  {
+                                    "Fn::Select": [
+                                      4,
+                                      {
+                                        "Fn::Split": [
+                                          ":",
+                                          {
+                                            "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttApiEcrRepoCD93CD24Arn106B67AD"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  ".dkr.ecr.",
+                                  {
+                                    "Fn::Select": [
+                                      3,
+                                      {
+                                        "Fn::Split": [
+                                          ":",
+                                          {
+                                            "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttApiEcrRepoCD93CD24Arn106B67AD"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  ".",
+                                  {
+                                    "Ref": "AWS::URLSuffix"
+                                  },
+                                  "/",
+                                  {
+                                    "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputRefApiEcrRepoCD93CD24F1942A00"
+                                  },
+                                  ":latest"
+                                ]
+                              ]
+                            },
+                            "name": "web",
+                            "portMappings": [
+                              {
+                                "containerPort": 8000,
+                                "protocol": "tcp"
+                              }
+                            ],
+                            "logConfiguration": {
+                              "logDriver": "awslogs",
+                              "options": {
+                                "awslogs-group": {
+                                  "Ref": "ApiServiceTaskDefwebLogGroup57352A09"
+                                },
+                                "awslogs-stream-prefix": "api-service-staging",
+                                "awslogs-region": {
+                                  "Ref": "AWS::Region"
+                                }
+                              }
+                            },
+                            "environment": [
+                              {
+                                "name": "APP_MODE",
+                                "value": "staging"
+                              },
+                              {
+                                "name": "AWS_REGION",
+                                "value": {
+                                  "Ref": "AWS::Region"
+                                }
+                              },
+                              {
+                                "name": "VECTOR_STORE_BUCKET",
+                                "value": {
+                                  "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputRefVectorStoreBucketABEF753FF2C423C3"
+                                }
+                              }
+                            ],
+                            "secrets": [
+                              {
+                                "name": "API_KEY",
+                                "valueFrom": {
+                                  "Ref": "ApiKeySecretF1B08E61"
+                                }
+                              }
+                            ]
+                          }
+                        ],
+                        "cpu": "256",
+                        "executionRoleArn": {
+                          "Fn::GetAtt": [
+                            "ApiServiceTaskDefExecutionRole43B90DD6",
+                            "Arn"
+                          ]
+                        },
+                        "family": "CodeCraftAiStatelessStackStagingApiServiceTaskDef65C8ADB0",
+                        "memory": "512",
+                        "networkMode": "awsvpc",
+                        "requiresCompatibilities": [
+                          "FARGATE"
+                        ],
+                        "taskRoleArn": {
+                          "Fn::GetAtt": [
+                            "ApiServiceRole7D72F03E",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "web": {
+                    "id": "web",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/web",
+                    "children": {
+                      "LogGroup": {
+                        "id": "LogGroup",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/web/LogGroup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/web/LogGroup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                              "aws:cdk:cloudformation:props": {}
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                              "version": "2.147.3"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "ExecutionRole": {
+                    "id": "ExecutionRole",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole",
+                    "children": {
+                      "ImportExecutionRole": {
+                        "id": "ImportExecutionRole",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/ImportExecutionRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.147.3"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "ecs-tasks.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.147.3"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "ecr:BatchCheckLayerAvailability",
+                                        "ecr:GetDownloadUrlForLayer",
+                                        "ecr:BatchGetImage"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttApiEcrRepoCD93CD24Arn106B67AD"
+                                      }
+                                    },
+                                    {
+                                      "Action": "ecr:GetAuthorizationToken",
+                                      "Effect": "Allow",
+                                      "Resource": "*"
+                                    },
+                                    {
+                                      "Action": [
+                                        "logs:CreateLogStream",
+                                        "logs:PutLogEvents"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::GetAtt": [
+                                          "ApiServiceTaskDefwebLogGroup57352A09",
+                                          "Arn"
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "Action": [
+                                        "secretsmanager:GetSecretValue",
+                                        "secretsmanager:DescribeSecret"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Ref": "ApiKeySecretF1B08E61"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050",
+                                "roles": [
+                                  {
+                                    "Ref": "ApiServiceTaskDefExecutionRole43B90DD6"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.147.3"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+                  "version": "2.147.3"
+                }
+              },
+              "Service": {
+                "id": "Service",
+                "path": "CodeCraftAiStatelessStackStaging/ApiService/Service",
+                "children": {
+                  "Service": {
+                    "id": "Service",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/Service/Service",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                      "aws:cdk:cloudformation:props": {
+                        "cluster": {
+                          "Ref": "EcsCluster97242B84"
+                        },
+                        "deploymentConfiguration": {
+                          "maximumPercent": 200,
+                          "minimumHealthyPercent": 50,
+                          "alarms": {
+                            "alarmNames": [],
+                            "enable": false,
+                            "rollback": false
+                          }
+                        },
+                        "desiredCount": 1,
+                        "enableEcsManagedTags": false,
+                        "healthCheckGracePeriodSeconds": 60,
+                        "launchType": "FARGATE",
+                        "loadBalancers": [
+                          {
+                            "targetGroupArn": {
+                              "Ref": "ApiServiceLBPublicListenerECSGroup14A87FE9"
+                            },
+                            "containerName": "web",
+                            "containerPort": 8000
+                          }
+                        ],
+                        "networkConfiguration": {
+                          "awsvpcConfiguration": {
+                            "assignPublicIp": "DISABLED",
+                            "subnets": [
+                              {
+                                "Ref": "VpcPrivateSubnet1Subnet536B997A"
+                              },
+                              {
+                                "Ref": "VpcPrivateSubnet2Subnet3788AAA1"
+                              }
+                            ],
+                            "securityGroups": [
+                              {
+                                "Fn::GetAtt": [
+                                  "ApiServiceSecurityGroup2592096B",
+                                  "GroupId"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "taskDefinition": {
+                          "Ref": "ApiServiceTaskDefDF3191FB"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                          "version": "2.147.3"
+                        }
+                      },
+                      "from CodeCraftAiStatelessStackStagingApiServiceLBSecurityGroup14ED53FD:8000": {
+                        "id": "from CodeCraftAiStatelessStackStagingApiServiceLBSecurityGroup14ED53FD:8000",
+                        "path": "CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup/from CodeCraftAiStatelessStackStagingApiServiceLBSecurityGroup14ED53FD:8000",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                          "aws:cdk:cloudformation:props": {
+                            "description": "Load balancer to target",
+                            "fromPort": 8000,
+                            "groupId": {
+                              "Fn::GetAtt": [
+                                "ApiServiceSecurityGroup2592096B",
+                                "GroupId"
+                              ]
+                            },
+                            "ipProtocol": "tcp",
+                            "sourceSecurityGroupId": {
+                              "Fn::GetAtt": [
+                                "ApiServiceLBSecurityGroup5C16BEF8",
+                                "GroupId"
+                              ]
+                            },
+                            "toPort": 8000
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedFargateService",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionTaskDef": {
+            "id": "IngestionTaskDef",
+            "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "essential": true,
+                        "image": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              {
+                                "Fn::Select": [
+                                  4,
+                                  {
+                                    "Fn::Split": [
+                                      ":",
+                                      {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttIngestionEcrRepoFF775F78ArnC9E2CCC5"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              ".dkr.ecr.",
+                              {
+                                "Fn::Select": [
+                                  3,
+                                  {
+                                    "Fn::Split": [
+                                      ":",
+                                      {
+                                        "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttIngestionEcrRepoFF775F78ArnC9E2CCC5"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              ".",
+                              {
+                                "Ref": "AWS::URLSuffix"
+                              },
+                              "/",
+                              {
+                                "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputRefIngestionEcrRepoFF775F786EEF0D13"
+                              },
+                              ":latest"
+                            ]
+                          ]
+                        },
+                        "name": "IngestionContainer",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "IngestionTaskDefIngestionContainerLogGroup33427E20"
+                            },
+                            "awslogs-stream-prefix": "ingestion-task",
+                            "awslogs-region": {
+                              "Ref": "AWS::Region"
+                            }
+                          }
+                        },
+                        "environment": [
+                          {
+                            "name": "APP_MODE",
+                            "value": "staging"
+                          },
+                          {
+                            "name": "AWS_REGION",
+                            "value": {
+                              "Ref": "AWS::Region"
+                            }
+                          },
+                          {
+                            "name": "VECTOR_STORE_BUCKET",
+                            "value": {
+                              "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputRefVectorStoreBucketABEF753FF2C423C3"
+                            }
+                          },
+                          {
+                            "name": "DATA_BUCKET",
+                            "value": {
+                              "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputRefDataBucketE3889A50250F5285"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "1024",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "IngestionTaskDefExecutionRole07CD4E76",
+                        "Arn"
+                      ]
+                    },
+                    "family": "CodeCraftAiStatelessStackStagingIngestionTaskDef6F7F4E50",
+                    "memory": "2048",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "IngestionServiceRole01363068",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.147.3"
+                }
+              },
+              "IngestionContainer": {
+                "id": "IngestionContainer",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/IngestionContainer",
+                "children": {
+                  "LogGroup": {
+                    "id": "LogGroup",
+                    "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/IngestionContainer/LogGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/IngestionContainer/LogGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                          "aws:cdk:cloudformation:props": {}
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.147.3"
+                }
+              },
+              "ExecutionRole": {
+                "id": "ExecutionRole",
+                "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole",
+                "children": {
+                  "ImportExecutionRole": {
+                    "id": "ImportExecutionRole",
+                    "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/ImportExecutionRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.147.3"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "ecr:BatchCheckLayerAvailability",
+                                    "ecr:GetDownloadUrlForLayer",
+                                    "ecr:BatchGetImage"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::ImportValue": "CodeCraftAiStatefulStackStaging:ExportsOutputFnGetAttIngestionEcrRepoFF775F78ArnC9E2CCC5"
+                                  }
+                                },
+                                {
+                                  "Action": "ecr:GetAuthorizationToken",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                },
+                                {
+                                  "Action": [
+                                    "logs:CreateLogStream",
+                                    "logs:PutLogEvents"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "IngestionTaskDefIngestionContainerLogGroup33427E20",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "IngestionTaskDefExecutionRoleDefaultPolicy180453CA",
+                            "roles": [
+                              {
+                                "Ref": "IngestionTaskDefExecutionRole07CD4E76"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.147.3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.147.3"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.147.3"
+            }
+          },
+          "EcsClusterName": {
+            "id": "EcsClusterName",
+            "path": "CodeCraftAiStatelessStackStaging/EcsClusterName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionTaskDefArn": {
+            "id": "IngestionTaskDefArn",
+            "path": "CodeCraftAiStatelessStackStaging/IngestionTaskDefArn",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "IngestionServiceRoleArn": {
+            "id": "IngestionServiceRoleArn",
+            "path": "CodeCraftAiStatelessStackStaging/IngestionServiceRoleArn",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "ApiServiceRoleArn": {
+            "id": "ApiServiceRoleArn",
+            "path": "CodeCraftAiStatelessStackStaging/ApiServiceRoleArn",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "ApiUrl": {
+            "id": "ApiUrl",
+            "path": "CodeCraftAiStatelessStackStaging/ApiUrl",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "ApiKeySecretName": {
+            "id": "ApiKeySecretName",
+            "path": "CodeCraftAiStatelessStackStaging/ApiKeySecretName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "ApiServiceName": {
+            "id": "ApiServiceName",
+            "path": "CodeCraftAiStatelessStackStaging/ApiServiceName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "PrivateSubnetIds": {
+            "id": "PrivateSubnetIds",
+            "path": "CodeCraftAiStatelessStackStaging/PrivateSubnetIds",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.147.3"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "CodeCraftAiStatelessStackStaging/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "CodeCraftAiStatelessStackStaging/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.147.3"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "CodeCraftAiStatelessStackStaging/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.147.3"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "CodeCraftAiStatelessStackStaging/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.147.3"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "CodeCraftAiStatelessStackStaging/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.147.3"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.147.3"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.4.2"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.147.3"
+    }
+  }
+}

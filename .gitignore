@@ -33,7 +33,10 @@ MANIFEST
 coverage.xml
 
 # --- IDE / Editor ---
-.vscode/
+# Ignore all vscode files...
+.vscode/*
+# ...but DO commit the project-specific settings for a seamless setup.
+!.vscode/settings.json
 .idea/
 *.swp
 

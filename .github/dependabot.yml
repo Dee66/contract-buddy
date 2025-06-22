@@ -1,0 +1,27 @@
+# .github/dependabot.yml
+version: 2
+
+updates:
+  - package-ecosystem: "pip"
+    directory: "/requirements"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    labels:
+      - "dependencies"
+      - "security"
+    ignore:
+      - dependency-name: "setuptools"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+    labels:
+      - "dependencies"
+      - "security"

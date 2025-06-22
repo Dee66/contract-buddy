@@ -1,0 +1,16 @@
+{
+  "CodeCraftAiStatefulStackStaging": {
+    "ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646": "arn:aws:s3:::codecraftaistatefulstacks-vectorstorebucketabef753-q62hl8rq2dst",
+    "ExportsOutputRefDataBucketE3889A50250F5285": "codecraftaistatefulstackstaging-databuckete3889a50-etx6wfocxjzr",
+    "DataBucketName": "codecraftaistatefulstackstaging-databuckete3889a50-etx6wfocxjzr",
+    "ExportsOutputRefApiEcrRepoCD93CD24F1942A00": "codecraft-ai-api",
+    "ExportsOutputFnGetAttIngestionEcrRepoFF775F78ArnC9E2CCC5": "arn:aws:ecr:af-south-1:879584803102:repository/codecraft-ai-ingestion",
+    "VectorStoreBucketName": "codecraftaistatefulstacks-vectorstorebucketabef753-q62hl8rq2dst",
+    "ExportsOutputFnGetAttDataBucketE3889A50Arn98F8399F": "arn:aws:s3:::codecraftaistatefulstackstaging-databuckete3889a50-etx6wfocxjzr",
+    "ExportsOutputFnGetAttApiEcrRepoCD93CD24Arn106B67AD": "arn:aws:ecr:af-south-1:879584803102:repository/codecraft-ai-api",
+    "ExportsOutputRefIngestionEcrRepoFF775F786EEF0D13": "codecraft-ai-ingestion",
+    "IngestionEcrRepoUri": "879584803102.dkr.ecr.af-south-1.amazonaws.com/codecraft-ai-ingestion",
+    "ApiEcrRepoUri": "879584803102.dkr.ecr.af-south-1.amazonaws.com/codecraft-ai-api",
+    "ExportsOutputRefVectorStoreBucketABEF753FF2C423C3": "codecraftaistatefulstacks-vectorstorebucketabef753-q62hl8rq2dst"
+  }
+}

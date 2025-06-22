@@ -1,7 +1,8 @@
 import sys
 import logging
 from pathlib import Path
-from src.adapters.environment import ConfigLoader, setup_logging
+from fastapi import FastAPI, Depends
+from src.adapters.config_manager import ConfigManager
 from src.application.services import IngestionService
 from src.adapters.factories.factories import (
     create_chunking_strategy,
@@ -9,6 +10,27 @@ from src.adapters.factories.factories import (
     create_vector_repository,
     create_embedding_service,
 )
+
+app = FastAPI()
+
+# Instantiate ConfigManager at startup
+config_manager = ConfigManager()
+
+
+@app.on_event("startup")
+def load_config():
+    # Load and validate config at startup; fail fast if invalid
+    config_manager.load()
+
+
+def get_app_config():
+    return config_manager.config
+
+
+@app.get("/config")
+def show_config(cfg=Depends(get_app_config)):
+    # Expose config for debugging (remove or secure in production)
+    return cfg.dict()
 
 
 def main() -> int:
@@ -18,24 +40,24 @@ def main() -> int:
     Returns 0 on success, 1 on failure.
     """
     try:
-        setup_logging()
-        logging.info("RAG ingestion pipeline starting...")
+        # Use config from ConfigManager (SSM Parameter Store)
+        config = config_manager.config
 
-        config_loader = ConfigLoader()
-        config = config_loader.get_config()
-
-        # --- Defensive Programming: Ensure directories exist ---
-        # Only create local data directories if a file_system source is used.
-        if config.data_source.type == "file_system":
+        # Defensive Programming: Ensure directories exist if needed
+        # (Assuming config has data_source and vector_repository keys as before)
+        # You may need to adapt this if your config structure changes.
+        # Example assumes config is a Pydantic model with .dict() support.
+        if (
+            hasattr(config, "data_source")
+            and getattr(config.data_source, "type", None) == "file_system"
+        ):
             Path(config.data_source.path).mkdir(parents=True, exist_ok=True)
+        if hasattr(config, "vector_repository"):
+            Path(config.vector_repository.persist_path).parent.mkdir(
+                parents=True, exist_ok=True
+            )
 
-        # The vector store path is always local to the container, so it always needs to exist.
-        Path(config.vector_repository.persist_path).parent.mkdir(
-            parents=True, exist_ok=True
-        )
-        # ---
-
-        # The Composition Root passes the specific sub-configuration to each factory.
+        # Compose pipeline using config
         data_source = create_data_source(config.data_source)
         chunking_strategy = create_chunking_strategy(config.chunking_strategy)
         embedding_service = create_embedding_service(config.embedding_service)

@@ -25,3 +25,6 @@ pre-commit
 ruff
 pytest
 requests
+
+# Additional testing and security tools
+pip-audit

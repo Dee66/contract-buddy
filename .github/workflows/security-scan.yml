@@ -1,0 +1,77 @@
+# .github/workflows/security-scan.yml
+name: Security Scan
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 3 * * *' # daily at 03:00 UTC
+
+jobs:
+  pip-audit:
+    name: PythonDependencyVulnerabilityScan
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Run pip-audit on requirements
+        run: make security-audit
+
+  trivy-scan:
+    name: TrivyContainerVulnerabilityScan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build API image
+        run: docker build -f Dockerfile.api -t codecraft-ai-api:test .
+
+      - name: Build Ingestion image
+        run: docker build -f Dockerfile.ingestion -t codecraft-ai-ingestion:test .
+
+      - name: Run Trivy scan on API image
+        uses: aquasecurity/trivy-action@0.19.0
+        with:
+          image-ref: codecraft-ai-api:test
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+
+      - name: Run Trivy scan on Ingestion image
+        uses: aquasecurity/trivy-action@0.19.0
+        with:
+          image-ref: codecraft-ai-ingestion:test
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+
+  gitleaks:
+    name: GitleaksSecretsDetection
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          fail: true

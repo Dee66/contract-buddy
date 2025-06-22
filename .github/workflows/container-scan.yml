@@ -1,0 +1,58 @@
+# .github/workflows/container-scan.yml
+name: Container Image Security Scan
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 4 * * *' # daily at 04:00 UTC
+
+jobs:
+  trivy-scan:
+    name: TrivyContainerVulnerabilityScan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build API image
+        run: |
+          docker build --cache-from=type=local,src=/tmp/.buildx-cache \
+                       --cache-to=type=local,dest=/tmp/.buildx-cache \
+                       -f Dockerfile.api -t codecraft-ai-api:test .
+
+      - name: Build Ingestion image
+        run: |
+          docker build --cache-from=type=local,src=/tmp/.buildx-cache \
+                       --cache-to=type=local,dest=/tmp/.buildx-cache \
+                       -f Dockerfile.ingestion -t codecraft-ai-ingestion:test .
+
+      - name: Run Trivy scan on API image
+        uses: aquasecurity/trivy-action@0.19.0
+        with:
+          image-ref: codecraft-ai-api:test
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+
+      - name: Run Trivy scan on Ingestion image
+        uses: aquasecurity/trivy-action@0.19.0
+        with:
+          image-ref: codecraft-ai-ingestion:test
+          format: table
+          exit-code: 1
+          ignore-unfixed: true

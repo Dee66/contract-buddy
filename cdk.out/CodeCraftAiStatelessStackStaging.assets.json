@@ -1,0 +1,19 @@
+{
+  "version": "36.0.0",
+  "files": {
+    "548a4950d57383774ea8196fb73a8950d7ca448c717bb516a6ee89f98656d972": {
+      "source": {
+        "path": "CodeCraftAiStatelessStackStaging.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "548a4950d57383774ea8196fb73a8950d7ca448c717bb516a6ee89f98656d972.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

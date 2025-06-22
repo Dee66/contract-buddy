@@ -1,0 +1,558 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "CodeCraftAiStatefulStackStaging.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CodeCraftAiStatefulStackStaging.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CodeCraftAiStatefulStackStaging": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CodeCraftAiStatefulStackStaging.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/966b27d801533f4e1e2a4bbd892692d9b56f015caf49b66b33e34efd7d59b281.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CodeCraftAiStatefulStackStaging.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CodeCraftAiStatefulStackStaging.assets"
+      ],
+      "metadata": {
+        "/CodeCraftAiStatefulStackStaging/DataBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DataBucketE3889A50"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/VectorStoreBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VectorStoreBucketABEF753F"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/ApiEcrRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEcrRepoCD93CD24"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/IngestionEcrRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionEcrRepoFF775F78"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/DataBucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DataBucketName"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/VectorStoreBucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VectorStoreBucketName"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/ApiEcrRepoUri": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEcrRepoUri"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/IngestionEcrRepoUri": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionEcrRepoUri"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"DataBucketE3889A50\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttDataBucketE3889A50Arn98F8399F"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"VectorStoreBucketABEF753F\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttVectorStoreBucketABEF753FArn166CF646"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"ApiEcrRepoCD93CD24\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttApiEcrRepoCD93CD24Arn106B67AD"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"ApiEcrRepoCD93CD24\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefApiEcrRepoCD93CD24F1942A00"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"VectorStoreBucketABEF753F\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefVectorStoreBucketABEF753FF2C423C3"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Fn::GetAtt\":[\"IngestionEcrRepoFF775F78\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttIngestionEcrRepoFF775F78ArnC9E2CCC5"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"IngestionEcrRepoFF775F78\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefIngestionEcrRepoFF775F786EEF0D13"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/Exports/Output{\"Ref\":\"DataBucketE3889A50\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefDataBucketE3889A50250F5285"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CodeCraftAiStatefulStackStaging/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CodeCraftAiStatefulStackStaging"
+    },
+    "CodeCraftAiStatelessStackStaging.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CodeCraftAiStatelessStackStaging.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CodeCraftAiStatelessStackStaging": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "CodeCraftAiStatelessStackStaging.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/548a4950d57383774ea8196fb73a8950d7ca448c717bb516a6ee89f98656d972.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CodeCraftAiStatelessStackStaging.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CodeCraftAiStatefulStackStaging",
+        "CodeCraftAiStatelessStackStaging.assets"
+      ],
+      "metadata": {
+        "/CodeCraftAiStatelessStackStaging/Vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Vpc8378EB38"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1Subnet5C2D37C4"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTable6C95E38E"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1RouteTableAssociation97140677"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1DefaultRoute3DA9E72A"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1EIPD7E02669"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet1NATGateway4D7517AA"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2Subnet691E08A3"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTable94F7E489"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2RouteTableAssociationDD5762D8"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2DefaultRoute97F91067"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2EIP3C605A87"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPublicSubnet2NATGateway9182C01D"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1Subnet536B997A"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1RouteTableB2C5B500"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1RouteTableAssociation70C59FA6"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet1DefaultRouteBE02A9ED"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2Subnet3788AAA1"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2RouteTableA678073B"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2RouteTableAssociationA89CAD56"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcPrivateSubnet2DefaultRoute060D2087"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcIGWD7BA715C"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/Vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VpcVPCGWBF912B6E"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/EcsCluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsCluster97242B84"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionServiceRole01363068"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionServiceRoleDefaultPolicyFA5DA5D4"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceRole7D72F03E"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceRoleDefaultPolicyDE208E4E"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiKeySecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiKeySecretF1B08E61"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLB08B891CD"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLBSecurityGroup5C16BEF8"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LB/SecurityGroup/to CodeCraftAiStatelessStackStagingApiServiceSecurityGroup4D77D7FC:8000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLBSecurityGrouptoCodeCraftAiStatelessStackStagingApiServiceSecurityGroup4D77D7FC80006A1CB897"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLBPublicListener1394DF3E"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLBPublicListenerECSGroup14A87FE9"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceLoadBalancerDNSBF9EB7FC"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceServiceURL2EB28DB2"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceTaskDefDF3191FB"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceTaskDefwebLogGroup57352A09"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceTaskDefExecutionRole43B90DD6"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiService199661B5"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceSecurityGroup2592096B"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiService/Service/SecurityGroup/from CodeCraftAiStatelessStackStagingApiServiceLBSecurityGroup14ED53FD:8000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceSecurityGroupfromCodeCraftAiStatelessStackStagingApiServiceLBSecurityGroup14ED53FD80002C661383"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionTaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionTaskDef0CBA300A"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionTaskDef/IngestionContainer/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionTaskDefIngestionContainerLogGroup33427E20"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionTaskDefExecutionRole07CD4E76"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionTaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionTaskDefExecutionRoleDefaultPolicy180453CA"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/EcsClusterName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsClusterName"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionTaskDefArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionTaskDefArn"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/IngestionServiceRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IngestionServiceRoleArn"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiServiceRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceRoleArn"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiUrl"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiKeySecretName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiKeySecretName"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/ApiServiceName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiServiceName"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/PrivateSubnetIds": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PrivateSubnetIds"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CodeCraftAiStatelessStackStaging/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CodeCraftAiStatelessStackStaging"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

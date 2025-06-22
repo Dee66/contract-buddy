@@ -1,15 +1,12 @@
 import logging
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 from typing import List
 
-# No more sys.path manipulation. This is handled by pytest.ini for tests
-# and the execution environment (e.g., Docker's PYTHONPATH) for runtime.
-from src.adapters.environment import ConfigLoader, setup_logging
+from src.adapters.config_manager import ConfigManager
 from src.application.services import QueryService
 from src.domain.entities.chunk import Chunk
-from src.domain.entities.query import Query, QueryResult
 from src.adapters.factories.factories import (
     create_embedding_service,
     create_vector_repository,
@@ -36,6 +33,18 @@ class QueryResponse(BaseModel):
     results: List[ChunkResponse]
 
 
+# --- Configuration Management ---
+config_manager = ConfigManager()
+
+
+def get_app_config():
+    return config_manager.config
+
+
+def get_api_key(request: Request):
+    return request.headers.get("X-API-Key")
+
+
 # --- Lifespan Management for Application State ---
 # This is the modern replacement for @app.on_event("startup")
 @asynccontextmanager
@@ -43,13 +52,9 @@ async def lifespan(app: FastAPI):
     """
     Manages application startup and shutdown logic.
     """
-    setup_logging()
-    logging.info("API starting up...")
+    config_manager.load()
+    config = config_manager.config
 
-    config_loader = ConfigLoader()
-    config = config_loader.get_config()
-
-    # The Composition Root passes the specific sub-configuration to each factory.
     embedding_service = create_embedding_service(config.embedding_service)
     vector_repository = create_vector_repository(
         config.vector_repository, embedding_service
@@ -58,7 +63,9 @@ async def lifespan(app: FastAPI):
     app.state.query_service = QueryService(
         embedding_service=embedding_service, vector_repository=vector_repository
     )
-    logging.info("API dependencies initialized successfully.")
+    logging.info(
+        f"API dependencies initialized. Config version: {config_manager.last_version or 'unknown'}"
+    )
 
     # The application runs until it is shut down
     yield
@@ -82,8 +89,8 @@ def health_check():
     return {"status": "ok"}
 
 
-@app.post("/query", response_model=QueryResult, tags=["RAG"])
-def query_endpoint(query: Query, request: Request):
+@app.post("/query", response_model=QueryResponse, tags=["RAG"])
+def query_endpoint(query: QueryRequest, request: Request):
     """
     Receives a query and returns the most relevant document chunks.
     """
@@ -107,3 +114,43 @@ def query_endpoint(query: Query, request: Request):
     except Exception as e:
         logging.error(f"Error during query: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="Internal server error.")
+
+
+@app.get("/config")
+def show_config(cfg=Depends(get_app_config)):
+    """
+    Expose config for debugging (remove or secure in production)
+    """
+    return cfg.dict()
+
+
+@app.post("/reload-config", status_code=200, tags=["Admin"])
+def reload_config(request: Request, api_key: str = Depends(get_api_key)):
+    """
+    Reloads configuration from SSM Parameter Store at runtime.
+    Requires a valid X-API-Key header.
+    """
+    expected_api_key = config_manager.get_current_api_key()
+    if not api_key or api_key != expected_api_key:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API key."
+        )
+
+    try:
+        config_manager.load(force_reload=True)
+        config = config_manager.config
+        logging.info(
+            f"Config reloaded via /reload-config. New version: {config_manager.last_version or 'unknown'}"
+        )
+        # Optionally, re-initialize downstream services if config affects them
+        embedding_service = create_embedding_service(config.embedding_service)
+        vector_repository = create_vector_repository(
+            config.vector_repository, embedding_service
+        )
+        request.app.state.query_service = QueryService(
+            embedding_service=embedding_service, vector_repository=vector_repository
+        )
+        return {"status": "reloaded", "config_version": config_manager.last_version}
+    except Exception as e:
+        logging.error(f"Failed to reload config: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to reload config")

@@ -1,0 +1,20 @@
+{
+    "cSpell.words": [
+        "appuser",
+        "chunker",
+        "codecraft",
+        "corecraft",
+        "embedder",
+        "faiss",
+        "FARGATE",
+        "hyperparam",
+        "hyperparams",
+        "peft",
+        "toupper"
+    ],
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    },
+    "editor.formatOnSave": false
+}
