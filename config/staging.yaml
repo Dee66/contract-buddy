@@ -1,0 +1,25 @@
+# --- Staging Environment Configuration ---
+# This file overrides base.yaml for staging runs.
+# It should mirror production as closely as possible, but point to staging resources.
+
+data_source:
+  type: "s3"
+  # In a deployed environment (ECS), this value is provided by the
+  # DATA_BUCKET environment variable set by the CDK stack.
+  bucket: "placeholder-data-bucket-staging"
+  prefix: "raw/"
+
+embedding_service:
+  type: "bedrock"
+  aws_region: "af-south-1"
+  model_id: "amazon.titan-embed-text-v1"
+
+vector_repository:
+  type: "faiss"
+  # This is a temporary path inside the container for the index file
+  persist_path: "/tmp/vector_store/faiss_index.bin"
+  # In a deployed environment (ECS), this value is provided by the
+  # VECTOR_STORE_BUCKET environment variable set by the CDK stack.
+  s3_bucket: "placeholder-vector-store-bucket-staging"
+  # Use a distinct key for the staging index to prevent collisions with production.
+  s3_key: "staging/faiss_index.bin"

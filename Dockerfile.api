@@ -1,0 +1,60 @@
+# --- Stage 1: Production Dependency Builder ---
+# Builds a lean virtual environment with only production dependencies.
+FROM python:3.11-slim AS prod_builder
+
+WORKDIR /app
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY requirements/prod.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r prod.txt
+
+
+# --- Stage 2: Development & Test Dependency Builder ---
+# Builds on the production environment, adding development dependencies.
+FROM prod_builder AS dev_builder
+
+COPY requirements/dev.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r dev.txt
+
+
+# --- Stage 3: Tester ---
+# Uses the full development environment to run the test suite as a quality gate.
+# The build will fail here if any tests fail.
+FROM dev_builder AS tester
+
+WORKDIR /app
+
+COPY src ./src
+COPY tests ./tests
+COPY config ./config
+COPY data/dev ./data/dev
+COPY pytest.ini .
+
+RUN pytest
+
+
+# --- Stage 4: Final Production Image ---
+# Creates the final, lean, and secure image for the API server.
+FROM gcr.io/distroless/python3-debian11
+
+WORKDIR /app
+ENV PATH="/opt/venv/bin:$PATH"
+ENV PROJECT_ROOT="/app"
+
+# Copy the virtual environment from the builder stage.
+COPY --from=prod_builder /opt/venv /opt/venv
+
+# Copy application code, chown to the 'nonroot' user (uid 65532) used by distroless.
+COPY --chown=65532:65532 src ./src
+COPY --chown=65532:65532 config ./config
+
+# The distroless container runs as the 'nonroot' user by default.
+
+# Expose the port the API server will run on.
+EXPOSE 8000
+
+# The command to run the FastAPI application using the uvicorn server.
+CMD ["uvicorn", "src.adapters.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

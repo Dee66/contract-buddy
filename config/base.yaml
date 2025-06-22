@@ -1,0 +1,22 @@
+# --- Base Application Configuration ---
+# This file contains default settings for all environments.
+# Environment-specific files (e.g., dev.yaml, prod.yaml) will override these values.
+
+data_source:
+  type: "file_system"
+  # This path is INSIDE the container. It's created by the volume mount
+  # specified in the Makefile's run-ingestion-docker target.
+  path: "/app/data/dev"
+
+chunking_strategy:
+  type: "langchain"
+  chunk_size: 1000
+  chunk_overlap: 200
+
+embedding_service:
+  type: "sentence_transformer" # Use local model by default
+  model_name: "all-MiniLM-L6-v2"
+
+vector_repository:
+  type: "faiss"
+  persist_path: "/app/vector_store/faiss_index.bin"

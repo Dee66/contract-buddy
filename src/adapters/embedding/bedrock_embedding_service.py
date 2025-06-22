@@ -3,9 +3,8 @@ import json
 import logging
 import numpy as np
 from typing import List
-
-from src.domain.entities import Chunk
 from src.domain.ports import IEmbeddingService
+from src.domain.entities import Chunk
 
 
 class BedrockEmbeddingService(IEmbeddingService):
@@ -51,4 +50,5 @@ class BedrockEmbeddingService(IEmbeddingService):
             return np.array(response_body.get("embedding"), dtype=np.float32)
         except Exception as e:
             logging.error(f"Bedrock embedding failed for model {self.model_id}: {e}")
-            return None
+            # Re-raise the exception to halt the pipeline, preventing silent failure.
+            raise

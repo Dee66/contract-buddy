@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, TYPE_CHECKING
+from typing import List, Dict, Any, TYPE_CHECKING, Tuple
 import numpy as np
 
 # Use a TYPE_CHECKING block to import for type hints only.
@@ -15,7 +15,16 @@ class IChunkingStrategy(ABC):
     """
 
     @abstractmethod
-    def chunk(self, documents: List["Document"]) -> List["Chunk"]:
+    def chunk(self, document: "Document") -> List["Chunk"]:
+        """
+        Chunks a single document.
+
+        Args:
+            document: The Document entity to be chunked.
+
+        Returns:
+            A list of Chunk entities derived from the document.
+        """
         pass
 
 
@@ -26,7 +35,30 @@ class IDataSource(ABC):
     """
 
     @abstractmethod
-    def load(self) -> List["Document"]:
+    def get_all_source_document_identifiers(self) -> List[str]:
+        """
+        Retrieves a list of unique identifiers for all documents currently in the source.
+        This is used to reconcile deletions.
+        """
+        pass
+
+    @abstractmethod
+    def load_all(self) -> List["Document"]:
+        """Loads all documents from the source, regardless of history."""
+        pass
+
+    @abstractmethod
+    def load_new(self, last_known_ids: List[str]) -> List["Document"]:
+        """
+        Loads only documents that are new or have changed since the last run.
+
+        Args:
+            last_known_ids: A list of unique identifiers (e.g., file paths or S3 ETags)
+                            of documents that have already been processed.
+
+        Returns:
+            A list of new or updated documents.
+        """
         pass
 
 
@@ -37,19 +69,36 @@ class IVectorRepository(ABC):
     """
 
     @abstractmethod
+    def get_all_document_identifiers(self) -> List[str]:
+        """Retrieves the unique identifiers of all documents currently in the store."""
+        pass
+
+    @abstractmethod
+    def delete_by_document_id(self, doc_ids: List[str]) -> None:
+        """Removes all chunks associated with the given document IDs."""
+        pass
+
+    @abstractmethod
     def add(self, chunks: List["Chunk"]) -> None:
         """Adds a list of chunks to the vector store."""
         pass
 
     @abstractmethod
     def search(
-        self, query_embedding: np.ndarray, top_k: int, metadata_filter: Dict[str, Any]
-    ) -> List["Chunk"]:
-        """Searches for chunks similar to a query embedding."""
+        self,
+        query_embedding: np.ndarray,
+        top_k: int,
+        metadata_filter: Dict[str, Any] = None,
+    ) -> List[Tuple["Chunk", float]]:
+        """
+        Searches for chunks similar to a query embedding.
+        Returns a list of tuples, where each tuple contains the retrieved chunk
+        and its similarity score (distance).
+        """
         pass
 
     @abstractmethod
-    def persist(self) -> None:
+    def save(self) -> None:
         """
         Persists the current state of the index to storage.
         This is crucial for file-based vector stores like FAISS.

@@ -1,6 +1,7 @@
 import sys
 import logging
-from src.adapters.environment import setup_logging, get_config
+from pathlib import Path
+from src.adapters.environment import ConfigLoader, setup_logging
 from src.application.services import IngestionService
 from src.adapters.factories.factories import (
     create_chunking_strategy,
@@ -10,28 +11,38 @@ from src.adapters.factories.factories import (
 )
 
 
-def main():
+def main() -> int:
     """
-    Main entrypoint for the application container.
-
-    This function acts as the Composition Root. It initializes application-wide
-    configurations, instantiates and wires together all components (Dependency Injection),
-    and then invokes the primary business logic. It includes a top-level exception
-    handler to ensure any critical failures are logged before the container exits.
+    Main entrypoint for the RAG ingestion pipeline.
+    This function acts as the Composition Root for the ingestion process.
+    Returns 0 on success, 1 on failure.
     """
     try:
-        # 1. Setup: Initialize logging and load configuration
         setup_logging()
-        logging.info("Application container starting...")
-        config = get_config()
+        logging.info("RAG ingestion pipeline starting...")
 
-        # 2. Dependency Injection via Factories
-        data_source = create_data_source(config)
-        chunking_strategy = create_chunking_strategy(config)
-        embedding_service = create_embedding_service(config)
-        vector_repository = create_vector_repository(config)
+        config_loader = ConfigLoader()
+        config = config_loader.get_config()
 
-        # 3. Application Instantiation
+        # --- Defensive Programming: Ensure directories exist ---
+        # Only create local data directories if a file_system source is used.
+        if config.data_source.type == "file_system":
+            Path(config.data_source.path).mkdir(parents=True, exist_ok=True)
+
+        # The vector store path is always local to the container, so it always needs to exist.
+        Path(config.vector_repository.persist_path).parent.mkdir(
+            parents=True, exist_ok=True
+        )
+        # ---
+
+        # The Composition Root passes the specific sub-configuration to each factory.
+        data_source = create_data_source(config.data_source)
+        chunking_strategy = create_chunking_strategy(config.chunking_strategy)
+        embedding_service = create_embedding_service(config.embedding_service)
+        vector_repository = create_vector_repository(
+            config.vector_repository, embedding_service
+        )
+
         ingestion_service = IngestionService(
             data_source=data_source,
             chunking_strategy=chunking_strategy,
@@ -39,18 +50,15 @@ def main():
             vector_repository=vector_repository,
         )
 
-        # 4. Execution
         ingestion_service.ingest()
 
-        logging.info("Application container finished successfully.")
-        sys.exit(0)
+        logging.info("RAG ingestion pipeline finished successfully.")
+        return 0
 
     except Exception as e:
-        logging.critical(
-            f"Application failed with a critical error: {e}", exc_info=True
-        )
-        sys.exit(1)
+        logging.critical(f"Ingestion pipeline failed: {e}", exc_info=True)
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

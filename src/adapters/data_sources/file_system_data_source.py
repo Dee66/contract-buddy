@@ -30,9 +30,13 @@ class FileSystemDataSource(IDataSource):
                     with open(file_path, "r", encoding="utf-8") as f:
                         content = f.read()
                     doc_id = os.path.splitext(filename)[0]
+                    # Correctly instantiate the Document entity, fulfilling the contract.
                     documents.append(
                         Document(
-                            id=doc_id, content=content, metadata={"source": file_path}
+                            id=doc_id,
+                            content=content,
+                            source_location=file_path,
+                            metadata={"filename": filename},
                         )
                     )
                 except Exception as e:

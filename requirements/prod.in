@@ -1,0 +1,19 @@
+# --- Production Dependencies ---
+# These are the minimal packages required to run the core application.
+
+# Core application and web serving (for future API)
+fastapi
+uvicorn[standard]<=0.23.1  # Constrained by jina (dev dependency)
+python-dotenv
+PyYAML
+
+# AWS SDK for Bedrock integration
+boto3
+urllib3<2.0  # Constrained by jina (dev dependency)
+
+# Core data and ML libraries for the RAG pipeline
+numpy
+pydantic<2
+langchain
+langchain-text-splitters
+faiss-cpu

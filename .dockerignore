@@ -1,72 +1,28 @@
-# --- Build & Dependency Artifacts ---
-build/
-dist/
-*.egg-info/
-pip-wheel-metadata/
-*.whl
-*.tar.gz
+# Git and project management
+.git
+.gitignore
+.dockerignore
+README.md
+docs/
 
-# --- Virtual Environments ---
+# Python virtual environment and cache
+.venv
 venv/
-.venv/
-
-# --- Python Cache & Temp Files ---
 __pycache__/
+.pytest_cache/
 *.pyc
-*.pyo
-*.pyd
 
-# --- Logs & Temporary Files ---
-*.log
-*.tmp
-*.swp
+# Local configuration and secrets
+.env
+*.env*
+.aws/
 
-# --- IDE & OS Specific ---
+# IDE and OS-specific files
 .vscode/
 .idea/
 .DS_Store
-Thumbs.db
 
-# --- Git ---
-.git/
-.gitignore
-
-# --- Secrets & Environment Config ---
-# Critical for security: never commit or containerize secrets.
-.env
-.env.*
-*.pem
-.aws/
-
-# --- Documentation & Local Setup ---
-# These are for developers, not for the production container.
-docs/
-README.md
-setup_dev_env.py
-
-# --- Test Artifacts ---
-# Tests are run in CI, not included in the final production image.
-tests/
-.pytest_cache/
-coverage.xml
-.coverage
-pytest.ini
-
-# --- Datasets & Large Files ---
-# Data should be sourced from S3/databases, not baked into the image.
-data/
-datasets/
-*.csv
-*.parquet
-*.h5
-*.pkl
-*.joblib
-
-# --- Model Artifacts ---
-# Models should be loaded from a registry/S3, not part of the image.
-models/
-artifacts/
-*.onnx
-*.pb
-*.pt
-*.hdf5
+# Generated outputs and logs that should not be in the image
+outputs/
+logs/
+*.log
