@@ -64,6 +64,16 @@ build-ingestion: ## Build the ingestion pipeline Docker image with a traceable t
     docker build -f Dockerfile.ingestion -t $(INGESTION_IMAGE):$(TAG) .
 
 # --- Docker Operations ---
+build-and-push-api: build-api ## Build and push the API image to the specified ECR registry
+    @if not defined ECR_REGISTRY (echo "ECR_REGISTRY is not set. Usage: make build-and-push-api ECR_REGISTRY=<your-registry-url>"; exit 1)
+    docker tag $(API_IMAGE):$(TAG) $(ECR_REGISTRY)/$(API_IMAGE):$(TAG)
+    docker push $(ECR_REGISTRY)/$(API_IMAGE):$(TAG)
+
+build-and-push-ingestion: build-ingestion ## Build and push the ingestion image to the specified ECR registry
+    @if not defined ECR_REGISTRY (echo "ECR_REGISTRY is not set. Usage: make build-and-push-ingestion ECR_REGISTRY=<your-registry-url>"; exit 1)
+    docker tag $(INGESTION_IMAGE):$(TAG) $(ECR_REGISTRY)/$(INGESTION_IMAGE):$(TAG)
+    docker push $(ECR_REGISTRY)/$(INGESTION_IMAGE):$(TAG)
+
 run-ingestion-docker: ## Run ingestion via Docker. Usage: make run-ingestion-docker CDK_ENV=staging
     @echo "Running ingestion container for environment: $(CDK_ENV)"
     @echo "NOTE: This requires a configured AWS profile and mounts local data."

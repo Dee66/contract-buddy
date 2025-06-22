@@ -42,14 +42,15 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          make install
+        shell: pwsh
+        run: make install
 
       - name: Run linter
+        shell: pwsh
         run: make lint
 
       - name: Run tests
+        shell: pwsh
         run: make test
 
   build-and-push:
@@ -73,15 +74,13 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
         id: login-ecr
 
-      - name: Build, tag, and push API image
-        run: |
-          docker build -f Dockerfile.api -t ${{ steps.login-ecr.outputs.registry }}/${{ env.API_ECR_REPOSITORY }}:${{ github.sha }} .
-          docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.API_ECR_REPOSITORY }}:${{ github.sha }}
+      - name: Build and Push API Image
+        shell: pwsh
+        run: make build-and-push-api ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
-      - name: Build, tag, and push Ingestion image
-        run: |
-          docker build -f Dockerfile.ingestion -t ${{ steps.login-ecr.outputs.registry }}/${{ env.INGESTION_ECR_REPOSITORY }}:${{ github.sha }} .
-          docker push ${{ steps.login-ecr.outputs.registry }}/${{ env.INGESTION_ECR_REPOSITORY }}:${{ github.sha }}
+      - name: Build and Push Ingestion Image
+        shell: pwsh
+        run: make build-and-push-ingestion ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
   deploy:
     name: Deploy to AWS
@@ -106,18 +105,23 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Install CDK dependencies
+        shell: pwsh
         run: make infra-install
 
       - name: Deploy CDK stack
+        shell: pwsh
         run: make cdk-deploy CDK_ENV=${{ env.CDK_ENV }}
 
       - name: Force new ECS deployment
         id: ecs_deploy
+        shell: pwsh
         run: |
           # Robustly find the stateless stack key in the JSON output
-          STACK_NAME=$(jq -r 'keys[] | select(contains("StatelessStack"))' cdk-outputs.json)
-          CLUSTER_NAME=$(jq -r --arg stack_name "$STACK_NAME" '.[$stack_name].EcsClusterName' cdk-outputs.json)
-          SERVICE_NAME=$(jq -r --arg stack_name "$STACK_NAME" '.[$stack_name].ApiServiceName' cdk-outputs.json)
+          $stackName = (Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json | Get-Member -MemberType NoteProperty | Where-Object { $_.Name -like '*StatelessStack*' }).Name
+          $cdkOutputs = Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json
+          $clusterName = $cdkOutputs.$stackName.EcsClusterName
+          $serviceName = $cdkOutputs.$stackName.ApiServiceName
+          $subnets = $cdkOutputs.$stackName.PrivateSubnetIds
 
-          echo "Forcing new deployment for service $SERVICE_NAME in cluster $CLUSTER_NAME..."
-          aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --force-new-deployment
+          Write-Output "Forcing new deployment for service $serviceName in cluster $clusterName..."
+          aws ecs update-service --cluster $clusterName --service $serviceName --force-new-deployment
