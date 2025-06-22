@@ -1,10 +1,10 @@
 # Makefile for the CodeCraft AI Project
 # Provides a unified interface for common development and operational tasks.
+# NOTE: This Makefile is designed to be run with PowerShell (pwsh).
+# On Windows, this is native. In CI/CD (Linux), use 'shell: pwsh' in the workflow.
 
 # --- Configuration ---
 .DEFAULT_GOAL := help
-SHELL := pwsh.exe
-.SHELLFLAGS := -NoProfile -Command
 
 # Variables for image names
 API_IMAGE := codecraft-ai-api
@@ -37,22 +37,11 @@ test: ## Run the full test suite
     pytest
 
 # --- Local Development ---
-# Detect OS for cross-platform compatibility
-ifeq ($(OS),Windows_NT)
-    # Windows (PowerShell) specific commands
-    SET_ENV_AND_RUN_API = $env:APP_MODE="$(APP_MODE)"; uvicorn src.adapters.api.main:app --reload
-    SET_ENV_AND_RUN_INGESTION = $env:APP_MODE="$(APP_MODE)"; python src/main.py
-else
-    # Linux/macOS (Bash) specific commands
-    SET_ENV_AND_RUN_API = APP_MODE=$(APP_MODE) uvicorn src.adapters.api.main:app --reload
-    SET_ENV_AND_RUN_INGESTION = APP_MODE=$(APP_MODE) python src/main.py
-endif
-
 run-api-dev: ## Run the API server locally in development mode. Usage: make run-api-dev CDK_ENV=dev
-    $(SET_ENV_AND_RUN_API)
+    $env:APP_MODE="$(APP_MODE)"; uvicorn src.adapters.api.main:app --reload
 
 run-ingestion-dev: ## Run the ingestion pipeline locally in development mode. Usage: make run-ingestion-dev CDK_ENV=dev
-    $(SET_ENV_AND_RUN_INGESTION)
+    $env:APP_MODE="$(APP_MODE)"; python src/main.py
 
 # --- Docker Builds ---
 build-all: build-api build-ingestion ## Build all Docker images
@@ -77,9 +66,10 @@ build-and-push-ingestion: build-ingestion ## Build and push the ingestion image 
 run-ingestion-docker: ## Run ingestion via Docker. Usage: make run-ingestion-docker CDK_ENV=staging
     @echo "Running ingestion container for environment: $(CDK_ENV)"
     @echo "NOTE: This requires a configured AWS profile and mounts local data."
-    $(eval STACK_NAME := CodeCraftAiStatefulStack$(shell echo $(CDK_ENV) | awk '{print toupper(substr($$0,1,1))substr($$0,2)}'))
-    $(eval DATA_BUCKET := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].DataBucketName' cdk-outputs.json))
-    $(eval VECTOR_STORE_BUCKET := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].VectorStoreBucketName' cdk-outputs.json))
+    $(eval STACK_NAME := "CodeCraftAiStatefulStack" + "$(shell "$(CDK_ENV)".Substring(0, 1).ToUpper() + "$(CDK_ENV)".Substring(1))")
+    $(eval CDK_OUTPUTS := $(shell Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json))
+    $(eval DATA_BUCKET := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).DataBucketName)'))
+    $(eval VECTOR_STORE_BUCKET := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).VectorStoreBucketName)'))
     $(if $(DATA_BUCKET),,$(error DATA_BUCKET not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
     $(if $(VECTOR_STORE_BUCKET),,$(error VECTOR_STORE_BUCKET not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
     docker run --rm -it `
@@ -94,8 +84,9 @@ run-ingestion-docker: ## Run ingestion via Docker. Usage: make run-ingestion-doc
 
 run-api-docker: ## Run API server via Docker. Usage: make run-api-docker CDK_ENV=staging
     @echo "Running API container for environment: $(CDK_ENV)"
-    $(eval STACK_NAME := CodeCraftAiStatefulStack$(shell echo $(CDK_ENV) | awk '{print toupper(substr($$0,1,1))substr($$0,2)}'))
-    $(eval VECTOR_STORE_BUCKET := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].VectorStoreBucketName' cdk-outputs.json))
+    $(eval STACK_NAME := "CodeCraftAiStatefulStack" + "$(shell "$(CDK_ENV)".Substring(0, 1).ToUpper() + "$(CDK_ENV)".Substring(1))")
+    $(eval CDK_OUTPUTS := $(shell Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json))
+    $(eval VECTOR_STORE_BUCKET := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).VectorStoreBucketName)'))
     $(if $(VECTOR_STORE_BUCKET),,$(error VECTOR_STORE_BUCKET not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
     docker run --rm -it `
         -e APP_MODE=$(APP_MODE) `
@@ -122,13 +113,14 @@ cdk-destroy: infra-install ## Destroy the CDK stack. Usage: make cdk-destroy CDK
 # --- Cloud Operations ---
 run-ingestion-task: ## Run the ingestion task on ECS. Usage: make run-ingestion-task CDK_ENV=staging
     @echo "Running ingestion task for environment: $(CDK_ENV)..."
-    $(eval STACK_NAME := CodeCraftAiStatelessStack$(shell echo $(CDK_ENV) | awk '{print toupper(substr($$0,1,1))substr($$0,2)}'))
-    $(eval CLUSTER_NAME := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].EcsClusterName' cdk-outputs.json))
-    $(eval TASK_DEF_ARN := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].IngestionTaskDefArn' cdk-outputs.json))
-    $(eval SUBNETS := $(shell jq -r --arg stack_name "$(STACK_NAME)" '.[$stack_name].PrivateSubnetIds' cdk-outputs.json))
+    $(eval STACK_NAME := "CodeCraftAiStatelessStack" + "$(shell "$(CDK_ENV)".Substring(0, 1).ToUpper() + "$(CDK_ENV)".Substring(1))")
+    $(eval CDK_OUTPUTS := $(shell Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json))
+    $(eval CLUSTER_NAME := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).EcsClusterName)'))
+    $(eval TASK_DEF_ARN := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).IngestionTaskDefArn)'))
+    $(eval SUBNETS := $(shell echo '$(CDK_OUTPUTS.$(STACK_NAME).PrivateSubnetIds)'))
     $(if $(CLUSTER_NAME),,$(error CLUSTER_NAME not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
     $(if $(TASK_DEF_ARN),,$(error TASK_DEF_ARN not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
-    $(if $(SUBNETS),,$(error PrivateSubnetIds not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
+    $(if $(SUBNETS),,$(error SUBNETS not found in cdk-outputs.json. Run 'make cdk-deploy' first.))
     @echo "Found Cluster: $(CLUSTER_NAME)"
     @echo "Found Task Definition: $(TASK_DEF_ARN)"
     aws ecs run-task --cluster $(CLUSTER_NAME) --task-definition $(TASK_DEF_ARN) --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[$(SUBNETS)],assignPublicIp=DISABLED}"
