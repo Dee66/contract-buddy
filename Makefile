@@ -37,11 +37,22 @@ test: ## Run the full test suite
     pytest
 
 # --- Local Development ---
+# Detect OS for cross-platform compatibility
+ifeq ($(OS),Windows_NT)
+    # Windows (PowerShell) specific commands
+    SET_ENV_AND_RUN_API = $env:APP_MODE="$(APP_MODE)"; uvicorn src.adapters.api.main:app --reload
+    SET_ENV_AND_RUN_INGESTION = $env:APP_MODE="$(APP_MODE)"; python src/main.py
+else
+    # Linux/macOS (Bash) specific commands
+    SET_ENV_AND_RUN_API = APP_MODE=$(APP_MODE) uvicorn src.adapters.api.main:app --reload
+    SET_ENV_AND_RUN_INGESTION = APP_MODE=$(APP_MODE) python src/main.py
+endif
+
 run-api-dev: ## Run the API server locally in development mode. Usage: make run-api-dev CDK_ENV=dev
-    $env:APP_MODE="$(APP_MODE)"; uvicorn src.adapters.api.main:app --reload
+    $(SET_ENV_AND_RUN_API)
 
 run-ingestion-dev: ## Run the ingestion pipeline locally in development mode. Usage: make run-ingestion-dev CDK_ENV=dev
-    $env:APP_MODE="$(APP_MODE)"; python src/main.py
+    $(SET_ENV_AND_RUN_INGESTION)
 
 # --- Docker Builds ---
 build-all: build-api build-ingestion ## Build all Docker images
