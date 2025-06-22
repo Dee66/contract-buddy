@@ -6,7 +6,7 @@
 #
 accelerate==1.8.1
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   peft
 aiohappyeyeballs==2.6.1
     # via aiohttp
@@ -21,13 +21,19 @@ anyio==4.9.0
 attrs==25.3.0
     # via aiohttp
 bitsandbytes==0.46.0
-    # via -r requirements/dev.in
+    # via -r dev.in
+boolean-py==5.0
+    # via license-expression
 boto3==1.38.41
-    # via -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    # via -r prod.in
 botocore==1.38.41
     # via
     #   boto3
     #   s3transfer
+cachecontrol[filecache]==0.14.3
+    # via
+    #   cachecontrol
+    #   pip-audit
 certifi==2025.6.15
     # via requests
 cfgv==3.4.0
@@ -36,24 +42,23 @@ charset-normalizer==3.4.2
     # via requests
 click==8.2.1
     # via uvicorn
-colorama==0.4.6
-    # via
-    #   click
-    #   pytest
-    #   tqdm
-    #   uvicorn
 contourpy==1.3.2
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
+cyclonedx-python-lib==9.1.0
+    # via pip-audit
+defusedxml==0.7.1
+    # via py-serializable
 distlib==0.3.9
     # via virtualenv
 faiss-cpu==1.11.0
-    # via -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    # via -r prod.in
 fastapi==0.115.13
-    # via -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    # via -r prod.in
 filelock==3.18.0
     # via
+    #   cachecontrol
     #   huggingface-hub
     #   torch
     #   transformers
@@ -66,13 +71,15 @@ frozenlist==1.7.0
     #   aiosignal
 fsspec==2025.3.0
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   huggingface-hub
     #   torch
 greenlet==3.2.3
     # via sqlalchemy
 h11==0.16.0
     # via uvicorn
+hf-xet==1.1.5
+    # via huggingface-hub
 httptools==0.6.4
     # via uvicorn
 huggingface-hub==0.33.0
@@ -106,25 +113,33 @@ jsonpointer==3.0.0
 kiwisolver==1.4.8
     # via matplotlib
 langchain==0.2.5
-    # via -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    # via -r prod.in
 langchain-core==0.2.8
     # via
     #   langchain
     #   langchain-text-splitters
 langchain-text-splitters==0.2.1
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   langchain
 langsmith==0.1.81
     # via
     #   langchain
     #   langchain-core
+license-expression==30.4.1
+    # via cyclonedx-python-lib
+markdown-it-py==3.0.0
+    # via rich
 markupsafe==3.0.2
     # via jinja2
 matplotlib==3.10.3
-    # via -r requirements/dev.in
+    # via -r dev.in
+mdurl==0.1.2
+    # via markdown-it-py
 mpmath==1.3.0
     # via sympy
+msgpack==1.1.1
+    # via cachecontrol
 multidict==6.5.0
     # via
     #   aiohttp
@@ -137,7 +152,7 @@ nodeenv==1.9.1
     # via pre-commit
 numpy==1.26.4
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   accelerate
     #   bitsandbytes
     #   contourpy
@@ -149,8 +164,47 @@ numpy==1.26.4
     #   scikit-learn
     #   scipy
     #   transformers
+nvidia-cublas-cu12==12.6.4.1
+    # via
+    #   nvidia-cudnn-cu12
+    #   nvidia-cusolver-cu12
+    #   torch
+nvidia-cuda-cupti-cu12==12.6.80
+    # via torch
+nvidia-cuda-nvrtc-cu12==12.6.77
+    # via torch
+nvidia-cuda-runtime-cu12==12.6.77
+    # via torch
+nvidia-cudnn-cu12==9.5.1.17
+    # via torch
+nvidia-cufft-cu12==11.3.0.4
+    # via torch
+nvidia-cufile-cu12==1.11.1.6
+    # via torch
+nvidia-curand-cu12==10.3.7.77
+    # via torch
+nvidia-cusolver-cu12==11.7.1.2
+    # via torch
+nvidia-cusparse-cu12==12.5.4.2
+    # via
+    #   nvidia-cusolver-cu12
+    #   torch
+nvidia-cusparselt-cu12==0.6.3
+    # via torch
+nvidia-nccl-cu12==2.26.2
+    # via torch
+nvidia-nvjitlink-cu12==12.6.85
+    # via
+    #   nvidia-cufft-cu12
+    #   nvidia-cusolver-cu12
+    #   nvidia-cusparse-cu12
+    #   torch
+nvidia-nvtx-cu12==12.6.77
+    # via torch
 orjson==3.10.18
     # via langsmith
+packageurl-python==0.17.1
+    # via cyclonedx-python-lib
 packaging==24.2
     # via
     #   accelerate
@@ -159,25 +213,35 @@ packaging==24.2
     #   langchain-core
     #   matplotlib
     #   peft
+    #   pip-audit
+    #   pip-requirements-parser
     #   plotly
     #   pytest
     #   transformers
 pandas==2.3.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 peft==0.15.2
-    # via -r requirements/dev.in
+    # via -r dev.in
 pillow==11.2.1
     # via
     #   matplotlib
     #   sentence-transformers
+pip-api==0.0.34
+    # via pip-audit
+pip-audit==2.9.0
+    # via -r dev.in
+pip-requirements-parser==32.0.1
+    # via pip-audit
 platformdirs==4.3.8
-    # via virtualenv
+    # via
+    #   pip-audit
+    #   virtualenv
 plotly==6.1.2
-    # via -r requirements/dev.in
+    # via -r dev.in
 pluggy==1.6.0
     # via pytest
 pre-commit==4.2.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 propcache==0.3.2
     # via
     #   aiohttp
@@ -186,19 +250,25 @@ psutil==7.0.0
     # via
     #   accelerate
     #   peft
+py-serializable==2.0.0
+    # via cyclonedx-python-lib
 pydantic==1.10.22
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   fastapi
     #   langchain
     #   langchain-core
     #   langsmith
 pygments==2.19.2
-    # via pytest
+    # via
+    #   pytest
+    #   rich
 pyparsing==3.2.3
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   pip-requirements-parser
 pytest==8.4.1
-    # via -r requirements/dev.in
+    # via -r dev.in
 python-dateutil==2.9.0.post0
     # via
     #   botocore
@@ -206,13 +276,13 @@ python-dateutil==2.9.0.post0
     #   pandas
 python-dotenv==1.1.0
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   uvicorn
 pytz==2025.2
     # via pandas
 pyyaml==6.0.2
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   accelerate
     #   huggingface-hub
     #   langchain
@@ -225,13 +295,17 @@ regex==2024.11.6
     # via transformers
 requests==2.32.4
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
+    #   cachecontrol
     #   huggingface-hub
     #   langchain
     #   langsmith
+    #   pip-audit
     #   transformers
+rich==14.0.0
+    # via pip-audit
 ruff==0.12.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 s3transfer==0.13.0
     # via boto3
 safetensors==0.5.3
@@ -241,18 +315,20 @@ safetensors==0.5.3
     #   transformers
 scikit-learn==1.7.0
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   sentence-transformers
 scipy==1.15.3
     # via
     #   scikit-learn
     #   sentence-transformers
 sentence-transformers==4.1.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 six==1.17.0
     # via python-dateutil
 sniffio==1.3.1
     # via anyio
+sortedcontainers==2.4.0
+    # via cyclonedx-python-lib
 sqlalchemy==2.0.41
     # via langchain
 starlette==0.46.2
@@ -260,7 +336,7 @@ starlette==0.46.2
 sympy==1.14.0
     # via torch
 tabulate==0.9.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 tenacity==8.5.0
     # via
     #   langchain
@@ -269,9 +345,11 @@ threadpoolctl==3.6.0
     # via scikit-learn
 tokenizers==0.21.1
     # via transformers
+toml==0.10.2
+    # via pip-audit
 torch==2.7.1
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   accelerate
     #   bitsandbytes
     #   peft
@@ -284,9 +362,11 @@ tqdm==4.67.1
     #   transformers
 transformers==4.52.4
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   peft
     #   sentence-transformers
+triton==3.3.1
+    # via torch
 typing-extensions==4.14.0
     # via
     #   fastapi
@@ -297,13 +377,15 @@ typing-extensions==4.14.0
     #   torch
 tzdata==2025.2
     # via pandas
-urllib3==1.26.20
+urllib3==2.5.0
     # via
-    #   -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    #   -r prod.in
     #   botocore
     #   requests
 uvicorn[standard]==0.23.1
-    # via -r C:\workspace\AI\codecraft-ai\requirements\prod.in
+    # via -r prod.in
+uvloop==0.21.0
+    # via uvicorn
 virtualenv==20.31.2
     # via pre-commit
 watchfiles==1.1.0
@@ -314,4 +396,5 @@ yarl==1.20.1
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
+# pip
 # setuptools
