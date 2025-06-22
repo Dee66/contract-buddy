@@ -11,7 +11,7 @@ transformers
 peft
 accelerate
 bitsandbytes
-fsspec<=2025.3.0  # Constrained by datasets (dev dependency)
+fsspec<=2025.5.1  # Constrained by datasets (dev dependency)
 
 # Libraries for data analysis and visualization
 pandas
