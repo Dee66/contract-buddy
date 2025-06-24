@@ -1,8 +1,96 @@
 # 🤖 CodeCraft AI
 
-Welcome to CodeCraft AI — a fully custom, end-to-end AI platform, meticulously architected, engineered, and deployed to production (also dev & staging) on AWS. This is no theoretical exercise or boilerplate demo. This is a living testament to architecting and deploying truly custom AI solutions that are not just functional, but uncompromisingly robust, intrinsically secure, infinitely scalable, and operationally mature.
+---
 
-Experience the mastery of a full-stack, cloud-native AI implementation: from automated password rotation and Dockerized services to a hardened CI/CD pipeline (GitHub Actions) rigorously validating code and deploying across a rich AWS ecosystem—including S3, ALB, Secrets Manager, IAM, IaC (CDK), ECR, ECS, and Fargate. CodeCraft AI showcases the rigorous engineering principles vital for transforming groundbreaking AI into tangible, battle-ready business impact. This is how I turn vision into a deployable reality.
+## Overview
+
+**CodeCraft AI** is your launchpad for building, scaling, and operating enterprise-grade AI solutions—securely, reliably, and with real business impact.
+Whether you're modernizing legacy workflows, automating new processes, or pioneering AI-driven products, CodeCraft AI accelerates your journey from concept to production.
+This is not a demo—it's a living, production-ready platform engineered for operational excellence and business value.
+
+---
+
+## Technical Overview
+
+At its core, CodeCraft AI fuses **Retrieval-Augmented Generation (RAG)** and **Parameter-Efficient Fine-Tuning (PEFT)** to deliver context-aware, adaptable AI.
+The platform is **AWS-native**, leveraging managed services like **SageMaker** for scalable ML, **Lambda** for event-driven orchestration, **S3** for secure, versioned data, and **ECS** for resilient microservices.
+
+Infrastructure is managed as code with **AWS CDK (Python)**, ensuring every environment—dev, staging, prod—is reproducible, auditable, and aligned with AWS Well-Architected best practices.
+Continuous delivery and automated retraining are built-in: new data or requirements can trigger end-to-end pipelines, with all config and secrets injected securely via **SSM Parameter Store** and **Secrets Manager**.
+
+The architecture is modular and testable: vector search (**FAISS**), model serving, data ingestion, and orchestration are decoupled for rapid iteration and safe, atomic updates.
+**CI/CD pipelines** (GitHub Actions) enforce code quality, run comprehensive tests, and automate deployments, while **multi-stage Docker builds** guarantee reproducible, environment-parity containers.
+**Observability** is first-class—structured logging, CloudWatch dashboards, and Jupyter notebooks provide deep insight into system health and model behavior.
+
+**Security** is foundational: all IAM roles follow least-privilege, OIDC enables passwordless deployments, and all sensitive data is managed outside the codebase.
+The platform is designed for operational excellence, with automated rollbacks, cost-optimized serverless compute, and proactive vulnerability scanning.
+
+---
+
+## Deep Dive
+
+### 🏗️ Architecture & Infrastructure
+
+- **Infrastructure-as-Code:** All AWS resources are defined in Python CDK, enabling repeatable, auditable deployments. Stateful (S3, ECR) and stateless (ECS, ALB) resources are managed separately for clarity and lifecycle control.
+- **Serverless Compute:** ECS on Fargate powers API (FastAPI) and ingestion services, fronted by ALB for seamless scaling and traffic management.
+- **Security Posture:** Private subnets, OIDC-based passwordless deployment, least-privilege IAM, AWS Secrets Manager, and SSM Parameter Store for config/secrets.
+
+### 🧠 AI & ML Pipeline
+
+- **RAG & FAISS:** Unstructured data from S3 is processed through a robust ETL pipeline and indexed with FAISS for high-performance vector search. RAG enables LLMs to deliver domain-specific, real-time answers.
+- **PEFT & Fine-Tuning:** Rapid, cost-effective model specialization with robust versioning and rollback. Training and retraining are automated via SageMaker pipelines, supporting both supervised and contrastive learning.
+- **Self-Healing Ingestion:** Full S3-to-FAISS sync, atomic hot-reloading, and thread-safe updates—no service restarts required.
+
+### 🚀 MLOps & Automation
+
+- **CI/CD:** GitHub Actions orchestrate multi-stage Docker builds, automated tests (Pytest), security scans (Dependabot, pip-audit), and direct deployment to AWS.
+- **Quality Gates:** Linting (Ruff), pre-commit hooks, and automated code quality enforcement.
+- **Testing:** Unit, integration, and end-to-end tests via Pytest, nbval (for Jupyter notebooks), and Makefile targets. Static type checking with mypy.
+
+### 📊 Observability & Developer Experience
+
+- **Centralized Logging:** Structured logs in CloudWatch, dashboards, and alerting on key metrics.
+- **Deterministic Environments:** Reproducible builds with pip-tools lockfiles.
+- **Documentation-Driven:** Docusaurus-powered docs, API references, model cards, and architecture diagrams.
+- **Developer Productivity:** Makefile-driven local setup, Docker Compose for local orchestration, and automated onboarding.
+
+---
+
+## 🌟 Impact Highlights
+
+- **Zero-downtime model and data updates** via atomic hot-reloading of vector stores from S3.
+- **Automated, auditable deployments** with full rollback support and environment parity.
+- **Cost-optimized, serverless infrastructure**—no idle compute, pay only for what you use.
+- **End-to-end security:** OIDC, least-privilege IAM, automated secret rotation, and private subnets.
+- **Comprehensive observability:** Centralized logging, dashboards, and proactive alerting.
+
+---
+
+## Tech Stack
+
+| Category                | Technologies                                                                                      |
+|-------------------------|---------------------------------------------------------------------------------------------------|
+| **AWS Native**          | SageMaker, Lambda, ECS (Fargate), S3, ECR, ALB, IAM, Secrets Manager, SSM, CloudWatch, VPC, KMS  |
+| **ML/AI**               | Hugging Face Transformers, FAISS, PEFT, RAG, PyTorch, scikit-learn, sentence-transformers         |
+| **Data & Pipelines**    | Pandas, NumPy, PyYAML, ETL pipelines, JSON, YAML                                                 |
+| **Infra-as-Code**       | AWS CDK (Python)                                                                                  |
+| **Containerization**    | Docker, multi-stage builds, docker-compose                                                        |
+| **CI/CD**               | GitHub Actions, Makefile, pre-commit, pip-audit, Safety, Trivy (optional), Gitleaks              |
+| **Testing**             | Pytest, nbval, coverage, unit/integration/e2e tests                                               |
+| **Automation & DevOps** | Poetry, pip-tools, shell scripts, Makefile                                                        |
+| **Visualization**       | Jupyter, Matplotlib, Seaborn, Docusaurus (docs)                                                   |
+| **Security**            | OIDC, least-privilege IAM, automated secret rotation, private networking, vulnerability scanning   |
+| **Developer Experience**| Centralized logging, dashboards, API docs, architecture diagrams, onboarding scripts              |
+
+---
+
+## 📋 Project Implementation Checklist
+
+To ensure every CodeCraft AI deployment meets the highest standards of engineering excellence, we maintain a comprehensive [AI Solutions Project Implementation Checklist](docs/checklist.md).
+This checklist covers every phase of the project lifecycle—from business alignment and architecture to MLOps, security, automation, and operational readiness.
+Use it as a blueprint to track progress, validate deliverables, and guarantee that every solution is production-grade, AWS-native, and business-aligned.
+
+👉 **[View the full checklist here](docs/checklist.md)**
 
 ---
 
@@ -31,29 +119,21 @@ Experience the mastery of a full-stack, cloud-native AI implementation: from aut
 
 ---
 
-\*CodeCraft AI is not just a project—it's a living demonstration of how to deliver secure, scalable, and business-aligned AI solutions at an enterprise level. This is what modern, cloud-native AI engineering looks like
+## ✨ My Blueprint for AI Solutions
 
----
-
-## ✨ My Blueprint: The AI Solutions "Recipe" for Uncompromising Success
-
-Every high-performing AI solution begins with a solid foundation. CodeCraft AI unveils my systematic, MLOps-driven methodology — a battle-tested "recipe" that ensures every AI initiative I lead is designed for unwavering success:
+Every high-performing AI solution begins with a solid foundation. CodeCraft AI unveils my systematic, MLOps-driven methodology—a battle-tested "recipe" that ensures every AI initiative I lead is designed for unwavering success:
 
 - **🎯 Business-Centric Foundations:**
   Start with the business problem, user pain points, and ROI. Every solution is mapped to measurable, strategic value.
-  _(From: Business problem & value, Objective defined, Initial cost model)_
 
 - **📐 Architectural Rigor & Data Governance:**
   Design for scalability, security, and maintainability from day one. Architecture blueprints, clear I/O specs, and privacy/compliance are embedded throughout.
-  _(From: Architecture blueprint, Input/output specification, Data privacy & compliance, Model strategy, Risk & constraints)_
 
 - **⚙️ Flawless Operational Excellence:**
   Full lifecycle automation and continuous optimization. Modular, testable data pipelines, reproducible environments, and rigorous benchmarking with cost tracking.
-  _(From: Dev environment, Data pipeline, Experimentation, Benchmarking & optimization, Cost tracking, Evaluation plan)_
 
 - **🔒 Production Readiness & Security:**
   Secure, reliable deployments with model versioning, rollback, and proactive risk mitigation.
-  _(From: Model versioning & rollback, Risk & constraints)_
 
 ---
 
@@ -61,51 +141,9 @@ Every high-performing AI solution begins with a solid foundation. CodeCraft AI u
 
 - **Zero-downtime model and data updates** via atomic hot-reloading of vector stores from S3.
 - **Automated, auditable deployments** with full rollback support and environment parity.
-- **Cost-optimized, serverless infrastructure** — no idle compute, pay only for what you use.
+- **Cost-optimized, serverless infrastructure**—no idle compute, pay only for what you use.
 - **End-to-end security:** OIDC, least-privilege IAM, automated secret rotation, and private subnets.
 - **Comprehensive observability:** Centralized logging, dashboards, and proactive alerting.
-
----
-
-## 🏗️ Engineering Excellence in Action
-
-### ☁️ Resilient Cloud-Native Architecture
-
-- **AWS CDK (Python) for Infrastructure-as-Code:**
-  All AWS resources are defined in code for repeatable, auditable deployments. Stateful (S3, ECR) and stateless (ECS, ALB) resources are managed separately for clarity and lifecycle control.
-- **Highly available, serverless compute:**
-  ECS on Fargate runs API (FastAPI) and ingestion services, fronted by ALB for seamless scaling and traffic management.
-- **Security posture:**
-  Private subnets, passwordless OIDC deployment, least-privilege IAM, AWS Secrets Manager, and SSM Parameter Store for config/secrets.
-
-### 🧠 Advanced AI & ML Pipeline
-
-- **Retrieval-Augmented Generation (RAG):**
-  FAISS vector search + Hugging Face Transformers + AWS Bedrock for contextual, robust AI interactions.
-- **Fine-Tuning & PEFT:**
-  Rapid, cost-effective model specialization with robust versioning and rollback.
-- **Self-healing, idempotent ingestion:**
-  Full S3-to-FAISS sync, atomic hot-reloading, and thread-safe updates — no service restarts required.
-
-### 🚀 Automated MLOps & CI/CD
-
-- **End-to-end ML lifecycle automation:**
-  Model training, inference, and monitoring via AWS SageMaker.
-- **GitHub Actions CI/CD:**
-  Multi-stage Docker builds, automated tests (Pytest), security scans (Dependabot, pip-audit), and direct deployment to AWS.
-- **Quality gates:**
-  Linting (Ruff), pre-commit hooks, and automated code quality enforcement.
-
-### 📊 Transparent Operations & Developer Experience
-
-- **Observability:**
-  Centralized structured logging (CloudWatch), dashboards, and alerting on key metrics.
-- **Deterministic environments:**
-  Reproducible builds with pip-tools lockfiles.
-- **Documentation-driven:**
-  Docusaurus-powered docs, API references, model cards, and architecture diagrams.
-- **Developer productivity:**
-  Makefile-driven local setup and deployment.
 
 ---
 
@@ -121,7 +159,7 @@ This page offers a strategic overview of CodeCraft AI. For a deeper dive into th
 
 ---
 
-## Connect with Me
+## 🤝 Connect with Me
 
 I'm passionate about architecting secure, scalable, and impactful AI solutions that drive real business value.
-CodeCraft AI is more than a technical showcase — it's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact.
+CodeCraft AI is more than a technical showcase—it's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact.

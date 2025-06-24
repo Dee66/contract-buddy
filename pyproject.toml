@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "codecraft-ai"
 version = "0.1.0"
-description = "Enterprise-ready, AWS-native AI system"
-authors = ["Deon Prinsloo <Deon66@gmail.com>"]
+description = ""
+authors = ["deon66@gmail.com"]
 readme = "README.md"
 packages = [{ include = "src" }]
 
@@ -38,3 +38,10 @@ types-pywin32 = "310.0.0.20250516"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+# 🟦 NOTE: If you do not want to require a README.md for packaging, comment out or remove the `readme` field above.
+# Alternatively, you can create an empty README.md file at the project root.
+
+# 🟦 NOTE: If you want to use Poetry only for dependency management (not packaging), add:
+# [tool.poetry]
+# package-mode = false

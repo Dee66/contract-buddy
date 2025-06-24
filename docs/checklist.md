@@ -1,6 +1,4 @@
-[⬅ Back to Section Overview](README.md)
-
-[⬅ Back to Main Index](../INDEX.md)
+[⬅ Back to Main README](../Readme.md)
 
 # 📋 AI Solutions Project Implementation Checklist
 
@@ -77,15 +75,16 @@
 
 ---
 
-## 🌟 Storytelling & Portfolio
+<!-- ## 🌟 Storytelling & Portfolio -->
 
-- 🟥 **[Objective defined](portfolio/Objective.md):** Portfolio and narrative goals.
-- 🟥 **[Ultimate README/whitepaper](portfolio/Ultimate_README.md):** Executive summary, architecture, AI core, optimization, resource management, demo instructions.
-- 🟥 **[Future roadmap](portfolio/Future_Roadmap.md):** Feature expansion, advanced MLOps, ethical AI, broader integration.
-- 🟥 **[Unique value proposition](portfolio/Unique_Value.md):** Technical excellence, strategic thinking, personal impact articulated.
-- 🟥 **[Verbal narrative](portfolio/Verbal_Narrative.md):** Elevator pitch, deep dive talking points, Q&A prep.
-- 🟥 **[Auto-generated docs](portfolio/Deliverables.md):** API docs, model cards, architecture diagrams (Swagger/OpenAPI, Sphinx, MkDocs).
-- 🟥 **[Stakeholder review](portfolio/Deliverables.md):** Portfolio deliverables reviewed and feedback incorporated.
-- 🟥 **[Deliverables](portfolio/Deliverables.md):** Polished repo, compelling interview narrative, auto-generated documentation.
+
+<!-- - 🟥 **[Objective defined](portfolio/Objective.md):** Portfolio and narrative goals. -->
+<!-- - 🟥 **[Ultimate README/whitepaper](portfolio/Ultimate_README.md):** Executive summary, architecture, AI core, optimization, resource management, demo instructions. -->
+<!-- - 🟥 **[Future roadmap](portfolio/Future_Roadmap.md):** Feature expansion, advanced MLOps, ethical AI, broader integration. -->
+<!-- - 🟥 **[Unique value proposition](portfolio/Unique_Value.md):** Technical excellence, strategic thinking, personal impact articulated. -->
+<!-- - 🟥 **[Verbal narrative](portfolio/Verbal_Narrative.md):** Elevator pitch, deep dive talking points, Q&A prep. -->
+<!-- - 🟥 **[Auto-generated docs](portfolio/Deliverables.md):** API docs, model cards, architecture diagrams (Swagger/OpenAPI, Sphinx, MkDocs). -->
+<!-- - 🟥 **[Stakeholder review](portfolio/Deliverables.md):** Portfolio deliverables reviewed and feedback incorporated. -->
+<!-- - 🟥 **[Deliverables](portfolio/Deliverables.md):** Polished repo, compelling interview narrative, auto-generated documentation. -->
 
 ---

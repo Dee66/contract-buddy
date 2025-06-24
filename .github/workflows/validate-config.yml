@@ -1,4 +1,3 @@
-# .github/workflows/validate-config.yml
 name: Validate AWS SSM Config
 
 on:

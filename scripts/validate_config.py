@@ -1,4 +1,3 @@
-# scripts/validate_config.py
 """
 Validates AWS SSM Parameter Store config and (optionally) AWS Secrets Manager secrets
 against the project's Pydantic schema(s) before deployment.
