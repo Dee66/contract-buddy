@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import Optional
 
 # --- Individual Component Models ---
 
@@ -30,6 +31,21 @@ class VectorRepositoryConfig(BaseModel):
     s3_key: str | None = None  # Used for cloud persistence
 
 
+class RagPipelineConfig(BaseModel):
+    """Configuration for the RAG pipeline."""
+
+    enabled: bool = False
+    model_name: str | None = None
+    temperature: float = 0.0
+    top_k: int = 10
+    top_p: float = 1.0
+    num_beams: int = 1
+    max_length: int = 300
+    min_length: int = 50
+    length_penalty: float = 2.0
+    early_stopping: bool = True
+
+
 # --- Top-Level Application Configuration Model ---
 
 
@@ -40,3 +56,4 @@ class AppConfig(BaseModel):
     chunking_strategy: ChunkingStrategyConfig
     embedding_service: EmbeddingServiceConfig
     vector_repository: VectorRepositoryConfig
+    rag_pipeline: Optional[RagPipelineConfig] = None

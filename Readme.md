@@ -31,7 +31,7 @@ Experience the mastery of a full-stack, cloud-native AI implementation: from aut
 
 ---
 
-*CodeCraft AI is not just a project—it's a living demonstration of how to deliver secure, scalable, and business-aligned AI solutions at an enterprise level. This is what modern, cloud-native AI engineering looks like
+\*CodeCraft AI is not just a project—it's a living demonstration of how to deliver secure, scalable, and business-aligned AI solutions at an enterprise level. This is what modern, cloud-native AI engineering looks like
 
 ---
 

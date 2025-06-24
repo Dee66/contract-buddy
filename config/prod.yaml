@@ -1,11 +1,15 @@
 # --- Production Environment Configuration ---
-# This file overrides base.yaml for production runs.
+# This file overrides dev.yaml for production runs.
 # It points to live AWS services and production data paths.
+
+vector_store_bucket: "placeholder-vector-store-bucket"
+data_bucket: "placeholder-data-bucket"
+log_level: "INFO"
+api_timeout_seconds: 30
+feature_flags: {}
 
 data_source:
   type: "s3"
-  # In a deployed environment (ECS), this value is provided by the
-  # DATA_BUCKET environment variable set by the CDK stack.
   bucket: "placeholder-data-bucket"
   prefix: "raw/"
 
@@ -16,9 +20,6 @@ embedding_service:
 
 vector_repository:
   type: "faiss"
-  # This is a temporary path inside the container for the index file
   persist_path: "/tmp/vector_store/faiss_index.bin"
-  # In a deployed environment (ECS), this value is provided by the
-  # VECTOR_STORE_BUCKET environment variable set by the CDK stack.
   s3_bucket: "placeholder-vector-store-bucket"
   s3_key: "faiss_index.bin"

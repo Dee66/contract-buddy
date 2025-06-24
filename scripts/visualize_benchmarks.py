@@ -11,7 +11,8 @@ def safe_fmt(val):
 
 
 def visualize_benchmarks(results_path="data/clean/hyperparam_sweep_results.json"):
-    logging = __import__("logging")
+    import logging
+
     if not os.path.exists(results_path):
         logging.error(f"Results file not found: {results_path}")
         sys.exit(1)
@@ -52,7 +53,7 @@ def visualize_benchmarks(results_path="data/clean/hyperparam_sweep_results.json"
     mrr = [r["peft_retrieval"].get("mrr") for r in filtered]
     cost = [r.get("estimated_cost_usd") for r in filtered]
     labels = [
-        f"r={r['hyperparams'].get('r','')},a={r['hyperparams'].get('alpha','')},d={r['hyperparams'].get('dropout','')}"
+        f"r={r['hyperparams'].get('r', '')},a={r['hyperparams'].get('alpha', '')},d={r['hyperparams'].get('dropout', '')}"
         for r in filtered
     ]
 
@@ -125,9 +126,9 @@ def visualize_benchmarks(results_path="data/clean/hyperparam_sweep_results.json"
         else:
             for r in filtered:
                 f.write(
-                    f"| {r['hyperparams'].get('r','')} "
-                    f"| {r['hyperparams'].get('alpha','')} "
-                    f"| {r['hyperparams'].get('dropout','')} "
+                    f"| {r['hyperparams'].get('r', '')} "
+                    f"| {r['hyperparams'].get('alpha', '')} "
+                    f"| {r['hyperparams'].get('dropout', '')} "
                     f"| {safe_fmt(r['peft_retrieval'].get('top1'))} "
                     f"| {safe_fmt(r['peft_retrieval'].get('mrr'))} "
                     f"| {safe_fmt(r.get('timing_seconds'))} "

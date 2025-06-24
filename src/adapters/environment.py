@@ -1,12 +1,11 @@
+# 🟪 ARCH: Environment adapter for config, logging, and mode detection.
 import os
-import sys
 import logging
+import sys
+from typing import Optional
 import yaml
-import json
-from logging.handlers import RotatingFileHandler
-from pathlib import Path
 from pydantic import ValidationError
-
+from pathlib import Path
 from src.domain.entities.config import AppConfig
 
 
@@ -16,6 +15,51 @@ LOG_DIR = PROJECT_ROOT / "logs"
 DEFAULT_CONFIG_DIR = PROJECT_ROOT / "config"
 
 
+# 🟩 GOOD: Canonical logging setup for all environments.
+def setup_logging(level: Optional[str] = None, json_format: bool = False) -> None:
+    """
+    🟩 GOOD: Canonical logging setup for all environments (dev, staging, prod).
+    🟦 NOTE: Supports both plain and JSON log formatting for AWS-native observability.
+    """
+    log_level = level or os.environ.get("LOG_LEVEL", "INFO")
+    root_logger = logging.getLogger()
+    root_logger.setLevel(getattr(logging, log_level.upper(), logging.INFO))
+    root_logger.handlers = []
+
+    console_handler = logging.StreamHandler(sys.stdout)
+    if json_format or os.environ.get("LOG_JSON", "0") == "1":
+
+        class JsonFormatter(logging.Formatter):
+            def format(self, record):
+                import json
+
+                log_record = {
+                    "timestamp": self.formatTime(record, "%Y-%m-%d %H:%M:%S,%f")[:-3],
+                    "level": record.levelname,
+                    "mode": os.environ.get("ENV_MODE", "dev"),
+                    "message": record.getMessage(),
+                    "source": record.name,
+                }
+                return json.dumps(log_record)
+
+        formatter = JsonFormatter()
+    else:
+        formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
+    console_handler.setFormatter(formatter)
+    root_logger.addHandler(console_handler)
+    root_logger.info(f"Logging initialized with level {log_level}")
+
+
+# 🟩 GOOD: Clean, testable environment mode detection.
+def get_mode() -> str:
+    """
+    🟦 NOTE: Returns the current environment mode (dev, staging, prod).
+    🟪 ARCH: Reads from ENV_MODE or defaults to 'dev' for local/test.
+    """
+    return os.environ.get("ENV_MODE", "dev")
+
+
+# 🟩 GOOD: Canonical config loader for all environments.
 class ConfigLoader:
     """
     A class to manage loading and merging of configuration files.
@@ -43,8 +87,9 @@ class ConfigLoader:
     def get_config(self) -> AppConfig:
         """
         Loads configuration from YAML files and overrides with environment variables.
+        🟩 GOOD: Single, production-grade config loader for all environments.
         """
-        base_config_path = self.config_dir / "base.yaml"
+        base_config_path = self.config_dir / "dev.yaml"
         mode_config_path = self.config_dir / f"{self.mode}.yaml"
 
         try:
@@ -68,11 +113,12 @@ class ConfigLoader:
                 raise
 
         # --- Environment Variable Override ---
-        # This is the crucial step for cloud deployments.
         if "DATA_BUCKET" in os.environ:
-            config_dict["data_source"]["bucket"] = os.environ["DATA_BUCKET"]
+            config_dict.setdefault("data_source", {})["bucket"] = os.environ[
+                "DATA_BUCKET"
+            ]
         if "VECTOR_STORE_BUCKET" in os.environ:
-            config_dict["vector_repository"]["s3_bucket"] = os.environ[
+            config_dict.setdefault("vector_repository", {})["s3_bucket"] = os.environ[
                 "VECTOR_STORE_BUCKET"
             ]
 
@@ -81,53 +127,3 @@ class ConfigLoader:
         except ValidationError as e:
             logging.error(f"Configuration validation failed:\n{e}")
             raise
-
-
-# --- Standalone Functions (remain for convenience) ---
-
-
-class JsonFormatter(logging.Formatter):
-    """Custom formatter to output logs in JSON format."""
-
-    def format(self, record):
-        # Get the application mode for contextual logging
-        app_mode = os.environ.get("APP_MODE", "dev").lower()
-        log_record = {
-            "timestamp": self.formatTime(record, self.datefmt),
-            "level": record.levelname,
-            "mode": app_mode,
-            "message": record.getMessage(),
-            "source": record.name,
-        }
-        if record.exc_info:
-            log_record["exception"] = self.formatException(record.exc_info)
-        return json.dumps(log_record)
-
-
-def setup_logging():
-    """Configures logging for the application idempotently."""
-    root_logger = logging.getLogger()
-
-    # Use a custom attribute to ensure this setup runs only once.
-    if getattr(root_logger, "_configured", False):
-        return
-
-    os.makedirs(LOG_DIR, exist_ok=True)
-    log_file = LOG_DIR / "app.log"
-
-    root_logger.setLevel(logging.INFO)
-
-    # Console handler
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setFormatter(JsonFormatter())
-    root_logger.addHandler(console_handler)
-
-    # File handler
-    file_handler = RotatingFileHandler(
-        log_file, maxBytes=10 * 1024 * 1024, backupCount=5
-    )
-    file_handler.setFormatter(JsonFormatter())
-    root_logger.addHandler(file_handler)
-
-    root_logger._configured = True
-    logging.info("Logging initialized with level INFO")

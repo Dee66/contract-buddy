@@ -1,6 +1,12 @@
-# --- Base Application Configuration ---
+# --- Dev Application Configuration ---
 # This file contains default settings for all environments.
-# Environment-specific files (e.g., dev.yaml, prod.yaml) will override these values.
+# Environment-specific files (e.g., dev.yaml, staging.yaml, prod.yaml) will override these values.
+
+vector_store_bucket: "placeholder-vector-store-bucket"
+data_bucket: "placeholder-data-bucket"
+log_level: "INFO"
+api_timeout_seconds: 30
+feature_flags: {}
 
 data_source:
   type: "file_system"
@@ -20,3 +26,6 @@ embedding_service:
 vector_repository:
   type: "faiss"
   persist_path: "/app/vector_store/faiss_index.bin"
+
+rag_pipeline:
+  dataset_size: 100

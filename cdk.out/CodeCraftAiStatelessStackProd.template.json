@@ -562,6 +562,38 @@
          ]
         ]
        }
+      },
+      {
+       "Action": [
+        "ssm:DescribeParameters",
+        "ssm:GetParameters",
+        "ssm:GetParameter",
+        "ssm:GetParameterHistory"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ssm:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":parameter",
+          {
+           "Ref": "AppConfigParameterC8B187CD"
+          }
+         ]
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -639,6 +671,38 @@
            "Ref": "AWS::Region"
           },
           "::foundation-model/*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ssm:DescribeParameters",
+        "ssm:GetParameters",
+        "ssm:GetParameter",
+        "ssm:GetParameterHistory"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ssm:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":parameter",
+          {
+           "Ref": "AppConfigParameterC8B187CD"
+          }
          ]
         ]
        }
@@ -874,6 +938,54 @@
         "ContainerPort": 8000,
         "Protocol": "tcp"
        }
+      ],
+      "Secrets": [
+       {
+        "Name": "APP_SECRETS_JSON",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:codecraft-ai/secrets/prod"
+          ]
+         ]
+        }
+       },
+       {
+        "Name": "API_KEY",
+        "ValueFrom": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:codecraft-ai/secrets/prod:API_KEY::"
+          ]
+         ]
+        }
+       }
       ]
      }
     ],
@@ -960,6 +1072,33 @@
         "Fn::GetAtt": [
          "ApiServiceTaskDefwebLogGroup57352A09",
          "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:codecraft-ai/secrets/prod-??????"
+         ]
         ]
        }
       }
@@ -1279,10 +1418,106 @@
     "aws:cdk:path": "CodeCraftAiStatelessStackProd/IngestionTaskDef/ExecutionRole/DefaultPolicy/Resource"
    }
   },
+  "AppConfigParameterC8B187CD": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Description": "Centralized application config for CodeCraft AI (prod)",
+    "Name": "/codecraft-ai/prod/AppConfig",
+    "Type": "String",
+    "Value": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"vector_store_bucket\": \"",
+       {
+        "Fn::ImportValue": "CodeCraftAiStatefulStackProd:ExportsOutputRefVectorStoreBucketABEF753FF2C423C3"
+       },
+       "\", \"data_bucket\": \"",
+       {
+        "Fn::ImportValue": "CodeCraftAiStatefulStackProd:ExportsOutputRefDataBucketE3889A50250F5285"
+       },
+       "\", \"log_level\": \"INFO\", \"api_timeout_seconds\": 30, \"feature_flags\": {\"enable_experimental\": false}}"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CodeCraftAiStatelessStackProd/AppConfigParameter/Resource"
+   }
+  },
+  "ApiEcsLogGroup89F16337": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ecs/codecraft-ai-api-prod",
+    "RetentionInDays": 7
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CodeCraftAiStatelessStackProd/ApiEcsLogGroup/Resource"
+   }
+  },
+  "ApiDashboard7A331751": {
+   "Type": "AWS::CloudWatch::Dashboard",
+   "Properties": {
+    "DashboardBody": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"widgets\":[{\"type\":\"metric\",\"width\":12,\"height\":6,\"x\":0,\"y\":0,\"properties\":{\"view\":\"timeSeries\",\"title\":\"API ECS CPU Utilization\",\"region\":\"",
+       {
+        "Ref": "AWS::Region"
+       },
+       "\",\"metrics\":[[\"AWS/ECS\",\"CPUUtilization\",\"ClusterName\",\"",
+       {
+        "Ref": "EcsCluster97242B84"
+       },
+       "\",\"ServiceName\",\"",
+       {
+        "Fn::GetAtt": [
+         "ApiService199661B5",
+         "Name"
+        ]
+       },
+       "\"]],\"yAxis\":{}}}]}"
+      ]
+     ]
+    },
+    "DashboardName": "CodeCraftAI-prod-Dashboard"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CodeCraftAiStatelessStackProd/ApiDashboard/Resource"
+   }
+  },
+  "Api5xxAlarm31F257DC": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmDescription": "API 5xx errors exceed 3 in 5 minutes (prod)",
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "DatapointsToAlarm": 1,
+    "Dimensions": [
+     {
+      "Name": "LoadBalancer",
+      "Value": {
+       "Ref": "ApiServiceLB08B891CD"
+      }
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "HTTPCode_Target_5XX_Count",
+    "Namespace": "AWS/ApplicationELB",
+    "Period": 300,
+    "Statistic": "Sum",
+    "Threshold": 3
+   },
+   "Metadata": {
+    "aws:cdk:path": "CodeCraftAiStatelessStackProd/Api5xxAlarm/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/32S3W7CMAyFn4X7kAmYtGvGGEJCW1UQt8hNTfEISZU4IFT13aem/HRs2pWPv5yk9lGHcvD8Ikc9OPm+yvd9TZmslgxqL+DkNxWqoazWpRKTrVknE5GETJNahswgN+yuUhsYV5BpvPM7G3tvFQGTNTdzI6bzpCkfwDNgPMFZJI6OwHh/eG4YncGboZ3k0o2ZQe0OaFgsUQVHfJ45G8o4w79gWjj0/heem8hrgcrLaqKDZ3SN6yrfwRXQbOX3b7glQ9edHok1DGTQddjl7hLdkVSbUytrQXCQVWrb9GJNrCYV121VHGlTAjdxeDkuS00qJrqwkL+CBqMwf/gEavBMSlvIs+ggUxyHsvr7dlz0R9/1kWc0F89Vd85X4ArkW9idthbaFl5WC1vcjq+6rkWK3gbX5vEZuAzt/9ShE2vymGAtkjPvrHkaycFIjnpfnqjvgmE6oEzb+g3P9rgh0wIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31S0W7bMAz8lr4rGpoM2HOWdkWAYjOSoq8FLbMOF1kyRCpBYPjfB8mJ7XXFnnh3OknkSUt9//WbXt3BmRemOi4slbrbC5ijgjO/dWiWunttjdq8u9dio4pYWjL7WDqUpE1o56PgC5QWJ33S1szeEAh5N5oTeNwWqfwEeQLBM1xUEegEgtPBWycYHI6GoZMrW4uAOTToRO3RxEByeQo+trmH/wqPdUDmf+Sty3qv0LDuNjayYEiuG/wBoYY0FR8f8J0c3Wb6qHgnQA7DTLvu3WM4kRlyGmCvCBrd7fyQXq6Ft2TyuAPKLb21ICkO1uu2tWRyos8equ9gwRmsPlyBFljIWA9VmR3k6tNSd5/vzoP+xec+YkF39dzwbP0FQo0yhj2jvbK+Zt09+3pcvuFeMTfpywVydQEBGrwGPpJeGetjdQYxB909AB9KD6FKnomsLYQmSRn0vdoh+xiGlH9FaePwS2fqxrsqv0uvioscvPuy0vcrvbr7zUSLEJ1Qg3o31D9/7/3VKQMAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "CodeCraftAiStatelessStackProd/CDKMetadata/Default"
@@ -1341,13 +1576,26 @@
     ]
    }
   },
-  "ApiLoadBalancerDns": {
+  "ApiUrl": {
+   "Description": "The public URL of the API service",
    "Value": {
-    "Fn::GetAtt": [
-     "ApiServiceLB08B891CD",
-     "DNSName"
+    "Fn::Join": [
+     "",
+     [
+      "http://",
+      {
+       "Fn::GetAtt": [
+        "ApiServiceLB08B891CD",
+        "DNSName"
+       ]
+      }
+     ]
     ]
    }
+  },
+  "ApiKeySecretName": {
+   "Description": "The name of the secret in AWS Secrets Manager containing the API key",
+   "Value": "codecraft-ai/secrets/prod"
   },
   "ApiServiceName": {
    "Value": {

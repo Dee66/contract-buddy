@@ -1,15 +1,25 @@
 import json
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
-from src.utils.environment import get_config
+import sys
+import os
+
+# 🟦 NOTE: Ensure src is on the Python path for all environments (dev, staging, prod)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+# 🟩 GOOD: Use canonical config and logging setup for the whole repo
+from src.adapters.environment import ConfigLoader, setup_logging
 
 
 def main():
-    # Optionally load output path from config
-    config = get_config()
-    output_path = config.get("dashboard", {}).get(
-        "output_path", "data/clean/benchmark_interactive.html"
+    setup_logging()
+    # 🟩 GOOD: Use validated config object for all environment-aware settings
+    config = ConfigLoader().get_config()
+    output_path = getattr(
+        getattr(config, "dashboard", {}),
+        "output_path",
+        "data/clean/benchmark_interactive.html",
     )
 
     with open("data/clean/hyperparam_sweep_results.json", "r", encoding="utf-8") as f:

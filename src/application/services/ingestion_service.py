@@ -1,10 +1,13 @@
 import logging
+from typing import List
 from src.domain.ports import (
     IDataSource,
     IChunkingStrategy,
     IEmbeddingService,
     IVectorRepository,
 )
+from src.domain.entities.document import Document
+from src.domain.entities.chunk import Chunk
 
 
 class IngestionService:
@@ -41,27 +44,30 @@ class IngestionService:
         """
         logging.info("Starting document ingestion process...")
 
-        # 1. Load
-        documents = self.data_source.load()
+        # 1. Load all documents
+        documents: List[Document] = self.data_source.load_all()
         if not documents:
             logging.warning("No documents found to ingest. Pipeline finished early.")
             return
         logging.info(f"Loaded {len(documents)} documents.")
 
         # 2. Chunk
-        chunks = self.chunking_strategy.chunk(documents)
-        logging.info(f"Split documents into {len(chunks)} chunks.")
+        all_chunks: List[Chunk] = []
+        for doc in documents:
+            chunks = self.chunking_strategy.chunk(doc)
+            all_chunks.extend(chunks)
+        logging.info(f"Split documents into {len(all_chunks)} chunks.")
 
         # 3. Embed
-        self.embedding_service.embed_chunks(chunks)
+        self.embedding_service.embed_chunks(all_chunks)
         logging.info("Generated embeddings for all chunks.")
 
         # 4. Add to repository
-        self.vector_repository.add(chunks)
+        self.vector_repository.add(all_chunks)
         logging.info("Added chunks to the vector repository.")
 
         # 5. Persist
-        self.vector_repository.persist()
+        self.vector_repository.save()
         logging.info("Persisted the vector repository.")
 
         logging.info("Document ingestion process completed successfully.")

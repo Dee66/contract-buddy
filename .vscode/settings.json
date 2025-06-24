@@ -16,5 +16,8 @@
         "editor.insertSpaces": false,
         "editor.detectIndentation": false
     },
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "python.analysis.extraPaths": [
+        "./nox"
+    ]
 }

@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 from typing import List
 
 from src.adapters.config_manager import ConfigManager
-from src.application.services import QueryService
+from src.application.services.query_service import QueryService  # <-- FIXED IMPORT
 from src.domain.entities.chunk import Chunk
 from src.adapters.factories.factories import (
     create_embedding_service,

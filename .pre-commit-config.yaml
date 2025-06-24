@@ -1,18 +1,38 @@
 # See https://pre-commit.com for more information
 # See https://docs.astral.sh/ruff/integrations/pre-commit/ for ruff usage
-repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
-    hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-json
-    -   id: check-added-large-files
 
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.10
+repos:
+  # Formatting and whitespace (fast, always local)
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
     hooks:
-    -   id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
-    -   id: ruff-format
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+
+  # Linting (fast, always local)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.8
+    hooks:
+      - id: ruff
+      - id: ruff-format
+
+  # Security/policy (fast, always local)
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-no-eval
+      - id: python-no-log-warn
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-merge-conflict
+
+# 🟦 NOTE:
+# - Type checks (mypy), tests, and slow/complex checks are REMOVED from pre-commit.
+# - These will run in Nox and CI/CD only, reducing local friction and speeding up commits.
+# - This change affects all developers and environments (dev, staging, prod).

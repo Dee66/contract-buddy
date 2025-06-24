@@ -1,8 +1,8 @@
 import os
 import logging
 from typing import List
+from src.domain.entities.document import Document
 from src.domain.ports import IDataSource
-from src.domain.entities import Document
 
 
 class FileSystemDataSource(IDataSource):
@@ -12,34 +12,44 @@ class FileSystemDataSource(IDataSource):
     """
 
     def __init__(self, path: str):
-        if not os.path.isdir(path):
-            raise ValueError(f"Path is not a valid directory: {path}")
         self.path = path
-        logging.info(f"Initialized FileSystemDataSource with path: {self.path}")
+        logging.info(f"Initialized FileSystemDataSource for path '{path}'")
 
-    def load(self) -> List[Document]:
-        """
-        Loads all .txt files from the configured directory.
-        Each file is treated as a separate Document.
-        """
-        documents = []
-        for filename in os.listdir(self.path):
-            if filename.endswith(".txt"):
-                file_path = os.path.join(self.path, filename)
-                try:
-                    with open(file_path, "r", encoding="utf-8") as f:
-                        content = f.read()
-                    doc_id = os.path.splitext(filename)[0]
-                    # Correctly instantiate the Document entity, fulfilling the contract.
-                    documents.append(
-                        Document(
-                            id=doc_id,
-                            content=content,
-                            source_location=file_path,
-                            metadata={"filename": filename},
-                        )
-                    )
-                except Exception as e:
-                    logging.error(f"Failed to read or process file {file_path}: {e}")
-        logging.info(f"Loaded {len(documents)} documents from {self.path}")
-        return documents
+    def get_all_source_document_identifiers(self) -> List[str]:
+        """Returns a list of file names in the directory as document identifiers."""
+        try:
+            return [
+                f
+                for f in os.listdir(self.path)
+                if os.path.isfile(os.path.join(self.path, f))
+            ]
+        except Exception as e:
+            logging.error(f"Error listing files in {self.path}: {e}")
+            return []
+
+    def load_all(self) -> List[Document]:
+        """Loads all documents from the file system."""
+        doc_ids = self.get_all_source_document_identifiers()
+        return [self.load(doc_id) for doc_id in doc_ids]
+
+    def load_new(self, last_known_ids: List[str]) -> List[Document]:
+        """Loads only new or modified documents by comparing file names."""
+        current_ids = set(self.get_all_source_document_identifiers())
+        new_ids = current_ids - set(last_known_ids)
+        return [self.load(doc_id) for doc_id in new_ids]
+
+    def load(self, doc_id: str) -> Document:
+        """Loads a single document by its file name."""
+        file_path = os.path.join(self.path, doc_id)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            return Document(
+                id=doc_id,
+                content=content,
+                source_location=file_path,
+                metadata={"source": file_path},
+            )
+        except Exception as e:
+            logging.error(f"Error loading file {file_path}: {e}")
+            raise

@@ -1,23 +1,33 @@
 # --- Stage 1: Production Dependency Builder ---
 # Builds a lean virtual environment with only production dependencies.
-FROM python:3.11-slim AS prod_builder
+FROM python:3.11 AS prod_builder
 
 WORKDIR /app
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
 
-COPY requirements/prod.txt .
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install -r prod.txt
+# 🟩 GOOD: Upgrade system packages to minimize vulnerabilities
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential && \
+    apt-get dist-upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy Poetry files and install only production dependencies
+COPY pyproject.toml poetry.lock ./
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install --upgrade poetry && \
+    poetry cache clear . --all || true && \
+    for i in 1 2 3; do poetry install --only main --no-root && break || sleep 10; done
 
 
 # --- Stage 2: Development & Test Dependency Builder ---
 # Builds on the production environment, adding development dependencies.
 FROM prod_builder AS dev_builder
 
-COPY requirements/dev.txt .
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install -r dev.txt
+COPY pyproject.toml poetry.lock ./
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install --upgrade poetry && \
+    poetry cache clear . --all || true && \
+    for i in 1 2 3; do poetry install --with dev --no-root && break || sleep 10; done
 
 
 # --- Stage 3: Tester ---
@@ -33,28 +43,38 @@ COPY config ./config
 COPY data/dev ./data/dev
 COPY pytest.ini .
 
-RUN pytest
+RUN poetry run pytest
 
 
 # --- Stage 4: Final Production Image ---
 # Creates the final, lean, and secure image for the API server.
-FROM gcr.io/distroless/python3-debian11
+FROM python:3.11
 
 WORKDIR /app
-ENV PATH="/opt/venv/bin:$PATH"
-ENV PROJECT_ROOT="/app"
 
-# Copy the virtual environment from the builder stage.
-COPY --from=prod_builder /opt/venv /opt/venv
+# 🟩 GOOD: Update system packages and remove build tools to minimize vulnerabilities
+RUN apt-get update && \
+    apt-get dist-upgrade -y && \
+    apt-get install -y --no-install-recommends libpq-dev gcc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get purge -y --auto-remove gcc
 
-# Copy application code, chown to the 'nonroot' user (uid 65532) used by distroless.
-COPY --chown=65532:65532 src ./src
-COPY --chown=65532:65532 config ./config
+# Copy installed dependencies from builder
+COPY --from=prod_builder /usr/local /usr/local
 
-# The distroless container runs as the 'nonroot' user by default.
+# Copy application code
+COPY src/ ./src/
+COPY infrastructure/ ./infrastructure/
+COPY notebooks/ ./notebooks/
+COPY config/ ./config/
+COPY infrastructure/app.py ./app.py
 
-# Expose the port the API server will run on.
+# Expose the API port
 EXPOSE 8000
 
-# The command to run the FastAPI application using the uvicorn server.
-CMD ["uvicorn", "src.adapters.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Set environment variables (override in ECS/EKS/production)
+ENV PYTHONUNBUFFERED=1
+
+# Use uvicorn as the entrypoint (run FastAPI app)
+CMD ["poetry", "run", "uvicorn", "src.adapters.api.main:app", "--host", "0.0.0.0", "--port", "8000"]

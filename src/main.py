@@ -1,7 +1,7 @@
 import sys
 import logging
 from pathlib import Path
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends  # type: ignore
 from src.adapters.config_manager import ConfigManager
 from src.application.services import IngestionService
 from src.adapters.factories.factories import (
@@ -13,13 +13,11 @@ from src.adapters.factories.factories import (
 
 app = FastAPI()
 
-# Instantiate ConfigManager at startup
 config_manager = ConfigManager()
 
 
 @app.on_event("startup")
 def load_config():
-    # Load and validate config at startup; fail fast if invalid
     config_manager.load()
 
 
@@ -29,37 +27,34 @@ def get_app_config():
 
 @app.get("/config")
 def show_config(cfg=Depends(get_app_config)):
-    # Expose config for debugging (remove or secure in production)
     return cfg.dict()
 
 
 def main() -> int:
-    """
-    Main entrypoint for the RAG ingestion pipeline.
-    This function acts as the Composition Root for the ingestion process.
-    Returns 0 on success, 1 on failure.
-    """
     try:
-        # Use config from ConfigManager (SSM Parameter Store)
         config = config_manager.config
 
-        # Defensive Programming: Ensure directories exist if needed
-        # (Assuming config has data_source and vector_repository keys as before)
-        # You may need to adapt this if your config structure changes.
-        # Example assumes config is a Pydantic model with .dict() support.
+        # 🟨 CAUTION: Defensive directory creation assumes config fields exist and are correct types.
         if (
             hasattr(config, "data_source")
-            and getattr(config.data_source, "type", None) == "file_system"
+            and isinstance(config.data_source, dict)
+            and config.data_source.get("type") == "file_system"
         ):
-            Path(config.data_source.path).mkdir(parents=True, exist_ok=True)
-        if hasattr(config, "vector_repository"):
-            Path(config.vector_repository.persist_path).parent.mkdir(
+            Path(config.data_source.get("path", "./data")).mkdir(
                 parents=True, exist_ok=True
             )
+        if hasattr(config, "vector_repository") and isinstance(
+            config.vector_repository, dict
+        ):
+            Path(
+                config.vector_repository.get("persist_path", "./vector_store")
+            ).parent.mkdir(parents=True, exist_ok=True)
 
-        # Compose pipeline using config
-        data_source = create_data_source(config.data_source)
-        chunking_strategy = create_chunking_strategy(config.chunking_strategy)
+        data_source = create_data_source(config.data_source.get("type"))  # type: ignore
+        chunking_strategy = create_chunking_strategy(
+            config.chunking_strategy.get("type"),
+            config.chunking_strategy.get("chunk_overlap", 0),
+        )  # type: ignore
         embedding_service = create_embedding_service(config.embedding_service)
         vector_repository = create_vector_repository(
             config.vector_repository, embedding_service

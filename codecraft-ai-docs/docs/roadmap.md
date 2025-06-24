@@ -7,14 +7,17 @@ The CodeCraft AI project aims to continuously evolve and adapt to the changing l
 ## Upcoming Features
 
 ### Q1 2024
+
 - **Enhanced User Interface**: Revamp the user interface for improved usability and accessibility.
 - **Integration with Additional AI Models**: Expand the range of AI models supported for code completion and documentation.
 
 ### Q2 2024
+
 - **Real-time Collaboration Tools**: Implement features that allow multiple users to collaborate in real-time on code and documentation.
 - **Advanced Analytics Dashboard**: Develop a dashboard to provide insights into usage patterns and performance metrics.
 
 ### Q3 2024
+
 - **Automated Testing Framework**: Introduce an automated testing framework to ensure the reliability and accuracy of AI-generated outputs.
 - **Community Contributions**: Open up the project for community contributions, allowing developers to submit enhancements and features.
 

@@ -8,8 +8,11 @@ from aws_cdk import (
     aws_ecs_patterns as ecs_patterns,
     aws_secretsmanager as secretsmanager,
     aws_ssm as ssm,
+    aws_logs as logs,
+    aws_cloudwatch as cloudwatch,
     CfnOutput,
     Duration,
+    RemovalPolicy,
 )
 from constructs import Construct
 import json
@@ -20,11 +23,11 @@ class StatelessStack(Stack):
         self,
         scope: Construct,
         construct_id: str,
-        env_name: str,
-        data_bucket: s3.IBucket,
-        vector_store_bucket: s3.IBucket,
-        api_repo: ecr.IRepository,
-        ingestion_repo: ecr.IRepository,
+        env_name: str = "dev",
+        data_bucket: s3.IBucket = None,
+        vector_store_bucket: s3.IBucket = None,
+        api_repo: ecr.IRepository = None,
+        ingestion_repo: ecr.IRepository = None,
         **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -172,6 +175,78 @@ class StatelessStack(Stack):
         # --- Grant ECS Task Roles permission to read config ---
         for role in [api_role, ingestion_role]:
             ssm_param.grant_read(role)
+
+        # --- CloudWatch Log Group for ECS (with cost-efficient retention) ---
+        logs.LogGroup(
+            self,
+            "ApiEcsLogGroup",
+            log_group_name=f"/ecs/codecraft-ai-api-{env_name}",
+            retention=logs.RetentionDays.ONE_DAY
+            if env_name == "dev"
+            else logs.RetentionDays.ONE_WEEK,
+            removal_policy=RemovalPolicy.DESTROY,  # Clean up in dev/staging
+        )
+
+        # --- Minimal CloudWatch Dashboard ---
+        dashboard = cloudwatch.Dashboard(
+            self,
+            "ApiDashboard",
+            dashboard_name=f"CodeCraftAI-{env_name}-Dashboard",
+        )
+
+        # ECS CPU Utilization Widget (uses actual cluster and service names)
+        dashboard.add_widgets(
+            cloudwatch.GraphWidget(
+                title="API ECS CPU Utilization",
+                left=[
+                    cloudwatch.Metric(
+                        namespace="AWS/ECS",
+                        metric_name="CPUUtilization",
+                        dimensions_map={
+                            "ClusterName": cluster.cluster_name,
+                            "ServiceName": api_service.service.service_name,
+                        },
+                        statistic="Average",
+                        period=Duration.minutes(5),
+                    )
+                ],
+                width=12,
+                height=6,
+            )
+        )
+
+        # --- Minimal CloudWatch Alarm (API 5xx errors) ---
+        # Use the actual ALB ARN for the LoadBalancer dimension
+        alb_arn_suffix = api_service.load_balancer.load_balancer_arn.split(
+            "loadbalancer/"
+        )[-1]
+        alb_5xx_metric = cloudwatch.Metric(
+            namespace="AWS/ApplicationELB",
+            metric_name="HTTPCode_Target_5XX_Count",
+            dimensions_map={
+                "LoadBalancer": alb_arn_suffix,
+            },
+            statistic="Sum",
+            period=Duration.minutes(5),
+        )
+
+        alarm_threshold = 10 if env_name == "dev" else 3
+        cloudwatch.Alarm(
+            self,
+            "Api5xxAlarm",
+            metric=alb_5xx_metric,
+            threshold=alarm_threshold,
+            evaluation_periods=1,
+            datapoints_to_alarm=1,
+            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+            alarm_description=f"API 5xx errors exceed {alarm_threshold} in 5 minutes ({env_name})",
+        )
+
+        # In dev, do not send notifications; in prod, add SNS or other actions as needed
+        # alb_5xx_alarm.add_alarm_action(cw_actions.SnsAction(your_sns_topic))
+
+        # --- Output dashboard URL for convenience ---
+        self.dashboard_url = f"https://console.aws.amazon.com/cloudwatch/home?region={self.region}#dashboards:name={dashboard.dashboard_name}"
 
         # --- Stack Outputs ---
         CfnOutput(self, "EcsClusterName", value=cluster.cluster_name)

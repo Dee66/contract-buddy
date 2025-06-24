@@ -31,6 +31,26 @@ if not defined AWS_REGION (
     exit /b 1
 )
 
-:: Run bootstrap
+:: --- Python Environment Bootstrap ---
+REM Prefer project .venv if present, else fallback to system Python
+set PYTHON_EXE=
+if exist "%~dp0\..\..\venv\Scripts\python.exe" (
+    set PYTHON_EXE=%~dp0\..\..\venv\Scripts\python.exe
+) else if exist "%~dp0\..\..\.venv\Scripts\python.exe" (
+    set PYTHON_EXE=%~dp0\..\..\.venv\Scripts\python.exe
+) else (
+    where python >nul 2>nul
+    if %errorlevel%==0 (
+        set PYTHON_EXE=python
+    ) else (
+        echo [ERROR] Python executable not found. Please create a virtual environment or install Python.
+        exit /b 1
+    )
+)
+
+:: Print Python version for traceability
+%PYTHON_EXE% --version
+
+:: Run CDK bootstrap
 echo Bootstrapping aws://%AWS_ACCOUNT%/%AWS_REGION%...
-cdk -a "python infrastructure/app.py" bootstrap aws://%AWS_ACCOUNT%/%AWS_REGION%
+cdk -a "%PYTHON_EXE% infrastructure/app.py" bootstrap aws://%AWS_ACCOUNT%/%AWS_REGION%

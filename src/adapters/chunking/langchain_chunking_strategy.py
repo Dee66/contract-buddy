@@ -6,9 +6,8 @@ from src.domain.entities import Document, Chunk
 
 class LangchainChunkingStrategy(IChunkingStrategy):
     """
-    A concrete implementation of the chunking strategy using Langchain's
-    RecursiveCharacterTextSplitter. This is an adapter that connects our
-    domain's abstract port to a specific external library.
+    Adapter for LangChain's RecursiveCharacterTextSplitter, implementing our domain's chunking port.
+    Ensures Clean Architecture compliance and production-grade chunking for a single Document.
     """
 
     def __init__(self, chunk_size: int = 1000, chunk_overlap: int = 200):
@@ -18,21 +17,18 @@ class LangchainChunkingStrategy(IChunkingStrategy):
             length_function=len,
         )
 
-    def chunk(self, documents: List[Document]) -> List[Chunk]:
+    def chunk(self, document: Document) -> List[Chunk]:
         """
-        Uses the configured Langchain splitter to chunk the document content.
+        Splits a single Document into Chunks using LangChain's splitter.
+        This signature matches the IChunkingStrategy port (document: Document) -> List[Chunk].
         """
-        all_chunks = []
-        for doc in documents:
-            split_texts = self._splitter.split_text(doc.content)
-            for i, text in enumerate(split_texts):
-                chunk_id = f"{doc.id}_chunk_{i}"
-                all_chunks.append(
-                    Chunk(
-                        id=chunk_id,
-                        document_id=doc.id,
-                        content=text,
-                        metadata={"source": doc.metadata.get("source")},
-                    )
-                )
-        return all_chunks
+        split_texts = self._splitter.split_text(document.content)
+        return [
+            Chunk(
+                id=f"{document.id}_chunk_{i}",
+                document_id=document.id,
+                content=text,
+                metadata={"source": document.metadata.get("source")},
+            )
+            for i, text in enumerate(split_texts)
+        ]

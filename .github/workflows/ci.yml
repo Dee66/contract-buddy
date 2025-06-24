@@ -1,32 +1,28 @@
 name: CodeCraft AI - CI/CD
 
 on:
-  # Trigger on pushes to the main branch for production deployments
   push:
-    branches: [ "main" ]
-
-  # Allow manual triggers for any branch, primarily for staging deployments
+    branches: ["main"]
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment to deploy to'
+        description: "Environment to deploy to"
         required: true
-        default: 'staging'
+        default: "staging"
         type: choice
         options:
-        - staging
-        - prod
+          - staging
+          - prod
 
 env:
   AWS_REGION: af-south-1
   API_ECR_REPOSITORY: codecraft-ai-api
   INGESTION_ECR_REPOSITORY: codecraft-ai-ingestion
-  # Set CDK_ENV based on the trigger event
   CDK_ENV: ${{ (github.event_name == 'push' && 'prod') || github.event.inputs.environment }}
 
 permissions:
   contents: read
-  id-token: write # passwordless auth to AWS
+  id-token: write
 
 jobs:
   lint-and-test:
@@ -39,25 +35,47 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
-        shell: pwsh
-        run: make install
+      - name: Set Poetry to use in-project virtualenv
+        run: poetry config virtualenvs.in-project true
+
+      - name: Cache Poetry virtualenv
+        uses: actions/cache@v4
+        with:
+          path: |
+            .venv
+            ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Bootstrap dependencies
+        run: poetry install --with dev
 
       - name: Run linter
-        shell: pwsh
-        run: make lint
+        run: poetry run make lint
 
       - name: Run tests
-        shell: pwsh
-        run: make test
+        run: poetry run make test
+
+      - name: Run notebook tests with nbval
+        run: poetry run pytest --nbval notebooks/ai_demo.ipynb
+
+      - name: Run pip-audit
+        run: poetry run make security-audit
+
+      - name: Run Safety vulnerability scan
+        run: poetry run make safety-audit
+
+      - name: Run pre-commit checks
+        run: poetry run pre-commit run --all-files
 
   build-and-push:
     name: Build and Push to ECR
     runs-on: ubuntu-latest
     needs: lint-and-test
-    # This job should run for pushes to main OR any manual workflow dispatch.
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
 
     steps:
@@ -70,23 +88,25 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsCdkDeployRole
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Push environment config to SSM Parameter Store
+        run: |
+          pip install nox poetry
+          nox -s push_config_to_ssm -- --env ${{ env.CDK_ENV }}
+
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
         id: login-ecr
 
       - name: Build and Push API Image
-        shell: pwsh
         run: make build-and-push-api ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
       - name: Build and Push Ingestion Image
-        shell: pwsh
         run: make build-and-push-ingestion ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}
 
   deploy:
     name: Deploy to AWS
     runs-on: ubuntu-latest
     needs: build-and-push
-    # This job should run for pushes to main OR any manual workflow dispatch.
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
 
     steps:
@@ -96,7 +116,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: pip install poetry
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -105,23 +128,17 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Install CDK dependencies
-        shell: pwsh
-        run: make infra-install
+        run: poetry install --only main
 
       - name: Deploy CDK stack
-        shell: pwsh
-        run: make cdk-deploy CDK_ENV=${{ env.CDK_ENV }}
+        run: poetry run make cdk-deploy CDK_ENV=${{ env.CDK_ENV }}
 
       - name: Force new ECS deployment
         id: ecs_deploy
-        shell: pwsh
         run: |
-          # Robustly find the stateless stack key in the JSON output
-          $stackName = (Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json | Get-Member -MemberType NoteProperty | Where-Object { $_.Name -like '*StatelessStack*' }).Name
-          $cdkOutputs = Get-Content -Raw -Path cdk-outputs.json | ConvertFrom-Json
-          $clusterName = $cdkOutputs.$stackName.EcsClusterName
-          $serviceName = $cdkOutputs.$stackName.ApiServiceName
-          $subnets = $cdkOutputs.$stackName.PrivateSubnetIds
-
-          Write-Output "Forcing new deployment for service $serviceName in cluster $clusterName..."
+          stackName=$(jq -r 'to_entries[] | select(.key | test("StatelessStack")) | .key' cdk-outputs.json)
+          clusterName=$(jq -r --arg stackName "$stackName" '.[$stackName].EcsClusterName' cdk-outputs.json)
+          serviceName=$(jq -r --arg stackName "$stackName" '.[$stackName].ApiServiceName' cdk-outputs.json)
+          subnets=$(jq -r --arg stackName "$stackName" '.[$stackName].PrivateSubnetIds' cdk-outputs.json)
+          echo "Forcing new deployment for service $serviceName in cluster $clusterName..."
           aws ecs update-service --cluster $clusterName --service $serviceName --force-new-deployment

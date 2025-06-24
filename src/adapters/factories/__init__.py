@@ -3,15 +3,15 @@
 # factory functions from the contained modules.
 
 from .factories import (
-    create_data_source,
+    create_file_system_data_source,
+    create_s3_data_source,
     create_chunking_strategy,
-    create_embedding_service,
-    create_vector_repository,
+    create_faiss_vector_repository,
 )
 
 __all__ = [
-    "create_data_source",
+    "create_file_system_data_source",
+    "create_s3_data_source",
     "create_chunking_strategy",
-    "create_embedding_service",
-    "create_vector_repository",
+    "create_faiss_vector_repository",
 ]

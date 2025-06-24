@@ -1,7 +1,7 @@
 import logging
 import numpy as np
 from typing import List
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer  # type: ignore
 from src.domain.ports import IEmbeddingService
 from src.domain.entities import Chunk
 
@@ -52,3 +52,15 @@ class SentenceTransformerEmbeddingService(IEmbeddingService):
         """
         embedding = self.model.encode(query, show_progress_bar=False)
         return np.array(embedding, dtype=np.float32)
+
+    def get_dimension(self) -> int:
+        """
+        Returns the dimensionality of the embeddings produced by this service.
+        """
+        dim = self.model.get_sentence_embedding_dimension()
+        # 🟨 CAUTION: Defensive fallback for None (should not occur in production, but ensures type safety)
+        if dim is None:
+            raise ValueError(
+                "SentenceTransformer model did not return a valid embedding dimension."
+            )
+        return int(dim)

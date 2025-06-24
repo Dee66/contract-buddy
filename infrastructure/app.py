@@ -1,7 +1,20 @@
-#!/usr/bin/env python3
+import os
 import aws_cdk as cdk
 from stateful_stack import StatefulStack
 from stateless_stack import StatelessStack
+from pathlib import Path
+import sys
+
+# 🟦 NOTE: Defensive check to ensure this file is executed from the correct working directory.
+# 🟨 CAUTION: If CDK is run from a different directory, relative imports or file checks may fail.
+# 🟩 GOOD: This block ensures the script always runs from the infrastructure/ directory.
+expected_dir = Path(__file__).parent.resolve()
+if Path.cwd().resolve() != expected_dir:
+    print(
+        f"🟨 CAUTION: Changing working directory to {expected_dir} for CDK app execution."
+    )
+    os.chdir(expected_dir)
+    sys.path.insert(0, str(expected_dir))
 
 app = cdk.App()
 

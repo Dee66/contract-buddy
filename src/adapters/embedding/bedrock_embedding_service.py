@@ -1,4 +1,4 @@
-import boto3
+import boto3  # type: ignore
 import json
 import logging
 import numpy as np
@@ -17,7 +17,7 @@ class BedrockEmbeddingService(IEmbeddingService):
         self.model_id = model_id
         self.bedrock_runtime = boto3.client(
             service_name="bedrock-runtime", region_name=aws_region
-        )
+        )  # type: ignore
         logging.info(
             f"Initialized BedrockEmbeddingService with model: {self.model_id} in region: {aws_region}"
         )
@@ -50,5 +50,12 @@ class BedrockEmbeddingService(IEmbeddingService):
             return np.array(response_body.get("embedding"), dtype=np.float32)
         except Exception as e:
             logging.error(f"Bedrock embedding failed for model {self.model_id}: {e}")
-            # Re-raise the exception to halt the pipeline, preventing silent failure.
             raise
+
+    def get_dimension(self) -> int:
+        """
+        Returns the dimensionality of the embeddings produced by this service.
+        """
+        # 🟨 CAUTION: This value should match the Bedrock model's output dimension.
+        # For Amazon Titan, the dimension is 1536. Update if using a different model.
+        return 1536

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, TYPE_CHECKING, Tuple
+from typing import List, Dict, Any, TYPE_CHECKING, Tuple, Optional
 import numpy as np
 
 # Use a TYPE_CHECKING block to import for type hints only.
@@ -61,6 +61,14 @@ class IDataSource(ABC):
         """
         pass
 
+    @abstractmethod
+    def load(self, doc_id: str) -> "Document":
+        """
+        Loads a single document by its unique identifier.
+        Returns the Document if found, or raises an exception if not found.
+        """
+        pass
+
 
 class IVectorRepository(ABC):
     """
@@ -88,7 +96,7 @@ class IVectorRepository(ABC):
         self,
         query_embedding: np.ndarray,
         top_k: int,
-        metadata_filter: Dict[str, Any] = None,
+        metadata_filter: Optional[Dict[str, Any]] = None,
     ) -> List[Tuple["Chunk", float]]:
         """
         Searches for chunks similar to a query embedding.
@@ -123,4 +131,12 @@ class IEmbeddingService(ABC):
     @abstractmethod
     def embed_query(self, query: str) -> np.ndarray:
         """Generates an embedding for a single query string."""
+        pass
+
+    @abstractmethod
+    def get_dimension(self) -> int:
+        """
+        Returns the dimensionality of the embeddings produced by this service.
+        This is required for initializing vector repositories (e.g., FAISS).
+        """
         pass

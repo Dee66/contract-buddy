@@ -14,6 +14,15 @@ from scripts.validate_config import AppConfig, AppSecrets
             "log_level": "INFO",
             "api_timeout_seconds": 30,
             "feature_flags": {},
+            "data_source": {
+                "type": "s3",
+            },
+            "embedding_service": {
+                "type": "bedrock",
+            },
+            "vector_repository": {
+                "type": "faiss",
+            },
         },
     ],
 )
