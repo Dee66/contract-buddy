@@ -246,7 +246,9 @@ def main():
         help="Environment name (e.g., dev, staging, prod, or 'all')",
     )
     parser.add_argument(
-        "--region", default=os.environ.get("AWS_REGION", "us-east-1"), help="AWS region"
+        "--region",
+        default=os.environ.get("AWS_REGION", "af-south-1"),
+        help="AWS region",
     )
     args = parser.parse_args()
 

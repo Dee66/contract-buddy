@@ -455,7 +455,7 @@
         {
          "Ref": "AWS::Region"
         },
-        "us-east-1"
+        "af-south-1"
        ]
       },
       {

@@ -18,7 +18,7 @@ jobs:
       contents: read
 
     env:
-      AWS_REGION: us-east-1
+      AWS_REGION: af-south-1
       # Optionally override in repo/environment secrets
 
     steps:

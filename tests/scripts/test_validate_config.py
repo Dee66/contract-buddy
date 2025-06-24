@@ -58,7 +58,7 @@ def test_app_config_invalid(config_dict):
             "DB_PASSWORD": "pw",
             "DB_NAME": "db",
             "S3_BUCKET_NAME": "bucket",
-            "S3_REGION": "us-east-1",
+            "S3_REGION": "af-south-1",
             "API_KEY": "key",
             "API_ENDPOINT": "endpoint",
             "LOG_LEVEL": "DEBUG",
