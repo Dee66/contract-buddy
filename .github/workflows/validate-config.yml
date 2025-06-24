@@ -19,7 +19,6 @@ jobs:
 
     env:
       AWS_REGION: af-south-1
-      # Optionally override in repo/environment secrets
 
     steps:
       - name: Checkout code
@@ -39,6 +38,9 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
+
+      # 🟦 NOTE: Trivy and Python dependency scans are intentionally skipped for demo speed.
+      # To re-enable, add the scan steps back here.
 
       - name: Validate SSM config for all environments
         run: |
