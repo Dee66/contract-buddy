@@ -43,12 +43,13 @@ jobs:
           driver: docker-container
 
       - name: Set Buildx builder as default
-        run: |
-          docker buildx use default
+        run: docker buildx use default
 
       - name: Build API image
         run: |
-          docker buildx build -f Dockerfile.api -t codecraft-ai-api:test .
+          docker buildx build --builder default --cache-from=type=local,src=/tmp/.buildx-cache \
+                              --cache-to=type=local,dest=/tmp/.buildx-cache \
+                              -f Dockerfile.api -t codecraft-ai-api:test .
 
       - name: Build Ingestion image
         run: |
