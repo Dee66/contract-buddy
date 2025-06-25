@@ -19,6 +19,10 @@ jobs:
     env:
       AWS_REGION: af-south-1
 
+    strategy:
+      matrix:
+        env: [dev, staging, prod]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,27 +30,37 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install Poetry
-        run: |
-          pip install poetry
+        run: pip install poetry
 
       - name: Install dependencies
+        run: poetry install
+
+      # 🟪 ARCH: Dynamically map environment to correct OIDC role secret
+      - name: Set OIDC role ARN for environment
+        id: set-role
         run: |
-          poetry install
+          if [ "${{ matrix.env }}" = "dev" ]; then
+            echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_DEV }}" >> $GITHUB_ENV
+          elif [ "${{ matrix.env }}" = "staging" ]; then
+            echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_STAGING }}" >> $GITHUB_ENV
+          elif [ "${{ matrix.env }}" = "prod" ]; then
+            echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_PROD }}" >> $GITHUB_ENV
+          else
+            echo "🟥 CRITICAL: Unknown environment: ${{ matrix.env }}"
+            exit 1
+          fi
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+          role-to-assume: ${{ env.OIDC_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       # 🟦 NOTE: Trivy and Python dependency scans are intentionally skipped for demo speed.
       # To re-enable, add the scan steps back here.
 
-      - name: Validate SSM config for all environments
-        run: |
-          make validate-config CDK_ENV=dev
-          make validate-config CDK_ENV=staging
-          make validate-config CDK_ENV=prod
+      - name: Validate SSM config for ${{ matrix.env }}
+        run: make validate-config CDK_ENV=${{ matrix.env }}

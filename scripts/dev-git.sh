@@ -74,14 +74,11 @@ case "$1" in
             fi
         fi
 
-        # 🟦 NOTE: Prompt to pull latest changes with rebase after commit (default: yes)
-        read -rp "🟦 Pull latest changes with 'git pull --rebase' before push? [Y/n]: " pull_now
-        pull_now=${pull_now:-Y}
-        if [[ "$pull_now" =~ ^[Yy]$ ]]; then
-            if ! git pull --rebase; then
-                echo "🟥 CRITICAL: Pull (rebase) failed. Resolve conflicts before pushing."
-                exit 1
-            fi
+        # 🟩 GOOD: Automatically pull latest changes with rebase after commit (no prompt)
+        echo "🟦 Pulling latest changes with 'git pull --rebase' before push..."
+        if ! git pull --rebase; then
+            echo "🟥 CRITICAL: Pull (rebase) failed. Resolve conflicts before pushing."
+            exit 1
         fi
 
         # 🟦 NOTE: Prompt to push after commit (default: yes)
