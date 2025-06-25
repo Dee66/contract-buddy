@@ -6,6 +6,7 @@
 
 set -e
 HOOKS_INSTALLED_MARKER=".git/hooks/.precommit_hooks_installed"
+
 # --- Ensure Poetry is installed ---
 if ! command -v poetry >/dev/null 2>&1; then
     echo "🟥 CRITICAL: Poetry is not installed. Please install Poetry: https://python-poetry.org/docs/#installation"
@@ -24,7 +25,6 @@ if ! poetry run pre-commit --version >/dev/null 2>&1; then
 fi
 
 # --- Ensure hooks are installed and executable (idempotent, but skip if already installed) ---
-# Replace marker logic with:
 if [ ! -f "$HOOKS_INSTALLED_MARKER" ] || [ ! -x ".git/hooks/pre-commit" ] || [ ! -x ".git/hooks/pre-push" ]; then
     poetry run pre-commit install --hook-type pre-commit --hook-type pre-push >/dev/null 2>&1 || true
     if [ -d .git/hooks ]; then
@@ -39,10 +39,22 @@ fi
 case "$1" in
     commit)
         shift
-        # 🟦 NOTE: Optionally prompt to stage all changes
-        read -rp "🟦 Stage all changes with 'git add .' before commit? [y/N]: " stage_now
-        if [ "$stage_now" = "y" ] || [ "$stage_now" = "Y" ]; then
+        # 🟩 GOOD: Automatically stage all changes before running hooks and committing
+        git add .
+
+        # 🟦 NOTE: Run pre-commit hooks (auto-fix) after staging
+        if ! poetry run pre-commit run --all-files; then
+            echo "🟨 CAUTION: Pre-commit hooks made changes or failed. Staging all changes for review."
             git add .
+            echo "🟦 NOTE: Code was auto-fixed by hooks and staged."
+            echo "🟦 ACTION: Please review the changes (git diff), then re-run this script to commit."
+            exit 1
+        fi
+
+        # 🟦 NOTE: Only proceed if there are staged changes
+        if git diff --cached --quiet; then
+            echo "🟦 No staged changes to commit."
+            exit 0
         fi
 
         if [ -z "$1" ]; then
@@ -62,8 +74,20 @@ case "$1" in
             fi
         fi
 
-        read -rp "🟦 Commit successful. Would you like to push now? [y/N]: " push_now
-        if [ "$push_now" = "y" ] || [ "$push_now" = "Y" ]; then
+        # 🟦 NOTE: Prompt to pull latest changes with rebase after commit (default: yes)
+        read -rp "🟦 Pull latest changes with 'git pull --rebase' before push? [Y/n]: " pull_now
+        pull_now=${pull_now:-Y}
+        if [[ "$pull_now" =~ ^[Yy]$ ]]; then
+            if ! git pull --rebase; then
+                echo "🟥 CRITICAL: Pull (rebase) failed. Resolve conflicts before pushing."
+                exit 1
+            fi
+        fi
+
+        # 🟦 NOTE: Prompt to push after commit (default: yes)
+        read -rp "🟦 Commit successful. Would you like to push now? [Y/n]: " push_now
+        push_now=${push_now:-Y}
+        if [[ "$push_now" =~ ^[Yy]$ ]]; then
             if ! poetry run git push; then
                 echo "🟥 CRITICAL: Push failed."
                 exit 1
