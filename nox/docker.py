@@ -98,7 +98,7 @@ def docker_build_all(session):
         )
         if result and result.strip():
             nox_logger.info(
-                f"🟩 GOOD: Docker image '{full_tag}' already exists, skipping build."
+                f"Docker image '{full_tag}' already exists, skipping build."
             )
             continue
         nox_logger.info(

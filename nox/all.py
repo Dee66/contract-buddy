@@ -43,7 +43,7 @@ def all(session):
         try:
             step_func(session)
             nox_logger.info(
-                f"🟩 GOOD: Step '{step_name}' completed successfully in env '{env}'."
+                f"Step '{step_name}' completed successfully in env '{env}'."
             )
         except nox.sessions._SessionSkip as skip_exc:
             nox_logger.warning(f"🟨 CAUTION: Step '{step_name}' skipped: {skip_exc}")

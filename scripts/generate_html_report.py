@@ -8,13 +8,13 @@ import os
 # 🟦 NOTE: Ensure src is on the Python path for all environments (dev, staging, prod)
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-# 🟩 GOOD: Use canonical config and logging setup for the whole repo
+# Use canonical config and logging setup for the whole repo
 from src.adapters.environment import ConfigLoader, setup_logging
 
 
 def main():
     setup_logging()
-    # 🟩 GOOD: Use validated config object for all environment-aware settings
+    # Use validated config object for all environment-aware settings
     config = ConfigLoader().get_config()
     output_path = getattr(
         getattr(config, "dashboard", {}),

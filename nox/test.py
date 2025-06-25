@@ -18,7 +18,7 @@ def test(session):
             external=True,
         )
         session.run("poetry", "run", "mypy", "src", external=True)
-        nox_logger.info("🟩 GOOD: Test session completed successfully.")
+        nox_logger.info("Test session completed successfully.")
     except Exception as e:
         nox_logger.error(
             f"🟥 CRITICAL: Tests or type checks failed: {e}", exc_info=True

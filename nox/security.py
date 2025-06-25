@@ -28,11 +28,11 @@ def security_scan(session):
             "Review the above output and update your dependencies in pyproject.toml. "
             "Do not deploy to production until all critical vulnerabilities are resolved."
         )
-    nox_logger.info("🟩 GOOD: pip-audit completed. No known vulnerabilities found.")
+    nox_logger.info("pip-audit completed. No known vulnerabilities found.")
 
     try:
         session.run("poetry", "run", "bandit", "-r", "src/", external=True)
-        nox_logger.info("🟩 GOOD: Bandit security scan completed successfully.")
+        nox_logger.info("Bandit security scan completed successfully.")
     except Exception as e:
         nox_logger.error(
             f"🟥 CRITICAL: Bandit security scan failed: {e}", exc_info=True

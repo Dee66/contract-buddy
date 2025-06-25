@@ -44,7 +44,7 @@ def run_rag_ingestion(config_path: Optional[str] = None, dry_run: bool = False) 
 # Ensure this function is available at the module level for patching
 __all__ = ["run_rag_ingestion"]
 
-# 🟩 GOOD: Only run CLI logic if executed as a script
+# Only run CLI logic if executed as a script
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the RAG ingestion pipeline.")
     parser.add_argument(

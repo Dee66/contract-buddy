@@ -53,7 +53,7 @@ nox_logger = setup_nox_logging()
 
 
 def ensure_bootstrap(session):
-    # 🟩 GOOD: No-op if bootstrap already ran in this env
+    # No-op if bootstrap already ran in this env
     pass
 
 
@@ -62,7 +62,7 @@ def ensure_bootstrap(session):
 
 def get_env(session):
     """
-    🟩 GOOD: Returns the current environment name for the session.
+    Returns the current environment name for the session.
     Defaults to 'dev' if not set.
     """
     # Priority: session positional args > env var > default

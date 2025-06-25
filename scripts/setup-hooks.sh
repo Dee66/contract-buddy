@@ -11,4 +11,4 @@ for hook in .git/hooks/*; do
     [ -f "$hook" ] && dos2unix "$hook" 2>/dev/null || true
 done
 
-echo "🟩 GOOD: All hooks are now executable and use LF line endings."
+echo "All hooks are now executable and use LF line endings."

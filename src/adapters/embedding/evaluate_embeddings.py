@@ -1,7 +1,7 @@
 import logging
 from typing import Optional
 
-# 🟩 GOOD: Minimal, production-ready evaluation stub for embedding models.
+# Minimal, production-ready evaluation stub for embedding models.
 
 
 def evaluate_model(

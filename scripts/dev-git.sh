@@ -39,7 +39,7 @@ fi
 case "$1" in
     commit)
         shift
-        # 🟩 GOOD: Automatically stage all changes before running hooks and committing
+        # Automatically stage all changes before running hooks and committing
         git add .
 
         # 🟦 NOTE: Run pre-commit hooks (auto-fix) after staging

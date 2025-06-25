@@ -2,7 +2,7 @@ import logging
 import json
 from typing import List, Dict
 
-# 🟩 GOOD: Minimal, production-ready stub for preparing contrastive pairs.
+# Minimal, production-ready stub for preparing contrastive pairs.
 
 
 def prepare_contrastive_pairs(path: str) -> List[Dict]:

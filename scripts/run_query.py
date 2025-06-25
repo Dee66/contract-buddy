@@ -6,7 +6,7 @@ import argparse
 # 🟦 NOTE: Ensure the src directory is in the Python path for all environments
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-# 🟩 GOOD: Use the canonical config and logging setup for the whole repo
+# Use the canonical config and logging setup for the whole repo
 from src.adapters.environment import setup_logging, ConfigLoader
 
 from src.application.services.query_service import QueryService

@@ -15,10 +15,10 @@ LOG_DIR = PROJECT_ROOT / "logs"
 DEFAULT_CONFIG_DIR = PROJECT_ROOT / "config"
 
 
-# 🟩 GOOD: Canonical logging setup for all environments.
+# Canonical logging setup for all environments.
 def setup_logging(level: Optional[str] = None, json_format: bool = False) -> None:
     """
-    🟩 GOOD: Canonical logging setup for all environments (dev, staging, prod).
+    Canonical logging setup for all environments (dev, staging, prod).
     🟦 NOTE: Supports both plain and JSON log formatting for AWS-native observability.
     """
     log_level = level or os.environ.get("LOG_LEVEL", "INFO")
@@ -50,7 +50,7 @@ def setup_logging(level: Optional[str] = None, json_format: bool = False) -> Non
     root_logger.info(f"Logging initialized with level {log_level}")
 
 
-# 🟩 GOOD: Clean, testable environment mode detection.
+# Clean, testable environment mode detection.
 def get_mode() -> str:
     """
     🟦 NOTE: Returns the current environment mode (dev, staging, prod).
@@ -59,7 +59,7 @@ def get_mode() -> str:
     return os.environ.get("ENV_MODE", "dev")
 
 
-# 🟩 GOOD: Canonical config loader for all environments.
+# Canonical config loader for all environments.
 class ConfigLoader:
     """
     A class to manage loading and merging of configuration files.
@@ -87,7 +87,7 @@ class ConfigLoader:
     def get_config(self) -> AppConfig:
         """
         Loads configuration from YAML files and overrides with environment variables.
-        🟩 GOOD: Single, production-grade config loader for all environments.
+        Single, production-grade config loader for all environments.
         """
         base_config_path = self.config_dir / "dev.yaml"
         mode_config_path = self.config_dir / f"{self.mode}.yaml"

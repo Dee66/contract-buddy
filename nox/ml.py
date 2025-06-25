@@ -72,7 +72,7 @@ def retrain_model(session):
         external=True,
         env={"PYTHONPATH": new_pythonpath, **os.environ},
     )
-    nox_logger.info("🟩 GOOD: [retrain_model] Session completed.")
+    nox_logger.info("[retrain_model] Session completed.")
 
 
 @nox.session
@@ -122,7 +122,7 @@ def sagemaker_train(session):
         external=True,
         env={"PYTHONPATH": new_pythonpath, **os.environ},
     )
-    nox_logger.info("🟩 GOOD: [sagemaker_train] Session completed.")
+    nox_logger.info("[sagemaker_train] Session completed.")
 
 
 @nox.session
@@ -149,4 +149,4 @@ def sync_artifacts_to_s3(session):
     s3_prefix = f"s3://{bucket}/{env}/artifacts/"
     nox_logger.info(f"🟦 NOTE: [sync_artifacts_to_s3] Syncing to: {s3_prefix}")
     session.run("aws", "s3", "sync", local_dir.as_posix(), s3_prefix, external=True)
-    nox_logger.info("🟩 GOOD: [sync_artifacts_to_s3] Session completed.")
+    nox_logger.info("[sync_artifacts_to_s3] Session completed.")

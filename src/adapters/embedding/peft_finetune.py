@@ -1,7 +1,7 @@
 import logging
 from typing import List, Dict, Any
 
-# 🟩 GOOD: Production-grade, minimal PEFT finetune stub for AWS-native, modular ML workflows.
+# Production-grade, minimal PEFT finetune stub for AWS-native, modular ML workflows.
 
 
 def peft_finetune(

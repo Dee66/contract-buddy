@@ -11,7 +11,6 @@ on:
 jobs:
   pip-audit:
     name: PythonDependencyVulnerabilityScan
-
     runs-on: ubuntu-latest
 
     steps:
@@ -40,12 +39,20 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container
+
+      - name: Set Buildx builder as default
+        run: |
+          docker buildx use default
 
       - name: Build API image
-        run: docker build -f Dockerfile.api -t codecraft-ai-api:test .
+        run: |
+          docker buildx build -f Dockerfile.api -t codecraft-ai-api:test .
 
       - name: Build Ingestion image
-        run: docker build -f Dockerfile.ingestion -t codecraft-ai-ingestion:test .
+        run: |
+          docker buildx build -f Dockerfile.ingestion -t codecraft-ai-ingestion:test .
 
       # 🟦 NOTE: Trivy scans are left enabled for visibility. Comment out to fully disable.
       # - name: Run Trivy scan on API image

@@ -5,7 +5,7 @@ import logging
 # 🟦 NOTE: Ensure src is on the Python path for all environments (dev, staging, prod)
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-# 🟩 GOOD: Use canonical config and logging setup for the whole repo
+# Use canonical config and logging setup for the whole repo
 from src.adapters.environment import setup_logging, get_mode, ConfigLoader
 from src.adapters.embedding.peft_finetune import peft_finetune
 from src.adapters.embedding.evaluate_embeddings import evaluate_model

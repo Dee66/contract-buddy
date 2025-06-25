@@ -4,7 +4,7 @@ FROM python:3.11 AS prod_builder
 
 WORKDIR /app
 
-# 🟩 GOOD: Upgrade system packages to minimize vulnerabilities
+# Upgrade system packages to minimize vulnerabilities
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential && \
     apt-get dist-upgrade -y && \
@@ -52,7 +52,7 @@ FROM python:3.11
 
 WORKDIR /app
 
-# 🟩 GOOD: Update system packages and remove build tools to minimize vulnerabilities
+# Update system packages and remove build tools to minimize vulnerabilities
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends libpq-dev gcc && \

@@ -7,7 +7,7 @@ import sys
 
 # 🟦 NOTE: Defensive check to ensure this file is executed from the correct working directory.
 # 🟨 CAUTION: If CDK is run from a different directory, relative imports or file checks may fail.
-# 🟩 GOOD: This block ensures the script always runs from the infrastructure/ directory.
+# This block ensures the script always runs from the infrastructure/ directory.
 expected_dir = Path(__file__).parent.resolve()
 if Path.cwd().resolve() != expected_dir:
     print(

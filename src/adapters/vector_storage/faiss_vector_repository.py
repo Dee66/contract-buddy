@@ -157,7 +157,7 @@ class FaissVectorRepository(IVectorRepository):
             logging.error(f"Failed to upload index or metadata to S3: {e}")
             raise
 
-    # 🟩 GOOD: Alias for legacy/test compatibility
+    # Alias for legacy/test compatibility
     def persist(self) -> None:
         """
         🟦 NOTE: For backward compatibility with tests and legacy code.

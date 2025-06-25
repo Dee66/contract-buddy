@@ -28,7 +28,7 @@ def run_command(command, description):
 def main():
     print("🚀 Starting CodeCraft AI Poetry-based Development Environment Setup...")
 
-    # 🟩 GOOD: Ensure Poetry is installed
+    # Ensure Poetry is installed
     try:
         subprocess.run(
             ["poetry", "--version"],
@@ -47,13 +47,13 @@ def main():
         )
         sys.exit(1)
 
-    # 🟩 GOOD: Install all dependencies (including dev) using Poetry
+    # Install all dependencies (including dev) using Poetry
     run_command(
         ["poetry", "install", "--with", "dev"],
         "Installing all project dependencies with Poetry",
     )
 
-    # 🟩 GOOD: Install pre-commit hooks using Poetry environment
+    # Install pre-commit hooks using Poetry environment
     run_command(
         ["poetry", "run", "pre-commit", "install"],
         "Installing pre-commit hooks for automated quality checks",

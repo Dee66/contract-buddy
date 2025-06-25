@@ -5,7 +5,7 @@ from utils import ensure_bootstrap, nox_logger
 @nox.session
 def bootstrap(session):
     """
-    🟩 GOOD: Bootstrap session for environment setup.
+    Bootstrap session for environment setup.
     Installs base dependencies and prepares the environment for all other sessions.
     """
     ensure_bootstrap(session)
