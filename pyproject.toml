@@ -14,6 +14,11 @@ sentence-transformers = "^4.1.0"
 aws-cdk-lib = "^2.148.0"
 constructs = "^10.3.0"
 fastapi = "^0.111.0"
+jupyter = "^1.0.0"
+ipywidgets = "^8.1.7"
+annotated-types = "^0.7.0"
+charset-normalizer = "^3.4.2"
+chardet = "^5.2.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "8.4.1"
@@ -39,9 +44,6 @@ types-pywin32 = "310.0.0.20250516"
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-# 🟦 NOTE: If you do not want to require a README.md for packaging, comment out or remove the `readme` field above.
-# Alternatively, you can create an empty README.md file at the project root.
-
-# 🟦 NOTE: If you want to use Poetry only for dependency management (not packaging), add:
 # [tool.poetry]
 # package-mode = false
+virtualenvs.in-project = true

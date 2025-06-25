@@ -53,3 +53,10 @@ outputs/
 artifacts/
 
 scrap.json
+reviewignore
+review_config.json
+review_context.json
+review_context.md
+.reviewignore
+.apcgignore
+review.py

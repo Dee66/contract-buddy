@@ -1,4 +1,6 @@
+import os
 import logging
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, Depends, HTTPException, status
 from pydantic import BaseModel, Field
@@ -11,6 +13,11 @@ from src.adapters.factories.factories import (
     create_embedding_service,
     create_vector_repository,
 )
+
+os.environ.setdefault(
+    "APP_MODE", "dev"
+)  # 🟨 CAUTION: Default to 'dev' for local/dev only. Set explicitly in prod/staging.
+os.environ.setdefault("AWS_REGION", "af-south-1")
 
 
 # --- API Models (Data Transfer Objects) ---
@@ -67,9 +74,7 @@ async def lifespan(app: FastAPI):
         f"API dependencies initialized. Config version: {config_manager.last_version or 'unknown'}"
     )
 
-    # The application runs until it is shut down
     yield
-    # --- Shutdown logic would go here ---
     logging.info("API shutting down.")
 
 

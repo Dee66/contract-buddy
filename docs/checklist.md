@@ -75,16 +75,74 @@
 
 ---
 
-<!-- ## 🌟 Storytelling & Portfolio -->
+## 🌟 Storytelling & Portfolio
 
-
-<!-- - 🟥 **[Objective defined](portfolio/Objective.md):** Portfolio and narrative goals. -->
-<!-- - 🟥 **[Ultimate README/whitepaper](portfolio/Ultimate_README.md):** Executive summary, architecture, AI core, optimization, resource management, demo instructions. -->
-<!-- - 🟥 **[Future roadmap](portfolio/Future_Roadmap.md):** Feature expansion, advanced MLOps, ethical AI, broader integration. -->
-<!-- - 🟥 **[Unique value proposition](portfolio/Unique_Value.md):** Technical excellence, strategic thinking, personal impact articulated. -->
-<!-- - 🟥 **[Verbal narrative](portfolio/Verbal_Narrative.md):** Elevator pitch, deep dive talking points, Q&A prep. -->
-<!-- - 🟥 **[Auto-generated docs](portfolio/Deliverables.md):** API docs, model cards, architecture diagrams (Swagger/OpenAPI, Sphinx, MkDocs). -->
-<!-- - 🟥 **[Stakeholder review](portfolio/Deliverables.md):** Portfolio deliverables reviewed and feedback incorporated. -->
-<!-- - 🟥 **[Deliverables](portfolio/Deliverables.md):** Polished repo, compelling interview narrative, auto-generated documentation. -->
+- 🟥 **[Objective defined](portfolio/Objective.md):** Portfolio and narrative goals.
+- 🟥 **[Ultimate README/whitepaper](portfolio/Ultimate_README.md):** Executive summary, architecture, AI core, optimization, resource management, demo instructions.
+- 🟥 **[Future roadmap](portfolio/Future_Roadmap.md):** Feature expansion, advanced MLOps, ethical AI, broader integration.
+- 🟥 **[Unique value proposition](portfolio/Unique_Value.md):** Technical excellence, strategic thinking, personal impact articulated.
+- 🟥 **[Verbal narrative](portfolio/Verbal_Narrative.md):** Elevator pitch, deep dive talking points, Q&A prep.
+- 🟥 **[Auto-generated docs](portfolio/Deliverables.md):** API docs, model cards, architecture diagrams (Swagger/OpenAPI, Sphinx, MkDocs).
+- 🟥 **[Stakeholder review](portfolio/Deliverables.md):** Portfolio deliverables reviewed and feedback incorporated.
+- 🟥 **[Deliverables](portfolio/Deliverables.md):** Polished repo, compelling interview narrative, auto-generated documentation.
 
 ---
+
+# 00 – Core API Demo
+
+🟩 **GOOD:** This notebook demonstrates the core API integration for CodeCraft AI, following Clean Architecture and AWS-native best practices.
+
+## Purpose
+
+- Showcase end-to-end interaction with the deployed AI API (FastAPI/SageMaker endpoint)
+- Provide a reproducible, production-aligned demo for stakeholders and technical reviewers
+- Serve as a baseline for further prompt engineering, evaluation, and integration notebooks
+
+> 🟦 **NOTE:** Ensure your API endpoint is running and accessible before executing these cells.
+
+```python
+# 🟪 ARCH: Environment-aware configuration, no hardcoded secrets
+import os
+import requests
+
+API_URL = os.getenv("CODECRAFT_API_URL", "http://localhost:8000/query")
+API_AUTH_TOKEN = os.getenv("CODECRAFT_API_TOKEN", "")
+API_AUTH_HEADER = os.getenv("CODECRAFT_API_AUTH_HEADER", "Authorization")
+API_AUTH_PREFIX = os.getenv("CODECRAFT_API_AUTH_PREFIX", "Bearer")
+
+def ask_ai(query: str, top_k: int = 3, extra_payload: dict = None):
+    payload = {"query": query, "top_k": top_k}
+    if extra_payload:
+        payload.update(extra_payload)
+    headers = {}
+    if API_AUTH_TOKEN:
+        if API_AUTH_PREFIX:
+            headers[API_AUTH_HEADER] = f"{API_AUTH_PREFIX} {API_AUTH_TOKEN}"
+        else:
+            headers[API_AUTH_HEADER] = API_AUTH_TOKEN
+    try:
+        response = requests.post(API_URL, json=payload, headers=headers, timeout=30)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        print(f"🟥 CRITICAL: API error: {e}")
+        return None
+```
+
+## Example: Ask a Question
+
+```python
+from pprint import pprint
+
+question = "What is CodeCraft AI?"
+result = ask_ai(question)
+pprint(result)
+```
+
+## Try Your Own Question
+
+```python
+my_question = "How does the vector store work?"
+my_result = ask_ai(my_question)
+pprint(my_result)
+```
