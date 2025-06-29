@@ -6,7 +6,7 @@
 
 > ## 🏗️ Integrate, deploy, and operationalize AI solution
 >
-> as a robust, production-ready system—ensuring usability, scalability, and maintainability.
+> as a robust, production-ready system ensuring usability, scalability, and maintainability.
 
 ---
 
@@ -45,7 +45,7 @@ graph TD
 ---
 
 > **Professional Insight:**
-> This phase is about turning intelligence into impact—making AI accessible, reliable, and ready for the real world.
+> This phase is about turning intelligence into impact making AI accessible, reliable, and ready for the real world.
 
 ---
 

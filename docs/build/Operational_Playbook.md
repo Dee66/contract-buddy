@@ -5,7 +5,7 @@
 # 📒 Operational Playbook
 
 > **Purpose:**
-> Prepare for real-world operations—know how to monitor, update, and respond for any AI solution.
+> Prepare for real-world operations know how to monitor, update, and respond for any AI solution.
 
 ---
 
@@ -150,7 +150,7 @@ graph TD
 ---
 
 > **Professional Insight:**
-> Operational readiness is what turns a prototype into a product—make it robust for every AI solution.
+> Operational readiness is what turns a prototype into a productmake it robust for every AI solution.
 
 ---
 

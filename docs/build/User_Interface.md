@@ -33,4 +33,4 @@ graph TD
 ---
 
 > **Professional Insight:**
-> The user interface is where the AI meets the world—make it count for every project.
+> The user interface is where the AI meets the worldmake it count for every project.

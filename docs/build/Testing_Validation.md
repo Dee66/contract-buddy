@@ -5,7 +5,7 @@
 # 🧪 Testing & Validation
 
 > **Purpose:**
-> Prove the system works—at every level, for every AI solution.
+> Prove the system worksat every level, for every AI solution.
 
 ---
 

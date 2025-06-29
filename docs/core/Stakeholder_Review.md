@@ -46,4 +46,4 @@ Core deliverables meet standards for a production-ready showcase. Ready to proce
 ---
 
 > **Professional Insight:**
-> Documenting stakeholder review and feedback—whether self or peer—demonstrates rigor and a commitment to continuous improvement.
+> Documenting stakeholder review and feedbackwhether self or peerdemonstrates rigor and a commitment to continuous improvement.

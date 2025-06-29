@@ -41,7 +41,7 @@
   - Unlike Copilot or Tabnine, CodeCraft AI is designed for extensibility, explainability, and enterprise integration, with a focus on compliance and custom workflows.
 
 - **ROI Example:**
-  If a team of 5 developers saves 2 hours/week each, at $60/hour, that’s $600/month or $7,200/year in productivity gains—before considering quality and velocity improvements.
+  If a team of 5 developers saves 2 hours/week each, at $60/hour, that’s $600/month or $7,200/year in productivity gainsbefore considering quality and velocity improvements.
 
 | Team Size | Hours Saved/Week | Hourly Rate | Monthly Savings | Annual Savings |
 | --------- | ---------------- | ----------- | --------------- | -------------- |

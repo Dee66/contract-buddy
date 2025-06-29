@@ -6,7 +6,7 @@
 
 > ## 🧠 Implement a robust, efficient, and measurable AI core
 >
-> for the selected AI solution—balancing performance, resource use, and business value.
+> for the selected AI solutionbalancing performance, resource use, and business value.
 
 ---
 
@@ -19,7 +19,7 @@ graph TD
 ---
 
 > **Professional Insight:**
-> This phase is about building intelligence with discipline—measuring, optimizing, and documenting every step, no matter the use case.
+> This phase is about building intelligence with disciplinemeasuring, optimizing, and documenting every step, no matter the use case.
 
 # 🎯 Core Objective
 

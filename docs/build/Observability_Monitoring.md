@@ -5,7 +5,7 @@
 # 📈 Observability & Monitoring
 
 > **Purpose:**
-> Build in visibility and insight from day one—know what’s happening, always.
+> Build in visibility and insight from day one know what’s happening, always.
 
 ---
 

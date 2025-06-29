@@ -67,4 +67,4 @@ This document outlines the advanced patterns and operational playbooks to elevat
 ---
 
 **Why:**
-These enhancements ensure operational agility, auditability, and resilience—hallmarks of a production-grade, enterprise-ready AI system.
+These enhancements ensure operational agility, auditability, and resiliencehallmarks of a production-grade, enterprise-ready AI system.

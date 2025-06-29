@@ -68,7 +68,7 @@
 
 ## Professional Insight
 
-> “A reproducible, containerized dev environment is the foundation of modern AI delivery—enabling rapid onboarding, reliable CI/CD, and seamless collaboration.”
+> “A reproducible, containerized dev environment is the foundation of modern AI deliveryenabling rapid onboarding, reliable CI/CD, and seamless collaboration.”
 
 ---
 

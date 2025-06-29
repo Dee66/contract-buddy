@@ -28,4 +28,4 @@
 ---
 
 > **Professional Insight:**
-> Great communicators turn technical work into career opportunities—practice for every AI solution you build.
+> Great communicators turn technical work into career opportunitiespractice for every AI solution you build.

@@ -46,4 +46,4 @@ graph TD
 ---
 
 > **Professional Insight:**
-> Experimentation and measurement are the heart of trustworthy AI—apply these principles to any model or use case.
+> Experimentation and measurement are the heart of trustworthy AIapply these principles to any model or use case.

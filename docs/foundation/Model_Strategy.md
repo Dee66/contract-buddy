@@ -65,4 +65,4 @@ graph TD
 ---
 
 > **Professional Insight:**
-> RAG is the gold standard for production AI assistants—combining the creativity of LLMs with the reliability of curated, real-world knowledge.
+> RAG is the gold standard for production AI assistantscombining the creativity of LLMs with the reliability of curated, real-world knowledge.

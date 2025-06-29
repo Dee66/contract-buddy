@@ -48,7 +48,7 @@ All solutions must match real-world production needs.
 - Prefer idiomatic, built-in solutions over custom hacks.
 - Explain why suggestions improve clarity, stability, or maintainability.
 - Recommend changes only if they add practical, clear value.
-- **If the discussion is still at a high-level, architectural, or exploratory phase  avoid jumping into code unless explicitly requested. Focus on trade-offs, design decisions, or business alignment instead.**
+- **If the discussion is still at a high-level, architectural, or exploratory phase to avoid jumping into code unless explicitly requested. Focus on trade-offs, design decisions, or business alignment instead.**
 
 ## Collaboration Protocol
 
@@ -61,17 +61,13 @@ All solutions must match real-world production needs.
 
 Use these tags in comments, markdown, and responses for clarity and prioritization:
 
-| Tag | Meaning |
-|-----|---------|
+| Tag            | Meaning                                        |
+| -------------- | ---------------------------------------------- |
 | 🟥 `CRITICAL:` | Immediate attention required; system-impacting |
-| 🟨 `CAUTION:` | Possible risk or edge case |
-| 🟩 `GOOD:` | Recommended or safe practice |
-| 🟦 `NOTE:` | Informational or clarifying |
-| 🟪 `ARCH:` | Architectural insight or boundary advice |
-| 🟫 `OPS:` | Operational, deployment, or IAM-related info |
+| 🟨 `CAUTION:`  | Possible risk or edge case                     |
+| 🟩 `GOOD:`     | Recommended or safe practice                   |
+| 🟦 `NOTE:`     | Informational or clarifying                    |
+| 🟪 `ARCH:`     | Architectural insight or boundary advice       |
+| 🟫 `OPS:`      | Operational, deployment, or IAM-related info   |
 
 Apply consistently for better readability and signal clarity.
-
-## Architect’s Insight
-
-Focus on small, deliberate, context-aware improvements that preserve architecture integrity, operational confidence, and team clarity. Your guidance should be actionable, concise, and aligned to real-world constraints.

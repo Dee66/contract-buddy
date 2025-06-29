@@ -59,4 +59,4 @@ With the current dataset size, all hyperparameter configurations yield similar (
 ---
 
 > **Professional Insight:**
-> Optimization is not just about speed—it's about delivering value efficiently for every AI solution.
+> Optimization is not just about speedit's about delivering value efficiently for every AI solution.

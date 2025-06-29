@@ -32,4 +32,4 @@ graph TD
 ---
 
 > **Professional Insight:**
-> Automated, transparent evaluation is the mark of a mature AI workflow—adapt the metrics to each project.
+> Automated, transparent evaluation is the mark of a mature AI workflowadapt the metrics to each project.

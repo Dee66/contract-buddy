@@ -113,4 +113,4 @@ flowchart TD
 ---
 
 > **Professional Insight:**
-> A modular, layered architecture ensures CodeCraft AI is maintainable, extensible, and secure—ready for both rapid prototyping and enterprise deployment.
+> A modular, layered architecture ensures CodeCraft AI is maintainable, extensible, and secureready for both rapid prototyping and enterprise deployment.

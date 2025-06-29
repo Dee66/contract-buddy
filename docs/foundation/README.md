@@ -16,7 +16,7 @@ This module lays the strategic and architectural groundwork for CodeCraft AI, en
 
 This section contains the essential pillars of our project strategy. Each document serves a critical role in defining our path forward.
 
--   [**🎯 Objective**](Objective.md): Defines our North Star—the single, clear goal for this entire initiative.
+-   [**🎯 Objective**](Objective.md): Defines our North Starthe single, clear goal for this entire initiative.
 -   [**🔍 Business Problem & Value**](Business_Problem_Value.md): Establishes the "why" by connecting our technical solution to real-world user pain points and tangible ROI.
 -   [**🏗️ Architecture Blueprint**](Architecture_Blueprint.md): Outlines the "how" with a modular, secure, and scalable system design that embeds best practices from day one.
 -   [**🤖 Model & AI Strategy**](Model_Strategy.md): Details the "what" by selecting our core AI approach (RAG + LLM) to ensure accuracy, context-awareness, and extensibility.
