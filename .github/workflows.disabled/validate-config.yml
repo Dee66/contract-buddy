@@ -43,10 +43,22 @@ jobs:
         id: set-role
         run: |
           if [ "${{ matrix.env }}" = "dev" ]; then
+            if [ -z "${{ secrets.AWS_OIDC_ROLE_ARN_DEV }}" ]; then
+              echo "🟥 CRITICAL: AWS_OIDC_ROLE_ARN_DEV secret is not set."
+              exit 1
+            fi
             echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_DEV }}" >> $GITHUB_ENV
           elif [ "${{ matrix.env }}" = "staging" ]; then
+            if [ -z "${{ secrets.AWS_OIDC_ROLE_ARN_STAGING }}" ]; then
+              echo "🟥 CRITICAL: AWS_OIDC_ROLE_ARN_STAGING secret is not set."
+              exit 1
+            fi
             echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_STAGING }}" >> $GITHUB_ENV
           elif [ "${{ matrix.env }}" = "prod" ]; then
+            if [ -z "${{ secrets.AWS_OIDC_ROLE_ARN_PROD }}" ]; then
+              echo "🟥 CRITICAL: AWS_OIDC_ROLE_ARN_PROD secret is not set."
+              exit 1
+            fi
             echo "OIDC_ROLE_ARN=${{ secrets.AWS_OIDC_ROLE_ARN_PROD }}" >> $GITHUB_ENV
           else
             echo "🟥 CRITICAL: Unknown environment: ${{ matrix.env }}"
