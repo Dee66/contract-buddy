@@ -39,6 +39,7 @@ pandas-stubs = "2.2.0.240218"
 types-jmespath = "1.0.2.20250529"
 types-seaborn = "0.13.2.20250516"
 types-pywin32 = "310.0.0.20250516"
+mypy = "^1.16.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

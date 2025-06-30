@@ -27,10 +27,10 @@ fi
 if ! poetry run pre-commit --version >/dev/null 2>&1; then
     echo "🟦 NOTE: Installing pre-commit in Poetry environment..."
     poetry add --dev pre-commit
-fi
+fiUpdate
 
 # --- Ensure hooks are installed and executable (idempotent, but skip if already installed) ---
-if [ ! -f "$HOOKS_INSTALLED_MARKER" ] || [ ! -x "$HOOKS_DIR/pre-commit" ] || [ ! -x "$HOOKS_DIR/pre-push" ]; then
+if [ ! -f "$HOOKS_INSTALLED_MARKER" ] || [ ! -x "$HOOKS_DI\normalize_markdown_links.pyR/pre-commit" ] || [ ! -x "$HOOKS_DIR/pre-push" ]; then
     poetry run pre-commit install --hook-type pre-commit --hook-type pre-push >/dev/null 2>&1 || true
     if [ -d "$HOOKS_DIR" ]; then
         for hook in "$HOOKS_DIR/pre-commit" "$HOOKS_DIR/pre-push"; do
