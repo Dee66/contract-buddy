@@ -1,4 +1,4 @@
-[← Back to Project README](../../Readme.md)
+[← Back to Project README](../../README.md)
 
 # 📋 AI Solutions Project Implementation Checklist
 
