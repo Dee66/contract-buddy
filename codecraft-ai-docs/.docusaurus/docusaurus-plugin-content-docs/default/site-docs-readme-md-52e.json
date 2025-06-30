@@ -1,0 +1,24 @@
+{
+  "id": "readme",
+  "title": "readme",
+  "description": "⬅ Back to Section Overview",
+  "source": "@site/docs/readme.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/docs/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/readme.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "index",
+    "permalink": "/docs/"
+  },
+  "next": {
+    "title": "benchmarking",
+    "permalink": "/docs/benchmarking"
+  }
+}

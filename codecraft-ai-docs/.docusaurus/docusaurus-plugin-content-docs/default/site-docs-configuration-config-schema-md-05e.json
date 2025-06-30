@@ -1,0 +1,24 @@
+{
+  "id": "configuration/config_schema",
+  "title": "config_schema",
+  "description": "⬅ Back",
+  "source": "@site/docs/configuration/config_schema.md",
+  "sourceDirName": "configuration",
+  "slug": "/configuration/config_schema",
+  "permalink": "/docs/configuration/config_schema",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/configuration/config_schema.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "config_management_enhancements",
+    "permalink": "/docs/configuration/config_management_enhancements"
+  },
+  "next": {
+    "title": "configuration_readme",
+    "permalink": "/docs/configuration/configuration_readme"
+  }
+}

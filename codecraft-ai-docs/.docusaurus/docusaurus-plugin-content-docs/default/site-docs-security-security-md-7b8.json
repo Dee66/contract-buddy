@@ -1,0 +1,20 @@
+{
+  "id": "security/security",
+  "title": "security",
+  "description": "⬅ Back",
+  "source": "@site/docs/security/security.md",
+  "sourceDirName": "security",
+  "slug": "/security/",
+  "permalink": "/docs/security/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/security/security.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "strategy",
+    "permalink": "/docs/devops/strategy"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "build/deliverables",
+  "title": "deliverables",
+  "description": "⬅ Back to Section Overview",
+  "source": "@site/docs/build/deliverables.md",
+  "sourceDirName": "build",
+  "slug": "/build/deliverables",
+  "permalink": "/docs/build/deliverables",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/deliverables.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "api_integration",
+    "permalink": "/docs/build/api_integration"
+  },
+  "next": {
+    "title": "deployment_infrastructure",
+    "permalink": "/docs/build/deployment_infrastructure"
+  }
+}

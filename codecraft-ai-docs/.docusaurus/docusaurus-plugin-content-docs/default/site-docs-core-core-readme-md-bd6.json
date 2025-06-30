@@ -1,0 +1,24 @@
+{
+  "id": "core/core_readme",
+  "title": "core_readme",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/core_readme.md",
+  "sourceDirName": "core",
+  "slug": "/core/core_readme",
+  "permalink": "/docs/core/core_readme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/core_readme.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "benchmarking_optimization",
+    "permalink": "/docs/core/benchmarking_optimization"
+  },
+  "next": {
+    "title": "data_pipeline_processing",
+    "permalink": "/docs/core/data_pipeline_processing"
+  }
+}

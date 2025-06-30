@@ -1,0 +1,24 @@
+{
+  "id": "foundation/key_activities",
+  "title": "key_activities",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/key_activities.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/key_activities",
+  "permalink": "/docs/foundation/key_activities",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/key_activities.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "foundation_readme",
+    "permalink": "/docs/foundation/foundation_readme"
+  },
+  "next": {
+    "title": "model_strategy",
+    "permalink": "/docs/foundation/model_strategy"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "core/deliverables",
+  "title": "deliverables",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/deliverables.md",
+  "sourceDirName": "core",
+  "slug": "/core/deliverables",
+  "permalink": "/docs/core/deliverables",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/deliverables.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "data_sourcing",
+    "permalink": "/docs/core/data_sourcing"
+  },
+  "next": {
+    "title": "dev_environment_data",
+    "permalink": "/docs/core/dev_environment_data"
+  }
+}

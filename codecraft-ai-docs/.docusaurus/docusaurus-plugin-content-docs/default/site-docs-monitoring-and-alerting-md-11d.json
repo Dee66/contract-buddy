@@ -1,0 +1,24 @@
+{
+  "id": "monitoring_and_alerting",
+  "title": "monitoring_and_alerting",
+  "description": "",
+  "source": "@site/docs/monitoring_and_alerting.md",
+  "sourceDirName": ".",
+  "slug": "/monitoring_and_alerting",
+  "permalink": "/docs/monitoring_and_alerting",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/monitoring_and_alerting.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Dependency Management Strategy",
+    "permalink": "/docs/dependency_management"
+  },
+  "next": {
+    "title": "architecture_blueprint",
+    "permalink": "/docs/foundation/architecture_blueprint"
+  }
+}

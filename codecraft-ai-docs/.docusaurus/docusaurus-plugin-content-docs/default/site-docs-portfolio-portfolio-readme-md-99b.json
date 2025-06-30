@@ -1,0 +1,24 @@
+{
+  "id": "portfolio/portfolio_readme",
+  "title": "portfolio_readme",
+  "description": "⬅ Back",
+  "source": "@site/docs/portfolio/portfolio_readme.md",
+  "sourceDirName": "portfolio",
+  "slug": "/portfolio/portfolio_readme",
+  "permalink": "/docs/portfolio/portfolio_readme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/portfolio/portfolio_readme.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "objective",
+    "permalink": "/docs/portfolio/objective"
+  },
+  "next": {
+    "title": "ultimate_readme",
+    "permalink": "/docs/portfolio/ultimate_readme"
+  }
+}

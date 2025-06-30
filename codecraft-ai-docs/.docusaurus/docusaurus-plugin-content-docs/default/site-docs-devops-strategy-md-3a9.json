@@ -1,0 +1,24 @@
+{
+  "id": "devops/strategy",
+  "title": "strategy",
+  "description": "⬅ Back",
+  "source": "@site/docs/devops/strategy.md",
+  "sourceDirName": "devops",
+  "slug": "/devops/strategy",
+  "permalink": "/docs/devops/strategy",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/devops/strategy.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "verbal_narrative",
+    "permalink": "/docs/portfolio/verbal_narrative"
+  },
+  "next": {
+    "title": "security",
+    "permalink": "/docs/security/"
+  }
+}

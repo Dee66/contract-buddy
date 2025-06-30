@@ -1,0 +1,243 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "benchmarking",
+              "path": "/docs/benchmarking",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/api_integration",
+              "path": "/docs/build/api_integration",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/build_readme",
+              "path": "/docs/build/build_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/deployment_infrastructure",
+              "path": "/docs/build/deployment_infrastructure",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/key_activities",
+              "path": "/docs/build/key_activities",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/objective",
+              "path": "/docs/build/objective",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/observability_monitoring",
+              "path": "/docs/build/observability_monitoring",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/operational_playbook",
+              "path": "/docs/build/operational_playbook",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/testing_validation",
+              "path": "/docs/build/testing_validation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "build/user_interface",
+              "path": "/docs/build/user_interface",
+              "sidebar": "docs"
+            },
+            {
+              "id": "checklist",
+              "path": "/docs/checklist",
+              "sidebar": "docs"
+            },
+            {
+              "id": "configuration/config_management_enhancements",
+              "path": "/docs/configuration/config_management_enhancements",
+              "sidebar": "docs"
+            },
+            {
+              "id": "configuration/config_schema",
+              "path": "/docs/configuration/config_schema",
+              "sidebar": "docs"
+            },
+            {
+              "id": "configuration/configuration_readme",
+              "path": "/docs/configuration/configuration_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/benchmarking_optimization",
+              "path": "/docs/core/benchmarking_optimization",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/core_readme",
+              "path": "/docs/core/core_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/data_pipeline_processing",
+              "path": "/docs/core/data_pipeline_processing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/data_sourcing",
+              "path": "/docs/core/data_sourcing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/dev_environment_data",
+              "path": "/docs/core/dev_environment_data",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/evaluation_plan",
+              "path": "/docs/core/evaluation_plan",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/key_activities",
+              "path": "/docs/core/key_activities",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/model_implementation_experimentation",
+              "path": "/docs/core/model_implementation_experimentation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/objective",
+              "path": "/docs/core/objective",
+              "sidebar": "docs"
+            },
+            {
+              "id": "core/stakeholder_review",
+              "path": "/docs/core/stakeholder_review",
+              "sidebar": "docs"
+            },
+            {
+              "id": "cost_tracking",
+              "path": "/docs/cost_tracking",
+              "sidebar": "docs"
+            },
+            {
+              "id": "dependency_management",
+              "path": "/docs/dependency_management",
+              "sidebar": "docs"
+            },
+            {
+              "id": "devops/strategy",
+              "path": "/docs/devops/strategy",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/architecture_blueprint",
+              "path": "/docs/foundation/architecture_blueprint",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/business_problem_value",
+              "path": "/docs/foundation/business_problem_value",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/foundation_readme",
+              "path": "/docs/foundation/foundation_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/key_activities",
+              "path": "/docs/foundation/key_activities",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/model_strategy",
+              "path": "/docs/foundation/model_strategy",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/objective",
+              "path": "/docs/foundation/objective",
+              "sidebar": "docs"
+            },
+            {
+              "id": "foundation/risk_constraints",
+              "path": "/docs/foundation/risk_constraints",
+              "sidebar": "docs"
+            },
+            {
+              "id": "index",
+              "path": "/docs/",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/future_roadmap",
+              "path": "/docs/portfolio/future_roadmap",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/key_activities",
+              "path": "/docs/portfolio/key_activities",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/objective",
+              "path": "/docs/portfolio/objective",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/portfolio_readme",
+              "path": "/docs/portfolio/portfolio_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/ultimate_readme",
+              "path": "/docs/portfolio/ultimate_readme",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/unique_value",
+              "path": "/docs/portfolio/unique_value",
+              "sidebar": "docs"
+            },
+            {
+              "id": "portfolio/verbal_narrative",
+              "path": "/docs/portfolio/verbal_narrative",
+              "sidebar": "docs"
+            },
+            {
+              "id": "security/security",
+              "path": "/docs/security/",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/docs/",
+                "label": "index"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

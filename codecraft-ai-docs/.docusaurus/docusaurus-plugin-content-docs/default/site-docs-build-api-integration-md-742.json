@@ -1,0 +1,24 @@
+{
+  "id": "build/api_integration",
+  "title": "api_integration",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/api_integration.md",
+  "sourceDirName": "build",
+  "slug": "/build/api_integration",
+  "permalink": "/docs/build/api_integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/api_integration.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "stakeholder_review",
+    "permalink": "/docs/core/stakeholder_review"
+  },
+  "next": {
+    "title": "build_readme",
+    "permalink": "/docs/build/build_readme"
+  }
+}

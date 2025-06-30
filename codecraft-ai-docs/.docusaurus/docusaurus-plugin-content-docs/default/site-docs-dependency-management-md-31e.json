@@ -1,0 +1,24 @@
+{
+  "id": "dependency_management",
+  "title": "dependency_management",
+  "description": "⬅ Back",
+  "source": "@site/docs/dependency_management.md",
+  "sourceDirName": ".",
+  "slug": "/dependency_management",
+  "permalink": "/docs/dependency_management",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/dependency_management.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "cost_tracking",
+    "permalink": "/docs/cost_tracking"
+  },
+  "next": {
+    "title": "architecture_blueprint",
+    "permalink": "/docs/foundation/architecture_blueprint"
+  }
+}

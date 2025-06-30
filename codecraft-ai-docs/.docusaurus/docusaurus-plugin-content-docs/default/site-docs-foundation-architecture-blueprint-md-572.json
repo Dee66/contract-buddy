@@ -1,0 +1,24 @@
+{
+  "id": "foundation/architecture_blueprint",
+  "title": "architecture_blueprint",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/architecture_blueprint.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/architecture_blueprint",
+  "permalink": "/docs/foundation/architecture_blueprint",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/architecture_blueprint.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "dependency_management",
+    "permalink": "/docs/dependency_management"
+  },
+  "next": {
+    "title": "business_problem_value",
+    "permalink": "/docs/foundation/business_problem_value"
+  }
+}

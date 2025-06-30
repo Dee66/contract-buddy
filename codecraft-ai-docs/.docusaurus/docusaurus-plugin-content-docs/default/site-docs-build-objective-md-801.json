@@ -1,0 +1,24 @@
+{
+  "id": "build/objective",
+  "title": "objective",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/objective.md",
+  "sourceDirName": "build",
+  "slug": "/build/objective",
+  "permalink": "/docs/build/objective",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/objective.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "key_activities",
+    "permalink": "/docs/build/key_activities"
+  },
+  "next": {
+    "title": "observability_monitoring",
+    "permalink": "/docs/build/observability_monitoring"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "portfolio/deliverables",
+  "title": "deliverables",
+  "description": "⬅ Back",
+  "source": "@site/docs/portfolio/deliverables.md",
+  "sourceDirName": "portfolio",
+  "slug": "/portfolio/deliverables",
+  "permalink": "/docs/portfolio/deliverables",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/portfolio/deliverables.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "AppConfig Schema",
+    "permalink": "/docs/configuration/config_schema"
+  },
+  "next": {
+    "title": "future_roadmap",
+    "permalink": "/docs/portfolio/future_roadmap"
+  }
+}

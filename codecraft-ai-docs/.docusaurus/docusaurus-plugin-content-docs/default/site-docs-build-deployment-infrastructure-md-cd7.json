@@ -1,0 +1,24 @@
+{
+  "id": "build/deployment_infrastructure",
+  "title": "deployment_infrastructure",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/deployment_infrastructure.md",
+  "sourceDirName": "build",
+  "slug": "/build/deployment_infrastructure",
+  "permalink": "/docs/build/deployment_infrastructure",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/deployment_infrastructure.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "build_readme",
+    "permalink": "/docs/build/build_readme"
+  },
+  "next": {
+    "title": "key_activities",
+    "permalink": "/docs/build/key_activities"
+  }
+}

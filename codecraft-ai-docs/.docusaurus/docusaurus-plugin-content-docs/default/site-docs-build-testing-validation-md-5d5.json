@@ -1,0 +1,24 @@
+{
+  "id": "build/testing_validation",
+  "title": "testing_validation",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/testing_validation.md",
+  "sourceDirName": "build",
+  "slug": "/build/testing_validation",
+  "permalink": "/docs/build/testing_validation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/testing_validation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "operational_playbook",
+    "permalink": "/docs/build/operational_playbook"
+  },
+  "next": {
+    "title": "user_interface",
+    "permalink": "/docs/build/user_interface"
+  }
+}

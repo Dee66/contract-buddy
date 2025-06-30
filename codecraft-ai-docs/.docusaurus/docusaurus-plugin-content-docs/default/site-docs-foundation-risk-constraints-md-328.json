@@ -1,0 +1,24 @@
+{
+  "id": "foundation/risk_constraints",
+  "title": "risk_constraints",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/risk_constraints.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/risk_constraints",
+  "permalink": "/docs/foundation/risk_constraints",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/risk_constraints.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "objective",
+    "permalink": "/docs/foundation/objective"
+  },
+  "next": {
+    "title": "benchmarking_optimization",
+    "permalink": "/docs/core/benchmarking_optimization"
+  }
+}

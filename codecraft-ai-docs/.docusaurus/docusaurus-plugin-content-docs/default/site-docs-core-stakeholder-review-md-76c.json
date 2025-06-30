@@ -1,0 +1,24 @@
+{
+  "id": "core/stakeholder_review",
+  "title": "stakeholder_review",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/stakeholder_review.md",
+  "sourceDirName": "core",
+  "slug": "/core/stakeholder_review",
+  "permalink": "/docs/core/stakeholder_review",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/stakeholder_review.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "objective",
+    "permalink": "/docs/core/objective"
+  },
+  "next": {
+    "title": "api_integration",
+    "permalink": "/docs/build/api_integration"
+  }
+}

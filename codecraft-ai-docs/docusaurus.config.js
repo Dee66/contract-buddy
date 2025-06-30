@@ -1,4 +1,3 @@
-codecraft-ai-docs/docusaurus.config.js
 module.exports = {
   title: 'CodeCraft AI',
   tagline: 'A showcase-ready, modular AI pipeline for code completion, documentation, and analysis',
@@ -43,11 +42,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Your Name. Built with Docusaurus.`,
-    },
-    prism: {
-      theme: require('prism-react-renderer/themes/dracula'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      copyright: `Copyright © ${new Date().getFullYear()} Deon Prinsloo. Built with Docusaurus.`,
     },
   },
   presets: [

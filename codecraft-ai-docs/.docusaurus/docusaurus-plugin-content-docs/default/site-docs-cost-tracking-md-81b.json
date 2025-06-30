@@ -1,0 +1,24 @@
+{
+  "id": "cost_tracking",
+  "title": "cost_tracking",
+  "description": "⬅ Back",
+  "source": "@site/docs/cost_tracking.md",
+  "sourceDirName": ".",
+  "slug": "/cost_tracking",
+  "permalink": "/docs/cost_tracking",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/cost_tracking.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "checklist",
+    "permalink": "/docs/checklist"
+  },
+  "next": {
+    "title": "dependency_management",
+    "permalink": "/docs/dependency_management"
+  }
+}

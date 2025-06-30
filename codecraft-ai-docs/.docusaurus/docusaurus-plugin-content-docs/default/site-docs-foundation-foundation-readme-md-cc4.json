@@ -1,0 +1,24 @@
+{
+  "id": "foundation/foundation_readme",
+  "title": "foundation_readme",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/foundation_readme.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/foundation_readme",
+  "permalink": "/docs/foundation/foundation_readme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/foundation_readme.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "business_problem_value",
+    "permalink": "/docs/foundation/business_problem_value"
+  },
+  "next": {
+    "title": "key_activities",
+    "permalink": "/docs/foundation/key_activities"
+  }
+}

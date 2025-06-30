@@ -1,0 +1,24 @@
+{
+  "id": "benchmarking",
+  "title": "benchmarking",
+  "description": "⬅ Back",
+  "source": "@site/docs/benchmarking.md",
+  "sourceDirName": ".",
+  "slug": "/benchmarking",
+  "permalink": "/docs/benchmarking",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/benchmarking.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "index",
+    "permalink": "/docs/"
+  },
+  "next": {
+    "title": "checklist",
+    "permalink": "/docs/checklist"
+  }
+}

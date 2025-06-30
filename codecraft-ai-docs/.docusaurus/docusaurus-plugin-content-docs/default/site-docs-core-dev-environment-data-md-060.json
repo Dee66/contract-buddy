@@ -1,0 +1,24 @@
+{
+  "id": "core/dev_environment_data",
+  "title": "dev_environment_data",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/dev_environment_data.md",
+  "sourceDirName": "core",
+  "slug": "/core/dev_environment_data",
+  "permalink": "/docs/core/dev_environment_data",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/dev_environment_data.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "data_sourcing",
+    "permalink": "/docs/core/data_sourcing"
+  },
+  "next": {
+    "title": "evaluation_plan",
+    "permalink": "/docs/core/evaluation_plan"
+  }
+}

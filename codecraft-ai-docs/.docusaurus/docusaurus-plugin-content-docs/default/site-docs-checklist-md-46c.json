@@ -1,0 +1,24 @@
+{
+  "id": "checklist",
+  "title": "checklist",
+  "description": "← Back to Project README",
+  "source": "@site/docs/checklist.md",
+  "sourceDirName": ".",
+  "slug": "/checklist",
+  "permalink": "/docs/checklist",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/checklist.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "benchmarking",
+    "permalink": "/docs/benchmarking"
+  },
+  "next": {
+    "title": "cost_tracking",
+    "permalink": "/docs/cost_tracking"
+  }
+}

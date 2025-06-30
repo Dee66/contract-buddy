@@ -1,0 +1,24 @@
+{
+  "id": "build/user_interface",
+  "title": "user_interface",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/user_interface.md",
+  "sourceDirName": "build",
+  "slug": "/build/user_interface",
+  "permalink": "/docs/build/user_interface",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/user_interface.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "testing_validation",
+    "permalink": "/docs/build/testing_validation"
+  },
+  "next": {
+    "title": "config_management_enhancements",
+    "permalink": "/docs/configuration/config_management_enhancements"
+  }
+}

@@ -22,10 +22,8 @@
     "@docusaurus/preset-classic": "3.8.1"
   },
   "devDependencies": {
-    "docusaurus": "1.14.7"
   },
   "directories": {
     "doc": "docs"
-  },
-  "type": "commonjs"
+  }
 }

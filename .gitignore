@@ -60,3 +60,6 @@ review_context.md
 .reviewignore
 .apcgignore
 review.py
+node_modules
+list_tree.py
+tree.txt

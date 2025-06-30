@@ -1,0 +1,24 @@
+{
+  "id": "build/key_activities",
+  "title": "key_activities",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/key_activities.md",
+  "sourceDirName": "build",
+  "slug": "/build/key_activities",
+  "permalink": "/docs/build/key_activities",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/key_activities.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "deployment_infrastructure",
+    "permalink": "/docs/build/deployment_infrastructure"
+  },
+  "next": {
+    "title": "objective",
+    "permalink": "/docs/build/objective"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "core/objective",
+  "title": "objective",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/objective.md",
+  "sourceDirName": "core",
+  "slug": "/core/objective",
+  "permalink": "/docs/core/objective",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/objective.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "model_implementation_experimentation",
+    "permalink": "/docs/core/model_implementation_experimentation"
+  },
+  "next": {
+    "title": "stakeholder_review",
+    "permalink": "/docs/core/stakeholder_review"
+  }
+}

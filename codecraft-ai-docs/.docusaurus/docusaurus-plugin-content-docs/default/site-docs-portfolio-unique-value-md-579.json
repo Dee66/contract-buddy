@@ -1,0 +1,24 @@
+{
+  "id": "portfolio/unique_value",
+  "title": "unique_value",
+  "description": "⬅ Back",
+  "source": "@site/docs/portfolio/unique_value.md",
+  "sourceDirName": "portfolio",
+  "slug": "/portfolio/unique_value",
+  "permalink": "/docs/portfolio/unique_value",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/portfolio/unique_value.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "ultimate_readme",
+    "permalink": "/docs/portfolio/ultimate_readme"
+  },
+  "next": {
+    "title": "verbal_narrative",
+    "permalink": "/docs/portfolio/verbal_narrative"
+  }
+}

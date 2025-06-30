@@ -1,0 +1,194 @@
+{
+  "/docs-dc2": {
+    "__comp": "5e95c892",
+    "__context": {
+      "plugin": "aba21aa0"
+    }
+  },
+  "/docs-fb1": {
+    "__comp": "a7bd4aaa",
+    "__props": "0058b4c6"
+  },
+  "/docs-203": {
+    "__comp": "a94703ab"
+  },
+  "/docs/-56e": {
+    "__comp": "17896441",
+    "content": "c377a04b"
+  },
+  "/docs/benchmarking-cd5": {
+    "__comp": "17896441",
+    "content": "9d6b9bdb"
+  },
+  "/docs/build/api_integration-2fe": {
+    "__comp": "17896441",
+    "content": "742a005d"
+  },
+  "/docs/build/build_readme-3ed": {
+    "__comp": "17896441",
+    "content": "5a7b07b9"
+  },
+  "/docs/build/deployment_infrastructure-79c": {
+    "__comp": "17896441",
+    "content": "cd75c48f"
+  },
+  "/docs/build/key_activities-8f7": {
+    "__comp": "17896441",
+    "content": "aaee66c5"
+  },
+  "/docs/build/objective-bbf": {
+    "__comp": "17896441",
+    "content": "801bc690"
+  },
+  "/docs/build/observability_monitoring-0ce": {
+    "__comp": "17896441",
+    "content": "f82ea449"
+  },
+  "/docs/build/operational_playbook-38b": {
+    "__comp": "17896441",
+    "content": "be633111"
+  },
+  "/docs/build/testing_validation-b31": {
+    "__comp": "17896441",
+    "content": "5d5db8f5"
+  },
+  "/docs/build/user_interface-1eb": {
+    "__comp": "17896441",
+    "content": "5c23e84d"
+  },
+  "/docs/checklist-433": {
+    "__comp": "17896441",
+    "content": "46cd8817"
+  },
+  "/docs/configuration/config_management_enhancements-a71": {
+    "__comp": "17896441",
+    "content": "657b1448"
+  },
+  "/docs/configuration/config_schema-d40": {
+    "__comp": "17896441",
+    "content": "05eb1bba"
+  },
+  "/docs/configuration/configuration_readme-c22": {
+    "__comp": "17896441",
+    "content": "4df7f1d0"
+  },
+  "/docs/core/benchmarking_optimization-c96": {
+    "__comp": "17896441",
+    "content": "34e5843e"
+  },
+  "/docs/core/core_readme-364": {
+    "__comp": "17896441",
+    "content": "bd63df61"
+  },
+  "/docs/core/data_pipeline_processing-14b": {
+    "__comp": "17896441",
+    "content": "f48a0542"
+  },
+  "/docs/core/data_sourcing-ab7": {
+    "__comp": "17896441",
+    "content": "22ca17ff"
+  },
+  "/docs/core/dev_environment_data-f17": {
+    "__comp": "17896441",
+    "content": "0601aa04"
+  },
+  "/docs/core/evaluation_plan-8e9": {
+    "__comp": "17896441",
+    "content": "a55b2209"
+  },
+  "/docs/core/key_activities-517": {
+    "__comp": "17896441",
+    "content": "58080f58"
+  },
+  "/docs/core/model_implementation_experimentation-7f2": {
+    "__comp": "17896441",
+    "content": "c7f9c494"
+  },
+  "/docs/core/objective-700": {
+    "__comp": "17896441",
+    "content": "73dca4be"
+  },
+  "/docs/core/stakeholder_review-430": {
+    "__comp": "17896441",
+    "content": "76cd86bb"
+  },
+  "/docs/cost_tracking-647": {
+    "__comp": "17896441",
+    "content": "81bddf4e"
+  },
+  "/docs/dependency_management-512": {
+    "__comp": "17896441",
+    "content": "31e12ce8"
+  },
+  "/docs/devops/strategy-7d4": {
+    "__comp": "17896441",
+    "content": "3a97da46"
+  },
+  "/docs/foundation/architecture_blueprint-5cb": {
+    "__comp": "17896441",
+    "content": "572d908a"
+  },
+  "/docs/foundation/business_problem_value-719": {
+    "__comp": "17896441",
+    "content": "93472059"
+  },
+  "/docs/foundation/foundation_readme-ff3": {
+    "__comp": "17896441",
+    "content": "cc45d057"
+  },
+  "/docs/foundation/key_activities-79b": {
+    "__comp": "17896441",
+    "content": "d675dad9"
+  },
+  "/docs/foundation/model_strategy-0cc": {
+    "__comp": "17896441",
+    "content": "90a87b54"
+  },
+  "/docs/foundation/objective-9ce": {
+    "__comp": "17896441",
+    "content": "e4c310ad"
+  },
+  "/docs/foundation/risk_constraints-ccc": {
+    "__comp": "17896441",
+    "content": "32868a87"
+  },
+  "/docs/portfolio/future_roadmap-5c7": {
+    "__comp": "17896441",
+    "content": "cb76e639"
+  },
+  "/docs/portfolio/key_activities-bec": {
+    "__comp": "17896441",
+    "content": "143febdb"
+  },
+  "/docs/portfolio/objective-9a9": {
+    "__comp": "17896441",
+    "content": "92971008"
+  },
+  "/docs/portfolio/portfolio_readme-420": {
+    "__comp": "17896441",
+    "content": "99b9311e"
+  },
+  "/docs/portfolio/ultimate_readme-e64": {
+    "__comp": "17896441",
+    "content": "d541bcf2"
+  },
+  "/docs/portfolio/unique_value-859": {
+    "__comp": "17896441",
+    "content": "579d0a94"
+  },
+  "/docs/portfolio/verbal_narrative-7c4": {
+    "__comp": "17896441",
+    "content": "f9c5d480"
+  },
+  "/docs/security/-ee2": {
+    "__comp": "17896441",
+    "content": "7b8e2475"
+  },
+  "/-2e1": {
+    "__comp": "c4f5d8e4",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "config": "5e9f5e1a"
+  }
+}

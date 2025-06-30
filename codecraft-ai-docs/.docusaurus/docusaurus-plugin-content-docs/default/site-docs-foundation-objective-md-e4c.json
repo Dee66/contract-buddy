@@ -1,0 +1,24 @@
+{
+  "id": "foundation/objective",
+  "title": "objective",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/objective.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/objective",
+  "permalink": "/docs/foundation/objective",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/objective.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "model_strategy",
+    "permalink": "/docs/foundation/model_strategy"
+  },
+  "next": {
+    "title": "risk_constraints",
+    "permalink": "/docs/foundation/risk_constraints"
+  }
+}

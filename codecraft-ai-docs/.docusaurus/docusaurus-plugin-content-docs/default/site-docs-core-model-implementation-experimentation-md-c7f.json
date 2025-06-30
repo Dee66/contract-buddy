@@ -1,0 +1,24 @@
+{
+  "id": "core/model_implementation_experimentation",
+  "title": "model_implementation_experimentation",
+  "description": "⬅ Back",
+  "source": "@site/docs/core/model_implementation_experimentation.md",
+  "sourceDirName": "core",
+  "slug": "/core/model_implementation_experimentation",
+  "permalink": "/docs/core/model_implementation_experimentation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/core/model_implementation_experimentation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "key_activities",
+    "permalink": "/docs/core/key_activities"
+  },
+  "next": {
+    "title": "objective",
+    "permalink": "/docs/core/objective"
+  }
+}

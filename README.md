@@ -1,4 +1,12 @@
+
+
 # 🤖 CodeCraft AI
+
+> 📖 **Full Documentation:**
+> For architecture, deep dives, and all technical docs, see the [CodeCraft AI Docs](codecraft-ai-docs/docs/index.md)
+>
+> ✅ **Project Implementation Checklist:**
+> See the [AI Solutions Project Implementation Checklist](codecraft-ai-docs/docs/checklist.md) for a blueprint of production-grade, AWS-native, business-aligned delivery.
 
 ## Overview
 
@@ -85,12 +93,12 @@ The platform is designed for operational excellence, with automated rollbacks, c
 
 ## 📋 Project Implementation Checklist
 
-To ensure every CodeCraft AI deployment meets the highest standards of engineering excellence, we maintain a comprehensive [AI Solutions Project Implementation Checklist](docs/checklist.md).
+To ensure every CodeCraft AI deployment meets the highest standards of engineering excellence, we maintain a comprehensive [AI Solutions Project Implementation Checklist](codecraft-ai-docs\docs\checklist.md).
 This checklist covers every phase of the project lifecyclefrom business alignment and architecture to MLOps, security, automation, and operational readiness.
 This checklist covers every phase of the project lifecyclefrom business alignment and architecture to MLOps, security, automation, and operational readiness.
 Use it as a blueprint to track progress, validate deliverables, and guarantee that every solution is production-grade, AWS-native, and business-aligned.
 
-👉 **[View the full checklist here](docs/checklist.md)**
+👉 **[View the full checklist here](codecraft-ai-docs\docs\checklist.md)**
 
 ---
 
@@ -124,7 +132,7 @@ Use it as a blueprint to track progress, validate deliverables, and guarantee th
 
 ---
 
-## ✨ My Blueprint for AI Solutions
+## ✨ Blueprint for AI Solutions
 
 Every high-performing AI solution begins with a solid foundation. CodeCraft AI unveils my systematic, MLOps-driven methodologya battle-tested "recipe" that ensures every AI initiative I lead is designed for unwavering success:
 Every high-performing AI solution begins with a solid foundation. CodeCraft AI unveils my systematic, MLOps-driven methodologya battle-tested "recipe" that ensures every AI initiative I lead is designed for unwavering success:
@@ -176,3 +184,6 @@ This page offers a strategic overview of CodeCraft AI. For a deeper dive into th
 I'm passionate about architecting secure, scalable, and impactful AI solutions that drive real business value.
 CodeCraft AI is more than a technical showcaseit's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact.
 CodeCraft AI is more than a technical showcaseit's a blueprint for delivering secure, scalable, and business-aligned AI in the cloud. Every decision, from architecture to deployment, reflects an unwavering commitment to operational maturity, security, and real-world impact.
+
+👉 **Full documentation and architecture deep dive:**
+See [CodeCraft AI Docs](codecraft-ai-docs/docs/index.md)

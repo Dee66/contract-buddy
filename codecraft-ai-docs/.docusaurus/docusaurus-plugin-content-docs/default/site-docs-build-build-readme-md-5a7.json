@@ -1,0 +1,24 @@
+{
+  "id": "build/build_readme",
+  "title": "build_readme",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/build_readme.md",
+  "sourceDirName": "build",
+  "slug": "/build/build_readme",
+  "permalink": "/docs/build/build_readme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/build_readme.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "api_integration",
+    "permalink": "/docs/build/api_integration"
+  },
+  "next": {
+    "title": "deployment_infrastructure",
+    "permalink": "/docs/build/deployment_infrastructure"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "build/observability_monitoring",
+  "title": "observability_monitoring",
+  "description": "⬅ Back to project README",
+  "source": "@site/docs/build/observability_monitoring.md",
+  "sourceDirName": "build",
+  "slug": "/build/observability_monitoring",
+  "permalink": "/docs/build/observability_monitoring",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/build/observability_monitoring.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "objective",
+    "permalink": "/docs/build/objective"
+  },
+  "next": {
+    "title": "operational_playbook",
+    "permalink": "/docs/build/operational_playbook"
+  }
+}

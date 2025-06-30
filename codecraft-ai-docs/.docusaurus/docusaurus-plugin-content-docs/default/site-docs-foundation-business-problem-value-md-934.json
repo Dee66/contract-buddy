@@ -1,0 +1,24 @@
+{
+  "id": "foundation/business_problem_value",
+  "title": "business_problem_value",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/business_problem_value.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/business_problem_value",
+  "permalink": "/docs/foundation/business_problem_value",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/business_problem_value.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "architecture_blueprint",
+    "permalink": "/docs/foundation/architecture_blueprint"
+  },
+  "next": {
+    "title": "foundation_readme",
+    "permalink": "/docs/foundation/foundation_readme"
+  }
+}

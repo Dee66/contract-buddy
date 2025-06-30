@@ -1,0 +1,24 @@
+{
+  "id": "foundation/deliverables",
+  "title": "deliverables",
+  "description": "⬅ Back",
+  "source": "@site/docs/foundation/deliverables.md",
+  "sourceDirName": "foundation",
+  "slug": "/foundation/deliverables",
+  "permalink": "/docs/foundation/deliverables",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-github-username/codecraft-ai-docs/edit/main/docs/foundation/deliverables.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "business_problem_value",
+    "permalink": "/docs/foundation/business_problem_value"
+  },
+  "next": {
+    "title": "key_activities",
+    "permalink": "/docs/foundation/key_activities"
+  }
+}
