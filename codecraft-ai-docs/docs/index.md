@@ -17,19 +17,19 @@ Welcome to the CodeCraft AI documentation! This site is your central resource fo
 
 ## 📚 Quick Navigation
 
-- [Foundation: Business Value & Architecture](foundation/Business_Problem_Value.md)
-- [Core: Data Pipeline & Model Development](core/Data_Pipeline_Processing.md)
+- [Foundation: Business Value & Architecture](foundation/business_problem_value.md)
+- [Core: Data Pipeline & Model Development](core/data_pipeline_processing.md)
 - [Build: API, Deployment, and Monitoring](build/objective.md)
-- [Project-wide Reports](BENCHMARKING.md), [Cost Tracking](COST_TRACKING.md), [Checklist](checklist.md)
+- [Project-wide Reports](benchmarking.md), [Cost Tracking](cost_tracking.md), [Checklist](checklist.md)
 
 ---
 
 ## 🛠️ Getting Started
 
-1. **Explore the [Architecture](foundation/Architecture_Blueprint.md)** to understand the system design.
-2. **Review [MLOps Practices](core/Model_Implementation_Experimentation.md)** for lifecycle management.
-3. **See [AWS Integration](build/Deployment_Infrastructure.md)** for cloud-native deployment.
-4. **Browse the [Portfolio Showcase](portfolio/Ultimate_README.md)** for business value and outcomes.
+1. **Explore the [Architecture](foundation/architecture_blueprint.md)** to understand the system design.
+2. **Review [MLOps Practices](core/model_implementation_experimentation.md)** for lifecycle management.
+3. **See [AWS Integration](build/deployment_infrastructure.md)** for cloud-native deployment.
+4. **Browse the [Portfolio Showcase](portfolio/ultimate_readme.md)** for business value and outcomes.
 
 ---
 

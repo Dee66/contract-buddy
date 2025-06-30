@@ -1,31 +1,23 @@
 # scripts/disable_hooks_and_actions.py
 """
 🟫 OPS: Temporarily disables all GitHub Actions and local git hooks by renaming workflow and hook directories.
-🟦 NOTE: Run from the project root. To restore, run the script again (it toggles the names).
+🟦 NOTE: Run from the project root. To restore, run this script again (it toggles the names).
 """
 
-import os
 from pathlib import Path
 
 def toggle_dir(path: Path, disabled_suffix=".disabled"):
+    disabled = path.with_name(path.name + disabled_suffix)
     if path.exists():
-        disabled = path.with_name(path.name + disabled_suffix)
-        if not disabled.exists():
-            path.rename(disabled)
-            print(f"🟨 CAUTION: Renamed '{path}' to '{disabled}' (disabled).")
-        else:
-            print(f"🟦 NOTE: '{disabled}' already exists. Skipping.")
+        # Disable: rename to .disabled
+        path.rename(disabled)
+        print(f"🟨 CAUTION: Renamed '{path}' to '{disabled}' (disabled).")
+    elif disabled.exists():
+        # Restore: rename .disabled back to original
+        disabled.rename(path)
+        print(f"🟩 GOOD: Restored '{path}' from '{disabled}'.")
     else:
-        enabled = Path(str(path).replace(disabled_suffix, ""))
-        if enabled.exists():
-            print(f"🟦 NOTE: '{enabled}' already enabled. Skipping.")
-        else:
-            # Try to restore if disabled exists
-            disabled = path
-            enabled = Path(str(path).replace(disabled_suffix, ""))
-            if disabled.exists():
-                disabled.rename(enabled)
-                print(f"🟩 GOOD: Restored '{enabled}' from '{disabled}'.")
+        print(f"🟦 NOTE: Neither '{path}' nor '{disabled}' exists. Nothing to do.")
 
 def main():
     repo_root = Path(__file__).resolve().parent.parent
